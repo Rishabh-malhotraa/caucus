@@ -1,0 +1,36 @@
+.flex__container {
+  font-weight: 900;
+  height: 100%;
+  font-size: 2rem;
+}
+
+.left-pane {
+  height: 100%;
+  background-color: #3a86ff;
+}
+
+.pane-content {
+  width: 50%;
+}
+
+.resizer {
+  width: 15px !important;
+}
+
+.resizer:hover {
+  background-color: #02203caa !important;
+  transition: all 0.1s linear !important;
+}
+
+.resizer__horizontal {
+  height: 15px !important;
+}
+
+.resizer__horizontal:hover {
+  background-color: #02203caa !important;
+  transition: all 0.1s linear !important;
+}
+
+.right__down__pane {
+  background-color: #f94144;
+}

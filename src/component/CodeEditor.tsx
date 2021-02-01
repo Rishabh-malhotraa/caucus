@@ -9,10 +9,9 @@ import 'ace-builds/src-noconflict/ext-themelist';
 
 import 'ace-builds/src-noconflict/ace';
 import 'ace-builds/src-noconflict/mode-c_cpp';
-import 'ace-builds/src-noconflict/theme-mono_industrial';
+import 'ace-builds/src-noconflict/theme-eclipse';
 import 'ace-builds/src-noconflict/keybinding-vim';
 import Select from 'react-select';
-import { Typography } from '@material-ui/core';
 
 const languages = ['c_cpp', 'java', 'python', 'typescript', 'golang'];
 
@@ -26,37 +25,43 @@ const langaugeOptions = [
 
 const theme = ['moonkai', 'light'];
 
-let text =
-  '{\n  "id": 0,\n  ' +
-  '"script": """\n   function add(x, y) {\n      return x + y;\n   }\n   add(1, 2);\n   """' +
-  ',\n   "descr": "add two numbers"\n}';
+// let text =
+//   '{\n  "id": 0,\n  ' +
+//   '"script": """\n   function add(x, y) {\n      return x + y;\n   }\n   add(1, 2);\n   """' +
+//   ',\n   "descr": "add two numbers"\n}';
 
-const CodeEditor = () => {
+interface AppProps {
+  text: string;
+  setText: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const CodeEditor: React.FC<AppProps> = ({ text, setText }) => {
+  console.log(text);
   return (
-    <div style={{ width: '100%' }}>
-      <AceEditor
-        width="100%"
-        placeholder="Enter Code"
-        mode="c_cpp"
-        theme="mono_industrial"
-        name="Ace-Editor-Instance"
-        // onChange={}
-        fontSize={16}
-        showPrintMargin={true}
-        showGutter={true}
-        keyboardHandler="vim"
-        highlightActiveLine={true}
-        value={text}
-        setOptions={{
-          enableBasicAutocompletion: true,
-          enableLiveAutocompletion: true,
-          enableSnippets: true,
-          showLineNumbers: true,
-          tabSize: 2,
-        }}
-      />
-      {/* <Select options={langaugeOptions} /> */}
-    </div>
+    <AceEditor
+      width="100%"
+      height="100%"
+      placeholder="Enter Code"
+      mode="c_cpp"
+      theme="eclipse"
+      name="Ace-Editor-Instance"
+      onChange={(e) => setText(e)}
+      fontSize={16}
+      showPrintMargin={true}
+      showGutter={true}
+      keyboardHandler="vim"
+      highlightActiveLine={true}
+      value={text}
+      setOptions={{
+        enableBasicAutocompletion: true,
+        enableLiveAutocompletion: true,
+        enableSnippets: true,
+        showLineNumbers: true,
+        wrap: true,
+        wrapBehavioursEnabled: true,
+        tabSize: 2,
+      }}
+    />
   );
 };
 export default CodeEditor;

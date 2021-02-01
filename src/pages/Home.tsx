@@ -7,6 +7,8 @@ import TaskBar from 'component/TaskBar';
 import Sidebar from 'component/Sidebar';
 import CodeEditor from 'component/CodeEditor';
 import { drawerWidth } from 'constant';
+import MainView from 'component/MainView/MainView';
+import { AppBar } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,20 +45,24 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function PersistentDrawerRight() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [text, setText] = React.useState('');
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <TaskBar open={open} setOpen={setOpen} />
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
-        <CodeEditor />
-      </main>
-      <Sidebar open={open} setOpen={setOpen} />
-    </div>
+    <>
+      <div className={classes.root}>
+        <CssBaseline />
+        <TaskBar open={open} setOpen={setOpen} />
+        <main
+          className={clsx(classes.content, {
+            [classes.contentShift]: open,
+          })}
+        >
+          <div className={classes.drawerHeader} />
+          <MainView />
+          {/* <CodeEditor text={text} setText={setText} /> */}
+        </main>
+        <Sidebar open={open} setOpen={setOpen} />
+      </div>
+    </>
   );
 }

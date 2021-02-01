@@ -10,6 +10,8 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import DuoRoundedIcon from '@material-ui/icons/DuoRounded';
+import PhoneRoundedIcon from '@material-ui/icons/PhoneRounded';
 import {
   makeStyles,
   useTheme,
@@ -72,11 +74,16 @@ const Sidebar: React.FC<AppProps> = ({ open, setOpen }) => {
           </IconButton>
         </div>
         <Divider />
+        <div className="">
+          <video width="100%" height="300px" controls>
+            <source src="videos/1.mp4" type="video/mp4" />
+          </video>
+        </div>
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Video', 'Call'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index % 2 === 0 ? <DuoRoundedIcon /> : <PhoneRoundedIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -84,14 +91,7 @@ const Sidebar: React.FC<AppProps> = ({ open, setOpen }) => {
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem>Hey there</ListItem>
         </List>
       </Drawer>
     </div>

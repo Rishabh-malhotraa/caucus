@@ -46,7 +46,9 @@ const TaskBar: React.FC<AppProps> = ({ open, setOpen }) => {
 
   return (
     <AppBar
-      position="fixed"
+      position="absolute"
+      elevation={0}
+      color="transparent"
       className={clsx(classes.appBar, {
         [classes.appBarShift]: open,
       })}

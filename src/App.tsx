@@ -1,13 +1,14 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import React from 'react';
 import Home from './pages/Home';
-import Editor from 'component/CodeEditor';
+import LoginPage from './pages/Login';
 
 const App = () => {
   return (
-    <div>
+    <div style={{ height: 'auto' }}>
       <Router>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={LoginPage} />
+        <Route exact path="/dashboard" component={Home} />
       </Router>
     </div>
   );
