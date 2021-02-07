@@ -9,7 +9,7 @@ import 'ace-builds/src-noconflict/ext-themelist';
 
 import 'ace-builds/src-noconflict/ace';
 import 'ace-builds/src-noconflict/mode-c_cpp';
-import 'ace-builds/src-noconflict/theme-eclipse';
+import 'ace-builds/src-noconflict/theme-monokai';
 import 'ace-builds/src-noconflict/keybinding-vim';
 import Select from 'react-select';
 
@@ -33,19 +33,22 @@ const theme = ['moonkai', 'light'];
 interface AppProps {
   text: string;
   setText: React.Dispatch<React.SetStateAction<string>>;
+  AceEditorRef: React.MutableRefObject<any>;
 }
 
-const CodeEditor: React.FC<AppProps> = ({ text, setText }) => {
-  console.log(text);
+const CodeEditor: React.FC<AppProps> = ({ text, setText, AceEditorRef }) => {
   return (
     <AceEditor
-      width="100%"
+      style={{ flexGrow: 1 }}
+      ref={AceEditorRef}
+      // maxLines={Infinity}
+      // width="100%"
       height="100%"
       placeholder="Enter Code"
       mode="c_cpp"
-      theme="eclipse"
+      theme="monokai"
       name="Ace-Editor-Instance"
-      onChange={(e) => setText(e)}
+      onChange={(code: string) => setText(code)}
       fontSize={16}
       showPrintMargin={true}
       showGutter={true}
@@ -53,12 +56,14 @@ const CodeEditor: React.FC<AppProps> = ({ text, setText }) => {
       highlightActiveLine={true}
       value={text}
       setOptions={{
+        showPrintMargin: false,
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
+        wrap: true,
+        fontSize: '16px',
+        wrapBehavioursEnabled: true,
         enableSnippets: true,
         showLineNumbers: true,
-        wrap: true,
-        wrapBehavioursEnabled: true,
         tabSize: 2,
       }}
     />

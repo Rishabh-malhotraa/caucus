@@ -21,7 +21,8 @@
 
 h1 {
   font-size: 2.5em;
-  color: #131125;
+  /* color: #131125; */
+  color: rgb(237, 232, 227);
   font-weight: 700;
   margin: 0;
 }
@@ -31,15 +32,23 @@ p {
 }
 
 .login-box {
+  /* background: #e0e0e0; */
+  opacity: 0.85;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
   position: absolute;
   display: flex;
   width: 80vw;
   height: 75vh;
   min-height: 80vh;
   border-radius: 20px;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
+  background-color: #1a1d1e;
+  background-color: rgb(23, 25, 26);
+
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.025);
+  /* box-shadow: 20px 20px 60px #232741, -20px -20px 60px #232741; */
 }
 
 .login-box-formbox,
@@ -76,13 +85,14 @@ p {
 }
 
 .login-box-signup a {
-  color: #a0a4e3;
+  color: white;
+  text-decoration: underline;
   font-weight: 600;
   text-decoration: inherit;
 }
 .login-box-signup a:hover,
 .login-box-signup a:focus {
-  color: #0f1396;
+  color: #a0a4e3;
 }
 
 .login-box-login {
@@ -102,6 +112,7 @@ form > div {
 }
 form > div input {
   color: #bebebe;
+  background-color: #17191a;
   width: 100%;
   padding: 1.5em 2em;
   border: 1px solid #bebebe;
@@ -119,15 +130,18 @@ form > div input.input-password {
   background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="lightgrey" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="5" y="11" width="14" height="10" rx="2"></rect><circle cx="12" cy="16" r="1"></circle><path d="M8 11v-4a4 4 0 0 1 8 0v4"></path></svg>');
 }
 form > div input:focus {
-  outline-color: #2028eb;
+  outline: #2028eb;
   border-color: #2028eb;
+  font-weight: bold;
 }
 form > div label {
   font-size: 0.85em;
   position: absolute;
   top: 1.25em;
   left: 1.5em;
-  background: #ffffff;
+  /* background: #ffffff; */
+  background: #17191a;
+
   padding: 0 0.5em;
 }
 form > div:focus-within label {
@@ -161,7 +175,7 @@ form > div .btn:focus {
 .alternate-text::after {
   content: '';
   flex: 1;
-  border-bottom: 1px solid #bebebe;
+  border-bottom: 1px solid rgb(73, 79, 83);
 }
 .alternate-text::before {
   margin-right: 1em;

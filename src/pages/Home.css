@@ -1,0 +1,40 @@
+.root {
+  background-color: #5b5b5b;
+  text-align: center;
+  height: 100vh;
+}
+
+.pane-color {
+  background-color: #272822;
+  color: #eee9e4;
+}
+
+.middle-pane-content {
+  display: flex;
+  height: inherit;
+}
+
+.chat-app {
+  background-color: #232741;
+  color: white;
+}
+
+.splitter {
+  /* background-color: transparent !important; */
+  background-color: transparent !important;
+  border: 0px !important;
+  transition: background-color 0.2s !important;
+  margin: 0 !important;
+  opacity: 1 !important;
+}
+.splitter:hover {
+  background-color: lightslategray !important;
+  opacity: 1 !important;
+}
+
+.splitter-verticle {
+  width: 12px !important;
+}
+.splitter-horizontal {
+  height: 12px !important;
+}

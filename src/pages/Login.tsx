@@ -80,10 +80,11 @@ const LoginII = () => {
             </p>
             <form action="#">
               <div>
-                <label htmlFor="email"> Guest Name</label>
+                <label htmlFor="username"> Guest Name</label>
                 <input
-                  type="email"
-                  name="email"
+                  type="text"
+                  name="username"
+                  placeholder="Enter your Name"
                   className={classes['input-email']}
                 />
               </div>
@@ -95,13 +96,19 @@ const LoginII = () => {
                 />
               </div>
             </form>
-            <div className={classes['alternate-text']}>Or sign in with</div>
+            <div className={classes['alternate-text']}>Or Log in with</div>
 
             {/* <GoogleLoginButton />
             <GithubLoginButton />
             <TwitterLoginButton /> */}
             <div className={classes['alternate-boxes']}>
-              <Button variant="outlined" className={classes['alternate-box']}>
+              <Button
+                variant="outlined"
+                className={classes['alternate-box']}
+                style={{
+                  border: '1px solid rgba(190, 190, 190, 0.5)',
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className={[
@@ -113,7 +120,7 @@ const LoginII = () => {
                   height={24}
                   viewBox="0 0 24 24"
                   strokeWidth={2}
-                  stroke="currentColor"
+                  stroke="white"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -122,7 +129,13 @@ const LoginII = () => {
                   <path d="M17.788 5.108a9 9 0 1 0 3.212 6.892h-8" />
                 </svg>
               </Button>
-              <Button variant="outlined" className={classes['alternate-box']}>
+              <Button
+                variant="outlined"
+                className={classes['alternate-box']}
+                style={{
+                  border: '1px solid rgba(190, 190, 190, 0.5)',
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className={[
@@ -134,7 +147,7 @@ const LoginII = () => {
                   height={24}
                   viewBox="0 0 24 24"
                   strokeWidth={2}
-                  stroke="currentColor"
+                  stroke="white"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -143,9 +156,14 @@ const LoginII = () => {
                   <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
                 </svg>
               </Button>
-              <button
+              <Button
+                variant="outlined"
+                style={{
+                  padding: '.75rem',
+                  border: '1px solid rgba(190, 190, 190, 0.5)',
+                }}
                 className={classes['alternate-box']}
-                style={{ backgroundColor: 'white' }}
+                // style={{ backgroundColor: 'white' }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -158,7 +176,7 @@ const LoginII = () => {
                   height={24}
                   viewBox="0 0 24 24"
                   strokeWidth={2}
-                  stroke="currentColor"
+                  stroke="white"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -167,7 +185,7 @@ const LoginII = () => {
                   <path d="M9 7c-3 0 -4 3 -4 5.5c0 3 2 7.5 4 7.5c1.088 -.046 1.679 -.5 3 -.5c1.312 0 1.5 .5 3 .5s4 -3 4 -5c-.028 -.01 -2.472 -.403 -2.5 -3c-.019 -2.17 2.416 -2.954 2.5 -3c-1.023 -1.492 -2.951 -1.963 -3.5 -2c-1.433 -.111 -2.83 1 -3.5 1c-.68 0 -1.9 -1 -3 -1z" />
                   <path d="M12 4a2 2 0 0 0 2 -2a2 2 0 0 0 -2 2" />
                 </svg>
-              </button>
+              </Button>
             </div>
           </div>
         </div>
