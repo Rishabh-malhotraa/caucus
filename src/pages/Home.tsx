@@ -1,14 +1,49 @@
-import { Paper, Tabs } from '@material-ui/core';
-import { Grid, Button, Tab } from '@material-ui/core';
 import CodeEditor from 'component/AceEditor';
 import InputOutputFile from 'component/InputOutputFile';
 import React, { useState, useRef, createRef } from 'react';
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import 'react-reflex/styles.css';
-
 import './Home.css';
+import { socket } from 'service/socket';
+import { useSnackbar } from 'notistack';
+import ChatApp from 'component/ChatApp';
 
 const Dashboard = () => {
+  const { enqueueSnackbar } = useSnackbar();
+
+  // const displayNotification = ({
+  //   name,
+  //   isConnected,
+  // }: Record<string, unknown>) => {
+  //   const text = isConnected ? 'connected' : 'disconnected';
+  //   const variantStyle = isConnected ? 'success' : 'error';
+
+  //   enqueueSnackbar(`${name} is ${text}`, {
+  //     variant: variantStyle,
+  //   });
+  // };
+
+  React.useEffect(() => {
+    const displayNotification = ({
+      name,
+      isConnected,
+    }: Record<string, unknown>) => {
+      const text = isConnected ? 'connected' : 'disconnected';
+      const variantStyle = isConnected ? 'success' : 'error';
+      enqueueSnackbar(`${name} is ${text}`, {
+        variant: variantStyle,
+      });
+    };
+    socket.on('connected', (data: Record<string, unknown>) => {
+      displayNotification(data);
+      console.log(`I'm Connected with the backend ${data}`);
+    });
+    socket.on('disconnected', (data: Record<string, unknown>) => {
+      displayNotification(data);
+      console.log(`I'm Connected with the backend ${JSON.stringify(data)}`);
+    });
+  }, []);
+
   const [text, setText] = useState('');
   const AceEditorRef = useRef(null);
   const TextAreaRef = createRef<HTMLDivElement>();
@@ -110,7 +145,8 @@ const Dashboard = () => {
                 </ReflexElement>
                 <ReflexSplitter className="splitter splitter-horizontal" />
                 <ReflexElement className="chat-app">
-                  <h2>Chat Pane Bottom</h2>
+                  {/* Chat App Component */}
+                  <ChatApp />
                 </ReflexElement>
               </ReflexContainer>
             </ReflexElement>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Paper, Tab, Tabs, Button, Box, TextField } from '@material-ui/core';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
-
+import { useSnackbar } from 'notistack';
 interface AppProps {
   TextAreaRef: React.RefObject<HTMLDivElement>;
   rows: number;
@@ -12,12 +12,20 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
 
+  const { enqueueSnackbar } = useSnackbar();
+
+  const displayNotification = () => {
+    enqueueSnackbar('Connection is established', {
+      variant: 'success',
+    });
+  };
+
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
 
   const renderTextArea = (value: number) => {
-    console.log('text-area  ' + rows);
+    // console.log('text-area  ' + rows);
     if (value === 0) {
       return (
         <TextField
@@ -58,7 +66,11 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
 
   return (
     <div
-      style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+      }}
       ref={TextAreaRef}
     >
       <Paper
@@ -86,6 +98,7 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
             top: '0px',
             right: '0px',
             fontWeight: 'bold',
+
             color: 'whitesmoke',
           }}
         >
@@ -94,6 +107,9 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
             color="inherit"
             endIcon={<SendRoundedIcon />}
             style={{ height: '48px' }}
+            onClick={() => {
+              displayNotification();
+            }}
           >
             Run Code
           </Button>
@@ -105,7 +121,8 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
           style={{
             display: 'flex',
             flexGrow: 1,
-            backgroundColor: 'whitesmoke',
+            backgroundColor: 'dimgrey',
+            // backgroundColor: 'whitesmoke',
           }}
         >
           {renderTextArea(value)}
