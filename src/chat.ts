@@ -27,7 +27,7 @@ const io = new Server(httpServer, {
 
 app.use(
   cors({
-    origin: "https://localhost:300",
+    origin: "https://localhost:3000",
   })
 );
 

@@ -1,42 +1,44 @@
+import { CLIENT_DASHBOARD_URL, CLIENT_LOGIN_URL } from "keys";
 import express from "express";
 import passport from "passport";
 
 const router = express.Router();
 import "../service/passport";
 
-// auth login page -- this would be the lofgin page URI from which the suer would login
-// /auth/login  -- /auth/logout
-// render a pgae with google login button you dont need to worry about this let the react router do this
-router.get("/login", (req, res) => {
-  res.render("login", { user: req.user });
-});
-
 // auth logout
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/");
+  res.redirect(CLIENT_LOGIN_URL);
 });
 
 // auth with google+
+router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
+
 router.get(
-  "/google",
+  "/google/redirect",
   passport.authenticate("google", {
-    scope: ["profile"],
+    successRedirect: CLIENT_DASHBOARD_URL,
+    failureRedirect: "/api/login/failed",
   })
 );
-router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-  res.redirect("/profile");
-});
 
-router.get("/github", passport.authenticate("github"));
-router.get("/github/redirect", passport.authenticate("github"), (req, res) => {
-  res.redirect("/profile");
-});
+router.get("/github", passport.authenticate("github", { scope: ["profile"] }));
+router.get(
+  "/github/redirect",
+  passport.authenticate("github", {
+    successRedirect: CLIENT_DASHBOARD_URL,
+    failureRedirect: "/api/login/failed",
+  })
+);
 
 // auth with twitter
-router.get("/twitter", passport.authenticate("twitter"));
-router.get("/twitter/redirect", passport.authenticate("twitter"), (req, res) => {
-  res.redirect("/profile");
-});
+router.get("/twitter", passport.authenticate("twitter", { scope: ["profile"] }));
+router.get(
+  "/twitter/redirect",
+  passport.authenticate("twitter", {
+    successRedirect: CLIENT_DASHBOARD_URL,
+    failureRedirect: "/api/login/failed",
+  })
+);
 
 export default router;
