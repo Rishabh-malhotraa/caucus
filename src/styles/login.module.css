@@ -156,6 +156,8 @@ form > div .btn {
   background-color: #2028eb;
   border-color: #2028eb;
   cursor: pointer;
+  width: 100%;
+  padding: 1.5rem;
   transition: all 500ms ease;
 }
 form > div .btn:hover,
@@ -186,29 +188,32 @@ form > div .btn:focus {
 
 .alternate-boxes {
   display: flex;
+  /* flex-direction: column; */
   justify-content: space-between;
   gap: 1em;
   margin-top: 1.5em;
 }
 
 .alternate-box {
+  background-color: transparent;
   color: #131125;
   text-align: center;
   width: 100%;
   padding: 1em 1em;
-  border: 1px solid rgba(190, 190, 190, 0.5);
+  border: 1px solid rgba(190, 190, 190, 0.5) !important;
   border-radius: 5px;
   cursor: pointer;
+  padding: 0.75rem !important;
   transition: all 500ms ease;
 }
-.alternate-box svg {
+.alternate-box img {
   transition: transform 500ms ease;
 }
 .alternate-box:hover {
   border-color: #bebebe;
   background-color: rgba(190, 190, 190, 0.25);
 }
-.alternate-box:hover svg {
+.alternate-box:hover img {
   transform: scale(1.25);
 }
 

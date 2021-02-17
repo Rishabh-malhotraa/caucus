@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { socket } from 'service/socket';
 import ChatMsg from './ChatMessage';
-import chalk from 'chalk';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { Button, TextField } from '@material-ui/core';
 
 const useStyles = makeStyles(() =>
   createStyles({

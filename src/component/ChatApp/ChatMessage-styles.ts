@@ -1,4 +1,5 @@
-const styles = ({ palette, spacing }) => {
+import { Theme } from '@material-ui/core/styles'
+const styles = ({ palette, spacing }: Theme) => {
   const radius = spacing(2.5);
   const size = spacing(4);
   const rightBgColor = palette.primary.main;
@@ -21,7 +22,6 @@ const styles = ({ palette, spacing }) => {
       display: 'inline-block',
       wordBreak: 'break-word',
       fontFamily:
-        // eslint-disable-next-line max-len
         '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
       fontSize: '14px',
     },
