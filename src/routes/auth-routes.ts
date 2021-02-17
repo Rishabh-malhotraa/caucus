@@ -1,4 +1,4 @@
-import { CLIENT_DASHBOARD_URL, CLIENT_LOGIN_URL } from "keys";
+import { CLIENT_DASHBOARD_URL, CLIENT_LOGIN_URL } from "../keys";
 import express from "express";
 import passport from "passport";
 

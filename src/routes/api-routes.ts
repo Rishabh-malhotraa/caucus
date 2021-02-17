@@ -1,5 +1,3 @@
-import { underline } from "chalk";
-import express from "express";
 import { Router } from "express";
 
 const router = Router();
@@ -16,7 +14,7 @@ router.get("/auth", (req, res) => {
     });
   }
   return res.status(200).json({
-    isLoggedIn: "true",
+    isLoggedIn: true,
     message: "User is logged in",
     user: req.user,
     cookies: req.cookies,
@@ -42,3 +40,5 @@ router.get("/login/failed", (req, res) => {
     message: "user failed to authenticate.",
   });
 });
+
+export default router;

@@ -6,5 +6,5 @@ export interface OAUTH_TABLE {
   create_time: string;
   oauth_provider: string;
   access_token: string;
-  refresh_token: string;
+  refresh_token?: string;
 }
