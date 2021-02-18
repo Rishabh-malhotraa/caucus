@@ -5,18 +5,19 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import LoginPage from './pages/Login';
+import LoginPage from './pages/Login/Login';
 import ProtectedRoute from 'service/ProtectedRoute';
 import LoginRoute from 'service/LoginRoute';
-import CreateRooms, { NotificationWrappedHome } from 'pages/CreateRooms';
+import Dashboard from 'pages/Room/Room';
+import NavigateRoom from 'pages/NavigateRooms/NavigateRooms';
 import GuestNameProvider, {
   GuestNameContext,
 } from './service/GuestNameContext';
 import UserContextProvider, { UserContext } from 'service/UserContext';
 import axios, { AxiosResponse } from 'axios';
 import { GuestNameContextTypes, OauthResponse, UserContextTypes } from 'types';
-import { CONST_ROOM } from 'config';
-import { v1 as uuid } from 'uuid';
+// import { v1 as uuid } from 'uuid';
+import Loader from 'pages/Loader/Loader';
 
 export const isAuthenticated = async (name: string) => {
   const { data }: AxiosResponse<OauthResponse> = await axios({
@@ -35,36 +36,32 @@ export const isAuthenticated = async (name: string) => {
 const App = () => {
   const { name } = useContext(GuestNameContext) as GuestNameContextTypes;
   const { user, saveUserInfo } = useContext(UserContext) as UserContextTypes;
-  console.log(user);
   useEffect(() => {
     async function isAuthenticatedWrapper() {
       const { isLoggedIn, data } = await isAuthenticated(name);
+      localStorage.setItem('isLoggedIn', JSON.stringify(data.isLoggedIn));
       saveUserInfo(data, isLoggedIn);
+      if (!isLoggedIn) {
+        return <Redirect to="/"></Redirect>;
+      }
     }
     isAuthenticatedWrapper();
   }, []);
 
-  const room_id = user?.cookies ? uuid() : CONST_ROOM;
   return (
     <div style={{ height: 'auto' }}>
       <Router>
         <Switch>
-          {/* <LoginRoute exact path="/login" component={LoginPage} user={user} /> */}
-          <Route exact path="/" component={LoginPage} />
+          <Route path="/room/:id" component={Dashboard} />
           <ProtectedRoute
             user={user}
-            exact
-            path="/room/:id"
-            component={NotificationWrappedHome}
+            path="/home"
+            NavigationRoom={NavigateRoom}
           />
-          {/* {user && user.isLoggedIn ? (
-          
-          ) : (
-            <Redirect from="/" to={'/login'} />
-          )} */}
+          <LoginRoute exact path="/" component={LoginPage} user={user} />
+          <Route exact path="/loader" component={Loader} />
+          <Redirect to="/" />
         </Switch>
-        {/* <Redirect from="/" to={`/room/${room_id}`} /> */}
-        {/* <Redirect from="/" to={`/login`} /> */}
       </Router>
     </div>
   );

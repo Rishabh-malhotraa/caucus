@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import classes from 'styles/login.module.css';
+import classes from './login.module.css';
 import Button from '@material-ui/core/Button';
 import { GuestNameContext } from 'service/GuestNameContext';
 import { GuestNameContextTypes } from 'types';
@@ -7,18 +7,13 @@ import GoogleSVG from 'assets/google.svg';
 import GithubPNG from 'assets/github.png';
 import TwitterPNG from 'assets/twitter.png';
 import { OAUTH_URL } from 'config';
-// import {
-//   GithubLoginButton,
-//   GoogleLoginButton,
-//   TwitterLoginButton,
-// } from 'react-social-login-buttons';
 import Particles from 'component/Particles.config';
 const Login = () => {
   const { name, handleOnChange } = useContext(
     GuestNameContext
   ) as GuestNameContextTypes;
 
-  const handleLogin = (
+  const handleLogin = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     provider: string
   ) => {
@@ -32,7 +27,7 @@ const Login = () => {
       <div className={classes['login-box']}>
         <div className={classes['login-box-formbox']}>
           <div className={classes['login-box-signup']}>
-            Don't have an account? <a href="#">Sign Up</a>
+            Don't have an account? <a href="/login">Sign Up</a>
           </div>
           <div className={classes['login-box-login']}>
             <h1>Welcome to RTCE</h1>
@@ -58,11 +53,6 @@ const Login = () => {
             </form>
             <div className={classes['alternate-text']}>Or Log in with</div>
             <div className={classes['alternate-boxes']}>
-              {/* <GithubLoginButton
-                style={{ backgroundColor: 'transparent !important' }}
-              />
-              <GoogleLoginButton />
-              <TwitterLoginButton /> */}
               <Button
                 onClick={(event) => handleLogin(event, '/google')}
                 variant="outlined"

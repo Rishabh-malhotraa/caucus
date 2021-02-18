@@ -1,21 +1,32 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
-import { UserContext } from 'service/UserContext';
-import { UserContextTypes, UserInfo } from 'types';
+import { UserInfoType } from 'types';
 
 interface ProtectedRouteProps extends RouteProps {
-  user?: UserInfo;
-  component: React.FC;
+  user?: UserInfoType;
+  NavigationRoom: React.FC;
 }
 
-const ProtectedRoute = (props: ProtectedRouteProps) => {
-  const { user } = props;
-  console.log(user);
-  console.log(props);
-  return user?.isLoggedIn ? (
-    <Route path={props.path} exact={props.exact} component={props.component} />
-  ) : (
-    <Redirect to="/" />
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
+  user,
+  NavigationRoom,
+  ...rest
+}) => {
+  const retriveKey = localStorage.getItem('isLoggedIn');
+  const storageKey = retriveKey ? JSON.parse(retriveKey) : false;
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        if (user?.isLoggedIn === true || storageKey === true) {
+          return <NavigationRoom />;
+        } else {
+          return (
+            <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+          );
+        }
+      }}
+    />
   );
 };
 export default ProtectedRoute;

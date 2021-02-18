@@ -1,27 +1,16 @@
+import React, { useState, useRef, createRef } from 'react';
 import CodeEditor from 'component/AceEditor';
 import InputOutputFile from 'component/InputOutputFile';
-import React, { useState, useRef, createRef } from 'react';
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import 'react-reflex/styles.css';
-import './Home.css';
+import './Room.css';
 import { socket } from 'service/socket';
 import { useSnackbar } from 'notistack';
 import ChatApp from 'component/ChatApp';
+import { SnackbarProvider } from 'notistack';
 
 const Dashboard = () => {
   const { enqueueSnackbar } = useSnackbar();
-
-  // const displayNotification = ({
-  //   name,
-  //   isConnected,
-  // }: Record<string, unknown>) => {
-  //   const text = isConnected ? 'connected' : 'disconnected';
-  //   const variantStyle = isConnected ? 'success' : 'error';
-
-  //   enqueueSnackbar(`${name} is ${text}`, {
-  //     variant: variantStyle,
-  //   });
-  // };
 
   React.useEffect(() => {
     const displayNotification = ({
@@ -161,4 +150,13 @@ const Dashboard = () => {
     </div>
   );
 };
-export default Dashboard;
+
+export const NotificationWrappedDashBoard = () => {
+  return (
+    <SnackbarProvider>
+      <Dashboard />
+    </SnackbarProvider>
+  );
+};
+
+export default NotificationWrappedDashBoard;

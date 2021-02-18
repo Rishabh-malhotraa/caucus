@@ -11,19 +11,19 @@ import 'ace-builds/src-noconflict/ace';
 import 'ace-builds/src-noconflict/mode-c_cpp';
 import 'ace-builds/src-noconflict/theme-monokai';
 import 'ace-builds/src-noconflict/keybinding-vim';
-import Select from 'react-select';
+// import Select from 'react-select';
 
-const languages = ['c_cpp', 'java', 'python', 'typescript', 'golang'];
+// const languages = ['c_cpp', 'java', 'python', 'typescript', 'golang'];
 
-const langaugeOptions = [
-  { value: 'c_cpp', label: 'C++' },
-  { value: 'python', label: 'Python' },
-  { value: 'java', label: 'Java' },
-  { value: 'typescript', label: 'Typescript' },
-  { value: 'golang', label: 'GO' },
-];
+// const langaugeOptions = [
+//   { value: 'c_cpp', label: 'C++' },
+//   { value: 'python', label: 'Python' },
+//   { value: 'java', label: 'Java' },
+//   { value: 'typescript', label: 'Typescript' },
+//   { value: 'golang', label: 'GO' },
+// ];
 
-const theme = ['moonkai', 'light'];
+// const theme = ['moonkai', 'light'];
 
 // let text =
 //   '{\n  "id": 0,\n  ' +

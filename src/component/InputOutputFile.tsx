@@ -1,11 +1,42 @@
 import React, { useState } from 'react';
 import { Paper, Tab, Tabs, Button, Box, TextField } from '@material-ui/core';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
+import { withStyles } from '@material-ui/core/styles';
 import { useSnackbar } from 'notistack';
 interface AppProps {
   TextAreaRef: React.RefObject<HTMLDivElement>;
   rows: number;
 }
+
+const CssTextField = withStyles({
+  root: {
+    // #115293
+    padding: '1rem',
+    height: '100%',
+    width: '100%',
+    '& .MuiInputBase-root': {
+      outline: 'none',
+      color: 'whitesmoke',
+    },
+    '& label.Mui-focused': {
+      color: 'dimgrey',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'dimgrey',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'dimgrey',
+      },
+      '&:hover fieldset': {
+        borderColor: 'dimgrey',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'dimgrey',
+      },
+    },
+  },
+})(TextField);
 
 const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
   const [value, setValue] = useState(0);
@@ -28,37 +59,24 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
     // console.log('text-area  ' + rows);
     if (value === 0) {
       return (
-        <TextField
+        <CssTextField
           size="medium"
-          color="primary"
           variant="outlined"
           value={inputText}
           onChange={(event) => setInputText(event.target.value)}
           multiline
           rows={rows}
-          style={{
-            color: 'white',
-            padding: '1rem',
-            height: '100%',
-            width: '100%',
-          }}
         />
       );
     } else if (value === 1) {
       return (
-        <TextField
+        <CssTextField
           size="medium"
           variant="outlined"
           value={outputText}
           rows={rows}
           onChange={(event) => setOutputText(event.target.value)}
           multiline
-          style={{
-            padding: '1rem',
-            height: '100%',
-            width: '100%',
-            outline: 'white',
-          }}
         />
       );
     } else setValue(0);
@@ -121,8 +139,8 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
           style={{
             display: 'flex',
             flexGrow: 1,
-            backgroundColor: 'dimgrey',
-            // backgroundColor: 'whitesmoke',
+            backgroundColor: '#272822',
+            color: 'white',
           }}
         >
           {renderTextArea(value)}

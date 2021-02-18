@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import FetchedDataReducer from 'reducers/slices/FetchedDataSlice';
+import AppDataReducer from 'redux/slices/AppDataSlice';
 
 
 const store = configureStore({
   reducer: {
-    fetchData: FetchedDataReducer,
+    appData: AppDataReducer,
   },
 });
 

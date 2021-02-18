@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export interface UserInfo {
+export interface UserInfoType {
   isLoggedIn: boolean;
   name?: string;
   image_link?: string;
@@ -34,6 +34,15 @@ export interface GuestNameContextTypes {
 }
 
 export interface UserContextTypes {
-  user: UserInfo | undefined;
+  user: UserInfoType | undefined;
   saveUserInfo: (data: OauthResponse, isLoggedIn: boolean) => void
+}
+
+export interface StateInterface {
+  appData: {
+    guestName: string;
+    AdminUser: UserInfoType;
+    UserList: UserInfoType[];
+    isLoggedIn: boolean;
+  }
 }

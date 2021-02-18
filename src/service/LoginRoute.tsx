@@ -1,22 +1,19 @@
 import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
-import { UserInfo } from 'types';
-import { v1 as uuid } from 'uuid';
+import { UserInfoType } from 'types';
 
 interface LoginRouteProps extends RouteProps {
   component: React.FC;
-  user?: UserInfo;
+  user?: UserInfoType;
 }
 
-const id = uuid();
 const LoginRoute = (props: LoginRouteProps) => {
-  console.log(JSON.stringify(props));
+  const retriveKey = localStorage.getItem('isLoggedIn');
+  const storageKey = retriveKey ? JSON.parse(retriveKey) : false;
 
-  if (props.user && props.user.isLoggedIn) {
-    console.log('inside rooms render');
-    return <Redirect to={`/room/${id}`} />;
+  if (props.user?.isLoggedIn || storageKey === true) {
+    return <Redirect to={`/home`} />;
   } else {
-    console.log('what da fuck');
     return (
       <Route
         path={props.path}
