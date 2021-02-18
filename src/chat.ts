@@ -84,11 +84,3 @@ app.get("/", (req, res) => {
 httpServer.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
-
-// socket.on("join-room", (roomName: string, callback: Function) => {
-//   socket.join(roomName);
-//   // okay i see what this is now
-//   // once someone joins a room we want to do something about it right -- so the traditional way to to emit a eveent which was created in the client side and that even does something but a more neat way of doing the same would be to just pass a callback function as an arugument and we pass arguments int that callback function and run that function
-//   callback(messages[roomName])
-//   socket.emit('joined')
-// });

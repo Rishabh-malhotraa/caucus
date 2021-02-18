@@ -3,14 +3,16 @@ import cors from "cors";
 import passport from "passport";
 import cookieSession from "cookie-session";
 import chalk from "chalk";
-import { COOKIE_KEYS, port, CLIENT_URL } from "./keys";
+import { COOKIE_KEYS, CLIENT_URL, port, socket_port } from "./keys";
 import authRoutes from "./routes/auth-routes";
 import apiRoutes from "./routes/api-routes";
 import cookieParser from "cookie-parser";
+import http from "http";
+import chatService from "./service/chatService";
 
 const app = express();
-
-// app.set("view engine", "ejs");
+const httpServer = new http.Server(app);
+chatService(httpServer);
 
 app.use(
   cors({
@@ -33,10 +35,12 @@ app.use(passport.session()); // deserialize cookie from the browser
 
 app.use("/auth", authRoutes);
 app.use("/api", apiRoutes);
+app.use("/", apiRoutes);
 
-// create home route
-app.get("/", (req, res) => {
-  res.render("home", { user: req.user });
-});
+app.listen(port, () => console.log(chalk.blueBright(`Express Server listening to port ${port}`)));
 
-app.listen(port, () => console.log(chalk.blueBright(`listening to port ${port}`)));
+httpServer.listen(socket_port, () =>
+  console.log(chalk.cyanBright(`Socket-io Server listening to port ${socket_port}`))
+);
+
+export type ServerType = typeof httpServer;

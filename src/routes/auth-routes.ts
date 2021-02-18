@@ -1,15 +1,9 @@
-import { CLIENT_DASHBOARD_URL, CLIENT_LOGIN_URL } from "../keys";
+import { CLIENT_DASHBOARD_URL } from "../keys";
 import express from "express";
 import passport from "passport";
-
+import { v1 as uuid } from "uuid";
 const router = express.Router();
 import "../service/passport";
-
-// auth logout
-router.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect(CLIENT_LOGIN_URL);
-});
 
 // auth with google+
 router.get("/google", passport.authenticate("google", { scope: ["profile"] }));

@@ -2,7 +2,6 @@ import { Router } from "express";
 
 const router = Router();
 // we will do our re-routing from the client side just send information from here
-
 // GET to /api/auth will return current logged in user info
 router.get("/auth", (req, res) => {
   if (!req.user) {
@@ -19,6 +18,14 @@ router.get("/auth", (req, res) => {
     user: req.user,
     cookies: req.cookies,
   });
+});
+
+// auth logout
+router.get("/logout", (req, res) => {
+  console.log(req.user);
+  req.logout();
+  console.log(req.user);
+  res.send({ message: "Successfully logged out" });
 });
 
 // when login is successful, retrieve user info

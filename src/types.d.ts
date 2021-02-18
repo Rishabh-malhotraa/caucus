@@ -8,3 +8,8 @@ export interface OAUTH_TABLE {
   access_token: string;
   refresh_token?: string;
 }
+
+export interface MessageProps {
+  messages: string[];
+  id: string;
+}

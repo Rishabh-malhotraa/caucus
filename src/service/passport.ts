@@ -4,20 +4,21 @@ import { Strategy as TwitterStrategy } from "passport-twitter";
 import { Strategy as GithubStrategy } from "passport-github";
 import { GITHUB_KEY, GOOGLE_KEY, TWITTER_KEY } from "../keys";
 import db from "./db_connection";
+import chalk from "chalk";
 
 const date = new Date().toISOString();
 const dummyImage = "https://stylizedbay.com/wp-content/uploads/2018/02/unknown-avatar.jpg";
 
 passport.serializeUser((user: any, done) => {
-  const error = user.oauth_provider === "google" ? undefined : null;
-  done(error, user.user_id);
+  // console.log("user down at serialize");
+  // console.log(user);
+  done(null, user.user_id);
 });
 
 passport.deserializeUser(async (user_id, done) => {
   try {
     const user = await db.query("SELECT * FROM oauth WHERE user_id = $1", [user_id]);
-    const error = user.rows[0].oauth_provider === "google" ? undefined : null;
-    done(error, user.rows[0]);
+    done(null, user.rows[0]);
   } catch (err) {
     console.error(err);
   }
@@ -44,7 +45,7 @@ passport.use(
             "INSERT INTO oauth (user_id, name, image_link, create_time, oauth_provider, access_token, refresh_token) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
             [
               profile.id,
-              profile.name,
+              profile.displayName,
               profile.photos ? profile.photos[0].value : dummyImage,
               date,
               profile.provider,
