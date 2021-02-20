@@ -1,4 +1,4 @@
-import { CLIENT_DASHBOARD_URL } from "../keys";
+import { CLIENT_DASHBOARD_URL } from "../config.keys";
 import express from "express";
 import passport from "passport";
 import { v1 as uuid } from "uuid";

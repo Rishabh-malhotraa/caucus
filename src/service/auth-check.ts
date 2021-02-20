@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { CLIENT_DASHBOARD_URL, CLIENT_LOGIN_URL } from "../keys";
+import { CLIENT_DASHBOARD_URL, CLIENT_LOGIN_URL } from "../config.keys";
 import { v1 as uuid } from "uuid";
 
 export const authCheck = (req: Request, res: Response, next: NextFunction): void => {

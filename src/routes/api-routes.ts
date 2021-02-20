@@ -22,9 +22,7 @@ router.get("/auth", (req, res) => {
 
 // auth logout
 router.get("/logout", (req, res) => {
-  console.log(req.user);
   req.logout();
-  console.log(req.user);
   res.send({ message: "Successfully logged out" });
 });
 

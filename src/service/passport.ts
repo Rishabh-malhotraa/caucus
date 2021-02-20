@@ -2,7 +2,7 @@ import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as TwitterStrategy } from "passport-twitter";
 import { Strategy as GithubStrategy } from "passport-github";
-import { GITHUB_KEY, GOOGLE_KEY, TWITTER_KEY } from "../keys";
+import { GITHUB_KEY, GOOGLE_KEY, TWITTER_KEY } from "../config.keys";
 import db from "./db_connection";
 import chalk from "chalk";
 

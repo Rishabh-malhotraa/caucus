@@ -3,7 +3,7 @@ import cors from "cors";
 import passport from "passport";
 import cookieSession from "cookie-session";
 import chalk from "chalk";
-import { COOKIE_KEYS, CLIENT_URL, port, socket_port } from "./keys";
+import { COOKIE_KEYS, CLIENT_URL, port, socket_port } from "./config.keys";
 import authRoutes from "./routes/auth-routes";
 import apiRoutes from "./routes/api-routes";
 import cookieParser from "cookie-parser";
@@ -35,12 +35,9 @@ app.use(passport.session()); // deserialize cookie from the browser
 
 app.use("/auth", authRoutes);
 app.use("/api", apiRoutes);
-app.use("/", apiRoutes);
 
 app.listen(port, () => console.log(chalk.blueBright(`Express Server listening to port ${port}`)));
 
-httpServer.listen(socket_port, () =>
-  console.log(chalk.cyanBright(`Socket-io Server listening to port ${socket_port}`))
-);
+httpServer.listen(socket_port, () => console.log(chalk.cyanBright(`Socket-io Server listening to port ${socket_port}`)));
 
 export type ServerType = typeof httpServer;
