@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import classes from './login.module.css';
 import Button from '@material-ui/core/Button';
 import { GuestNameContext } from 'service/GuestNameContext';
@@ -8,6 +8,8 @@ import GithubPNG from 'assets/github.png';
 import TwitterPNG from 'assets/twitter.png';
 import { OAUTH_URL } from 'config';
 import Particles from 'component/Particles.config';
+import Loader from 'pages/Loader/Loader';
+
 const Login = () => {
   const { name, handleOnChange } = useContext(
     GuestNameContext
@@ -103,5 +105,20 @@ const Login = () => {
     </div>
   );
 };
+// Only show the animation for the very first time the user comes to the site :)
+const LoginAnimation = () => {
+  const [showAnimation, setShowAnimation] = useState<boolean>(true);
 
-export default Login;
+  const retrivedKeyString = localStorage.getItem('showAnimation');
+  const retrivedKey = retrivedKeyString ? JSON.parse(retrivedKeyString) : true;
+
+  if (showAnimation === true && retrivedKey === true)
+    setTimeout(() => {
+      localStorage.setItem('showAnimation', 'false');
+      setShowAnimation(false);
+    }, 7200);
+
+  return <>{showAnimation && retrivedKey ? <Loader /> : <Login />}</>;
+};
+
+export default LoginAnimation;

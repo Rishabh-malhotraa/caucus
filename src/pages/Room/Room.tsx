@@ -6,11 +6,15 @@ import 'react-reflex/styles.css';
 import './Room.css';
 import { socket } from 'service/socket';
 import { useSnackbar } from 'notistack';
-import ChatApp from 'component/ChatApp';
+import ChatApp from 'component/TextChat';
+import VoiceChat from 'component/VoiceChat/VoiceChat';
 import { SnackbarProvider } from 'notistack';
+import { useParams } from 'react-router-dom';
 
 const Dashboard = () => {
   const { enqueueSnackbar } = useSnackbar();
+
+  const { id } = useParams<Record<string, string>>();
 
   React.useEffect(() => {
     const displayNotification = ({
@@ -121,16 +125,9 @@ const Dashboard = () => {
             />
             <ReflexElement>
               <ReflexContainer orientation="horizontal">
-                <ReflexElement>
-                  <ReflexContainer orientation="vertical">
-                    <ReflexElement className="pane-color">
-                      <h2>Input</h2>
-                    </ReflexElement>
-                    <ReflexSplitter className="splitter splitter-verticle" />
-                    <ReflexElement className="pane-color">
-                      <h2>Output</h2>
-                    </ReflexElement>
-                  </ReflexContainer>
+                <ReflexElement className="pane-color" flex={0.3}>
+                  <h2>Video Icons</h2>
+                  <VoiceChat params={id} />
                 </ReflexElement>
                 <ReflexSplitter className="splitter splitter-horizontal" />
                 <ReflexElement className="chat-app">

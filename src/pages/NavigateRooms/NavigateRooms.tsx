@@ -11,9 +11,9 @@ import axios from 'axios';
 import { UserContext } from 'service/UserContext';
 import { UserContextTypes } from 'types';
 import { Link, Redirect } from 'react-router-dom';
-import { v4 as uuid } from 'uuid';
 import { CLIENT_URL, PUBLIC_ROOM } from 'config';
 import style from './NavigateRooms.module.css';
+import generate from 'project-name-generator';
 
 const NavigateRoom = () => {
   const { user } = useContext(UserContext) as UserContextTypes;
@@ -65,7 +65,9 @@ const NavigateRoom = () => {
           </Button>
         </Grid>
         <Grid className={style.createRoom}>
-          <Link to={`/room/${uuid()}`}>
+          <Link
+            to={`/room/${generate({ words: 2, alliterative: true }).dashed}`}
+          >
             <Button variant="contained">Create a Private Room</Button>
           </Link>
           <Link to={`/room/${PUBLIC_ROOM}`}>

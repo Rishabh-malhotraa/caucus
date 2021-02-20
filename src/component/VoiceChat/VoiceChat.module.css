@@ -1,0 +1,12 @@
+.avatarRoot {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.avatarRoot .Avatar {
+  width: 72px;
+  height: 72px;
+  margin: 0.6 rem 1 rem;
+}
