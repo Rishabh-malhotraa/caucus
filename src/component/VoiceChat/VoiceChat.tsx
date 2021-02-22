@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, createRef, useState } from 'react';
-import io from 'socket.io-client';
-import Peer, { Instance, SignalData, SimplePeer, Options } from 'simple-peer';
-import styled from 'styled-components';
-import { socket } from 'service/socket';
-import { Avatar } from '@material-ui/core';
+import React, { useEffect, useRef, useState } from "react";
+import Peer, { Instance, SignalData } from "simple-peer";
+import { socket } from "service/socket";
+import { Avatar, Button } from "@material-ui/core";
 
 interface MediaSrcType {
   srcObject: MediaStream;
@@ -24,31 +22,33 @@ interface ReturnSignalPayload {
   id: string;
 }
 
-const Container = styled.div`
-  padding: 20px;
-  display: flex;
-  height: 100vh;
-  width: 90%;
-  margin: auto;
-  flex-wrap: wrap;
-`;
-
 const Video = ({ peer, muted }: { peer: Instance; muted: boolean }) => {
   const ref = useRef({} as MediaSrcType);
 
   useEffect(() => {
-    peer.on('stream', (stream: MediaStream) => {
+    peer.on("stream", (stream: MediaStream) => {
       ref.current.srcObject = stream;
     });
   }, []);
-  //@ts-ignore
-  return <video muted={muted} playsInline autoPlay ref={ref} />;
+  console.log(ref);
+  return (
+    <video
+      muted={muted}
+      playsInline
+      autoPlay
+      //@ts-ignore
+      ref={ref}
+      style={{ width: "150px", height: "150px" }}
+    />
+  );
 };
 
 export const Room = ({ params }: { params: string }) => {
   const [peers, setPeers] = useState<Instance[]>([]);
   const userAudio = useRef({} as MediaSrcType);
+  const [stream, setStream] = useState<MediaStream>();
   const peersRef = useRef([] as PeerRefType[]);
+  const [audioMuted, setAudioMuted] = useState(false);
   const roomID = params;
 
   useEffect(() => {
@@ -56,11 +56,13 @@ export const Room = ({ params }: { params: string }) => {
       .getUserMedia({ video: false, audio: true })
       .then((stream) => {
         userAudio.current.srcObject = stream;
+        setStream(stream);
 
         // okay we are joining a room with the given room id huh
-        socket.emit('join-room', roomID);
+        socket.emit("join-room", roomID);
         // fetching all the users from the socker io server
-        socket.on('all-users', (users: string[]) => {
+        socket.on("all-users", (users: string[]) => {
+          console.log(users);
           const peers: Instance[] = [];
           // looping thorugh all the users we got we want to create a new peer for them -- because peer meshes
           users.forEach((userID) => {
@@ -74,7 +76,7 @@ export const Room = ({ params }: { params: string }) => {
           setPeers(peers);
         });
 
-        socket.on('user joined', (payload: UserJoinedPayload) => {
+        socket.on("user-joined", (payload: UserJoinedPayload) => {
           /**
            * @signal - this is the incomming signalz
            * @calledID - is the id of the user which is calling us
@@ -90,7 +92,7 @@ export const Room = ({ params }: { params: string }) => {
         });
 
         socket.on(
-          'receiving returned signal',
+          "receiving-returned-signal",
           (payload: ReturnSignalPayload) => {
             const item = peersRef.current.find((p) => p.peerID === payload.id);
             if (item) item.peer.signal(payload.signal);
@@ -99,13 +101,18 @@ export const Room = ({ params }: { params: string }) => {
       });
   }, []);
 
+  /**
+   * @userToSignal - socekt_id of the person who is already in the room (person being called)
+   * @calledID - SID of person who just joined, caller
+   * @stream - stream<audio,video> data of the person who is calling(caller)
+   *  */
   function createPeer(
     userToSignal: string,
     callerID: string,
     stream: MediaStream
   ) {
     const peer = new Peer({
-      // true if this is the peer initiating the connection -- immediately on construction the signal sends out
+      // true if this is the peer initiating the connection -- immediately on construction the peer emits the signal
       initiator: true,
       trickle: false,
       stream,
@@ -113,8 +120,8 @@ export const Room = ({ params }: { params: string }) => {
     });
 
     // immediately on construction of the peer it emits an event called signal we need to listen to that event and send data to the serfver
-    peer.on('signal', (signal) => {
-      socket.emit('sending signal', {
+    peer.on("signal", (signal) => {
+      socket.emit("sending-signal", {
         userToSignal, // user ID of the people who are already in the room
         callerID, // our own socket id
         signal, // sending the signal data
@@ -135,8 +142,8 @@ export const Room = ({ params }: { params: string }) => {
       stream,
     });
 
-    peer.on('signal', (signal) => {
-      socket.emit('returning signal', { signal, callerID });
+    peer.on("signal", (signal) => {
+      socket.emit("returning-signal", { signal, callerID });
     });
 
     peer.signal(incomingSignal);
@@ -144,49 +151,70 @@ export const Room = ({ params }: { params: string }) => {
     return peer;
   }
 
+  function toggleMuteAudio() {
+    // if (stream) {
+    setAudioMuted(!audioMuted);
+    // stream.getAudioTracks()[0].enabled = audioMuted;
+  }
+
   return (
-    <Container>
-      {
-        //@ts-ignore
-        <Video muted={true} ref={userAudio} autoPlay playsInline />
-      }
-      {peers.map((peer, index) => {
-        return <Video key={index} peer={peer} muted={true} />;
-      })}
-    </Container>
+    <div>
+      {/* <Avatar
+        alt="Remy Sharp"
+        src={`https://stylizedbay.com/wp-content/uploads/2018/02/unknown-avatar.jpg`}
+        style={{ width: "64px", height: "64px", margin: ".6rem 1rem" }}
+      ></Avatar> */}
+      <div style={{ display: "flex" }}>
+        <video
+          muted
+          //@ts-ignore
+          ref={userAudio}
+          autoPlay
+          playsInline
+          style={{ width: "30px", height: "30px" }}
+        />
+        {peers.map((peer, index) => {
+          return <Video key={index} peer={peer} muted={false} />;
+        })}
+      </div>
+      <Button
+        onClick={() => {
+          toggleMuteAudio();
+        }}
+      >
+        Mute
+      </Button>
+    </div>
   );
 };
 
-const RoomII = ({ id }: { id: string }) => {
-  console.log(id);
+export const RoomII = ({ params }: { params: string }) => {
+  console.log(params);
   return (
     <>
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'space-around',
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
         }}
       >
         <Avatar
           alt="Remy Sharp"
           src={`https://stylizedbay.com/wp-content/uploads/2018/02/unknown-avatar.jpg`}
-          style={{ width: '96px', height: '96px', margin: '.6rem 1rem' }}
+          style={{ width: "64px", height: "64px", margin: ".6rem 1rem" }}
         ></Avatar>
         <Avatar
           alt="Remy Sharp"
           src={`https://stylizedbay.com/wp-content/uploads/2018/02/unknown-avatar.jpg`}
-          style={{ width: '96px', height: '96px', margin: '.6rem 1rem' }}
-        ></Avatar>
-        <Avatar
-          alt="Remy Sharp"
-          src={`https://stylizedbay.com/wp-content/uploads/2018/02/unknown-avatar.jpg`}
-          style={{ width: '96px', height: '96px', margin: '.6rem 1rem' }}
+          style={{ width: "64px", height: "64px", margin: ".6rem 1rem" }}
         ></Avatar>
       </div>
     </>
   );
 };
 
-export default RoomII;
+// export default RoomII;
+
+export default Room;

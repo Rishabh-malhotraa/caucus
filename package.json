@@ -8,8 +8,11 @@
   },
   "type": "module",
   "dependencies": {
+    "@convergence/color-assigner": "^0.3.0",
+    "@convergence/convergence": "^1.0.0-rc.7",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
+    "@monaco-editor/react": "^4.0.10",
     "@mui-treasury/components": "^1.10.1",
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.9",
@@ -18,10 +21,10 @@
     "axios": "^0.21.1",
     "brace": "^0.11.1",
     "clsx": "^1.1.1",
+    "http-proxy-middleware": "^1.0.6",
     "notistack": "^1.0.3",
     "project-name-generator": "^2.1.9",
     "react": "^17.0.1",
-    "react-ace": "^9.2.1",
     "react-dom": "^17.0.1",
     "react-particles-js": "^3.4.1",
     "react-redux": "^7.2.2",
@@ -29,7 +32,6 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-select": "^4.0.2",
-    "react-social-login-buttons": "^3.1.2",
     "simple-peer": "^9.9.3",
     "socket.io-client": "^3.1.1",
     "styled-components": "^5.2.1",
@@ -60,8 +62,9 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:8000",
   "devDependencies": {
+    "@convergencelabs/monaco-collab-ext": "^0.3.1",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.22",
     "@types/project-name-generator": "^2.1.0",

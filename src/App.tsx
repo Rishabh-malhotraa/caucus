@@ -1,29 +1,22 @@
-import React, { useContext, useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
-import LoginPage from './pages/Login/Login';
-import ProtectedRoute from 'service/ProtectedRoute';
-import LoginRoute from 'service/LoginRoute';
-import Dashboard from 'pages/Room/Room';
-import NavigateRoom from 'pages/NavigateRooms/NavigateRooms';
-import GuestNameProvider, {
-  GuestNameContext,
-} from './service/GuestNameContext';
-import UserContextProvider, { UserContext } from 'service/UserContext';
-import axios, { AxiosResponse } from 'axios';
-import { GuestNameContextTypes, OauthResponse, UserContextTypes } from 'types';
+import React, { useContext, useEffect } from "react";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import LoginPage from "./pages/Login/Login";
+import ProtectedRoute from "service/ProtectedRoute";
+import LoginRoute from "service/LoginRoute";
+import Dashboard from "pages/Room/Room";
+import NavigateRoom from "pages/NavigateRooms/NavigateRooms";
+import GuestNameProvider, { GuestNameContext } from "./service/GuestNameContext";
+import UserContextProvider, { UserContext } from "service/UserContext";
+import axios, { AxiosResponse } from "axios";
+import { GuestNameContextTypes, OauthResponse, UserContextTypes } from "types";
 // import { v1 as uuid } from 'uuid';
-import Loader from 'pages/Loader/Loader';
-
+import Loader from "pages/Loader/Loader";
+import { OAUTH_CHECK } from "config";
 export const isAuthenticated = async (name: string) => {
   const { data }: AxiosResponse<OauthResponse> = await axios({
-    method: 'GET',
-    url: '/api/auth',
-    responseType: 'json',
+    method: "GET",
+    url: OAUTH_CHECK,
+    responseType: "json",
     withCredentials: true,
   });
   // if you have logged in as a guest or you have signed in
@@ -39,7 +32,7 @@ const App = () => {
   useEffect(() => {
     async function isAuthenticatedWrapper() {
       const { isLoggedIn, data } = await isAuthenticated(name);
-      localStorage.setItem('isLoggedIn', JSON.stringify(data.isLoggedIn));
+      localStorage.setItem("isLoggedIn", JSON.stringify(data.isLoggedIn));
       saveUserInfo(data, isLoggedIn);
       if (!isLoggedIn) {
         return <Redirect to="/"></Redirect>;
@@ -49,15 +42,11 @@ const App = () => {
   }, []);
 
   return (
-    <div style={{ height: 'auto' }}>
+    <div style={{ height: "auto" }}>
       <Router>
         <Switch>
           <Route path="/room/:id" component={Dashboard} />
-          <ProtectedRoute
-            user={user}
-            path="/home"
-            NavigationRoom={NavigateRoom}
-          />
+          <ProtectedRoute user={user} path="/home" NavigationRoom={NavigateRoom} />
           <LoginRoute exact path="/" component={LoginPage} user={user} />
           <Route exact path="/loader" component={Loader} />
           <Redirect to="/" />

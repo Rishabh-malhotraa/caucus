@@ -22,7 +22,7 @@ const NavigateRoom = () => {
 
   const logoutUser = async () => {
     localStorage.removeItem('isLoggedIn');
-    await axios.get('/logout');
+    await axios.get('api/logout');
     window.location.href = `${CLIENT_URL}/login`;
   };
 
