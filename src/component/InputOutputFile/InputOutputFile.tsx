@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Paper, Tab, Tabs, Button, Box, TextField } from '@material-ui/core';
-import SendRoundedIcon from '@material-ui/icons/SendRounded';
-import { withStyles } from '@material-ui/core/styles';
-import { useSnackbar } from 'notistack';
+import React, { useState } from "react";
+import { Paper, Tab, Tabs, Button, Box, TextField } from "@material-ui/core";
+import SendRoundedIcon from "@material-ui/icons/SendRounded";
+import { withStyles } from "@material-ui/core/styles";
+import { useSnackbar } from "notistack";
 interface AppProps {
   TextAreaRef: React.RefObject<HTMLDivElement>;
   rows: number;
@@ -11,28 +11,28 @@ interface AppProps {
 const CssTextField = withStyles({
   root: {
     // #115293
-    padding: '1rem',
-    height: '100%',
-    width: '100%',
-    '& .MuiInputBase-root': {
-      outline: 'none',
-      color: 'whitesmoke',
+    padding: "1rem",
+    height: "100%",
+    width: "100%",
+    "& .MuiInputBase-root": {
+      outline: "none",
+      color: "whitesmoke",
     },
-    '& label.Mui-focused': {
-      color: 'dimgrey',
+    "& label.Mui-focused": {
+      color: "dimgrey",
     },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'dimgrey',
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "dimgrey",
     },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'dimgrey',
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "dimgrey",
       },
-      '&:hover fieldset': {
-        borderColor: 'dimgrey',
+      "&:hover fieldset": {
+        borderColor: "dimgrey",
       },
-      '&.Mui-focused fieldset': {
-        borderColor: 'dimgrey',
+      "&.Mui-focused fieldset": {
+        borderColor: "dimgrey",
       },
     },
   },
@@ -40,14 +40,14 @@ const CssTextField = withStyles({
 
 const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
   const [value, setValue] = useState(0);
-  const [inputText, setInputText] = useState('');
-  const [outputText, setOutputText] = useState('');
+  const [inputText, setInputText] = useState("");
+  const [outputText, setOutputText] = useState("");
 
   const { enqueueSnackbar } = useSnackbar();
 
   const displayNotification = () => {
-    enqueueSnackbar('Connection is established', {
-      variant: 'success',
+    enqueueSnackbar("Connection is established", {
+      variant: "success",
     });
   };
 
@@ -85,46 +85,40 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
       }}
       ref={TextAreaRef}
     >
       <Paper
         style={{
-          position: 'relative',
-          backgroundColor: '#272822',
-          color: 'white',
+          position: "relative",
+          backgroundColor: "#272822",
+          color: "white",
         }}
       >
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="inherit"
-          centered
-        >
+        <Tabs value={value} onChange={handleChange} indicatorColor="primary" textColor="inherit" centered>
           <Tab label="Input"></Tab>
           <Tab label="Output"></Tab>
         </Tabs>
         <Box
           style={{
-            height: '48px',
-            position: 'absolute',
-            backgroundColor: '#00621E',
-            top: '0px',
-            right: '0px',
-            fontWeight: 'bold',
+            height: "48px",
+            position: "absolute",
+            backgroundColor: "#00621E",
+            top: "0px",
+            right: "0px",
+            fontWeight: "bold",
 
-            color: 'whitesmoke',
+            color: "whitesmoke",
           }}
         >
           <Button
             variant="text"
             color="inherit"
             endIcon={<SendRoundedIcon />}
-            style={{ height: '48px' }}
+            style={{ height: "48px" }}
             onClick={() => {
               displayNotification();
             }}
@@ -137,10 +131,10 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
         //@ts-ignore
         <div
           style={{
-            display: 'flex',
+            display: "flex",
             flexGrow: 1,
-            backgroundColor: '#272822',
-            color: 'white',
+            backgroundColor: "#272822",
+            color: "white",
           }}
         >
           {renderTextArea(value)}

@@ -1,8 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import Editor from "@monaco-editor/react";
 import { Convergence } from "@convergence/convergence";
 import { CONVERGENCE_URL } from "config";
 import MonacoConvergenceAdapter from "./MonacoAdapter";
+import { GuestNameContext } from "service/GuestNameContext";
+import { UserContext } from "service/UserContext";
+import { GuestNameContextTypes, UserContextTypes } from "types";
+import "@convergencelabs/monaco-collab-ext/css/monaco-collab-ext.css";
+import generate from "project-name-generator";
 
 interface AppProps {
   code: string | undefined;
@@ -15,7 +20,11 @@ const MonacoEditor: React.FC<AppProps> = ({ code, setCode, MonacoEditorRef }) =>
     MonacoEditorRef.current = editor;
   };
 
-  const username = "User1";
+  const { user } = useContext(UserContext) as UserContextTypes;
+  const { guestName } = useContext(GuestNameContext) as GuestNameContextTypes;
+
+  // if login then user that else guest name else randome name :)))
+  const username = user?.name ? user.name : guestName ? guestName : generate({ words: 1 }).spaced;
 
   useEffect(() => {
     Convergence.connectAnonymously(CONVERGENCE_URL, username)
@@ -43,8 +52,7 @@ const MonacoEditor: React.FC<AppProps> = ({ code, setCode, MonacoEditorRef }) =>
         onMount={(editor) => handleEditorDidMount(editor)}
         theme="vs-dark"
         defaultLanguage="cpp"
-        // value={code}
-        // onChange={(value) => setCode(value)}
+        onChange={(value) => setCode(value)}
         options={{ wordWrap: "on" }}
       />
     </div>

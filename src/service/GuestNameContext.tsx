@@ -1,19 +1,26 @@
-import React from 'react';
-import { GuestNameContextTypes } from 'types';
+import React from "react";
+import { GuestNameContextTypes } from "types";
 
-export const GuestNameContext = React.createContext<GuestNameContextTypes | null>(
-  null
-);
+export const GuestNameContext = React.createContext<GuestNameContextTypes | null>(null);
 
 const GuestNameProvider: React.FC<React.ReactNode> = ({ children }) => {
-  const [name, setName] = React.useState<string>('');
+  const [guestName, setGuestName] = React.useState<string>("");
+  const [guestLoginClick, setGuestLoginClick] = React.useState<boolean>(false);
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value as string);
+  const isGuestNameClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    setGuestLoginClick(guestName ? true : false);
+  };
+
+  const handleGuestNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setGuestName(e.target.value as string);
   };
 
   return (
-    <GuestNameContext.Provider value={{ name, handleOnChange }}>
+    <GuestNameContext.Provider
+      value={{ guestName, handleGuestNameChange, guestLoginClick, isGuestNameClick }}
+    >
       {children}
     </GuestNameContext.Provider>
   );

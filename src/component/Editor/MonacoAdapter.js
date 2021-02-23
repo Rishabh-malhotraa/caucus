@@ -1,11 +1,13 @@
 import { ColorAssigner } from "@convergence/color-assigner";
 import * as MonacoCollabExt from "@convergencelabs/monaco-collab-ext";
+import "@convergencelabs/monaco-collab-ext/css/monaco-collab-ext.css";
 
 class MonacoConvergenceAdapter {
   constructor(monacoEditor, realtimeString) {
     this._monacoEditor = monacoEditor;
     this._model = realtimeString;
     this._colorAssigner = ColorAssigner.Palettes.DEFAULT;
+    this._randomNumber = Math.floor(Math.random() * 4);
   }
 
   bind() {
@@ -81,7 +83,7 @@ class MonacoConvergenceAdapter {
   }
 
   _addRemoteCursor(reference) {
-    const color = this._colorAssigner[Math.floor(Math.random() * 4)];
+    const color = this._colorAssigner[this._randomNumber];
     const remoteCursor = this._remoteCursorManager.addCursor(
       reference.sessionId(),
       color,
@@ -135,7 +137,7 @@ class MonacoConvergenceAdapter {
   }
 
   _addRemoteSelection(reference) {
-    const color = this._colorAssigner[Math.floor(Math.random() * 4)];
+    const color = this._colorAssigner[this._randomNumber];
 
     const remoteSelection = this._remoteSelectionManager.addSelection(reference.sessionId(), color);
 

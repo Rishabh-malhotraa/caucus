@@ -1,18 +1,14 @@
-import React from 'react';
-import { Route, Redirect, RouteProps } from 'react-router-dom';
-import { UserInfoType } from 'types';
+import React from "react";
+import { Route, Redirect, RouteProps } from "react-router-dom";
+import { UserInfoType } from "types";
 
 interface ProtectedRouteProps extends RouteProps {
   user?: UserInfoType;
   NavigationRoom: React.FC;
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
-  user,
-  NavigationRoom,
-  ...rest
-}) => {
-  const retriveKey = localStorage.getItem('isLoggedIn');
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ user, NavigationRoom, ...rest }) => {
+  const retriveKey = localStorage.getItem("isLoggedIn");
   const storageKey = retriveKey ? JSON.parse(retriveKey) : false;
   return (
     <Route
@@ -21,9 +17,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
         if (user?.isLoggedIn === true || storageKey === true) {
           return <NavigationRoom />;
         } else {
-          return (
-            <Redirect to={{ pathname: '/', state: { from: props.location } }} />
-          );
+          return <Redirect to={{ pathname: "/", state: { from: props.location } }} />;
         }
       }}
     />

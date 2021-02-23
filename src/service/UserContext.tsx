@@ -1,5 +1,5 @@
-import React from 'react';
-import { UserInfoType, UserContextTypes, OauthResponse } from 'types';
+import React from "react";
+import { UserInfoType, UserContextTypes, OauthResponse } from "types";
 
 export const UserContext = React.createContext<UserContextTypes | null>(null);
 
@@ -17,11 +17,12 @@ const UserProvider: React.FC<React.ReactNode> = ({ children }) => {
       setUser({ isLoggedIn });
     }
   };
+  const logoutUserInfo = () => {
+    setUser({ isLoggedIn: false });
+  };
 
   return (
-    <UserContext.Provider value={{ user, saveUserInfo }}>
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={{ user, saveUserInfo, logoutUserInfo }}>{children}</UserContext.Provider>
   );
 };
 

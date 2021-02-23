@@ -1,4 +1,4 @@
-import { Theme } from '@material-ui/core/styles'
+import { Theme } from "@material-ui/core/styles";
 const styles = ({ palette, spacing }: Theme) => {
   const radius = spacing(2.5);
   const size = spacing(4);
@@ -10,25 +10,25 @@ const styles = ({ palette, spacing }: Theme) => {
       height: size,
     },
     leftRow: {
-      textAlign: 'left',
+      textAlign: "left",
     },
     rightRow: {
-      textAlign: 'right',
+      textAlign: "right",
     },
     msg: {
       padding: spacing(1, 2),
       borderRadius: 4,
       marginBottom: 4,
-      display: 'inline-block',
-      wordBreak: 'break-word',
+      display: "inline-block",
+      wordBreak: "break-word",
       fontFamily:
         '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-      fontSize: '14px',
+      fontSize: "14px",
     },
     left: {
       borderTopRightRadius: radius,
       borderBottomRightRadius: radius,
-      backgroundColor: 'dimgrey',
+      backgroundColor: "dimgrey",
     },
     right: {
       borderTopLeftRadius: radius,

@@ -52,53 +52,48 @@ export const Room = ({ params }: { params: string }) => {
   const roomID = params;
 
   useEffect(() => {
-    navigator.mediaDevices
-      .getUserMedia({ video: false, audio: true })
-      .then((stream) => {
-        userAudio.current.srcObject = stream;
-        setStream(stream);
+    navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
+      userAudio.current.srcObject = stream;
+      setStream(stream);
 
-        // okay we are joining a room with the given room id huh
-        socket.emit("join-room", roomID);
-        // fetching all the users from the socker io server
-        socket.on("all-users", (users: string[]) => {
-          console.log(users);
-          const peers: Instance[] = [];
-          // looping thorugh all the users we got we want to create a new peer for them -- because peer meshes
-          users.forEach((userID) => {
-            const peer = createPeer(userID, socket.id, stream);
-            peersRef.current.push({
-              peerID: userID,
-              peer,
-            });
-            peers.push(peer);
-          });
-          setPeers(peers);
-        });
-
-        socket.on("user-joined", (payload: UserJoinedPayload) => {
-          /**
-           * @signal - this is the incomming signalz
-           * @calledID - is the id of the user which is calling us
-           * @stream - this is basically our own stream of data
-           *  */
-          const peer = addPeer(payload.signal, payload.callerID, stream);
+      // okay we are joining a room with the given room id huh
+      socket.emit("join-room", roomID);
+      // fetching all the users from the socker io server
+      socket.on("all-users", (users: string[]) => {
+        console.log(users);
+        const peers: Instance[] = [];
+        // looping thorugh all the users we got we want to create a new peer for them -- because peer meshes
+        users.forEach((userID) => {
+          const peer = createPeer(userID, socket.id, stream);
           peersRef.current.push({
-            peerID: payload.callerID,
+            peerID: userID,
             peer,
           });
+          peers.push(peer);
+        });
+        setPeers(peers);
+      });
 
-          setPeers((users) => [...users, peer]);
+      socket.on("user-joined", (payload: UserJoinedPayload) => {
+        /**
+         * @signal - this is the incomming signalz
+         * @calledID - is the id of the user which is calling us
+         * @stream - this is basically our own stream of data
+         *  */
+        const peer = addPeer(payload.signal, payload.callerID, stream);
+        peersRef.current.push({
+          peerID: payload.callerID,
+          peer,
         });
 
-        socket.on(
-          "receiving-returned-signal",
-          (payload: ReturnSignalPayload) => {
-            const item = peersRef.current.find((p) => p.peerID === payload.id);
-            if (item) item.peer.signal(payload.signal);
-          }
-        );
+        setPeers((users) => [...users, peer]);
       });
+
+      socket.on("receiving-returned-signal", (payload: ReturnSignalPayload) => {
+        const item = peersRef.current.find((p) => p.peerID === payload.id);
+        if (item) item.peer.signal(payload.signal);
+      });
+    });
   }, []);
 
   /**
@@ -106,11 +101,7 @@ export const Room = ({ params }: { params: string }) => {
    * @calledID - SID of person who just joined, caller
    * @stream - stream<audio,video> data of the person who is calling(caller)
    *  */
-  function createPeer(
-    userToSignal: string,
-    callerID: string,
-    stream: MediaStream
-  ) {
+  function createPeer(userToSignal: string, callerID: string, stream: MediaStream) {
     const peer = new Peer({
       // true if this is the peer initiating the connection -- immediately on construction the peer emits the signal
       initiator: true,
@@ -131,11 +122,7 @@ export const Room = ({ params }: { params: string }) => {
     return peer;
   }
 
-  function addPeer(
-    incomingSignal: SignalData,
-    callerID: string,
-    stream: MediaStream
-  ) {
+  function addPeer(incomingSignal: SignalData, callerID: string, stream: MediaStream) {
     const peer = new Peer({
       initiator: false,
       trickle: false,
@@ -171,7 +158,7 @@ export const Room = ({ params }: { params: string }) => {
           ref={userAudio}
           autoPlay
           playsInline
-          style={{ width: "30px", height: "30px" }}
+          style={{ width: "400px", height: "400px" }}
         />
         {peers.map((peer, index) => {
           return <Video key={index} peer={peer} muted={false} />;

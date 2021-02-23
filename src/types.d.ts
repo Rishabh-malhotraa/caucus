@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from "react";
 
 export interface UserInfoType {
   isLoggedIn: boolean;
@@ -20,22 +19,23 @@ export interface OAUTH_TABLE {
 }
 
 export interface OauthResponse {
-  isLoggedIn: boolean,
-  message: string,
-  user?: OAUTH_TABLE,
-  cookies?: string,
+  isLoggedIn: boolean;
+  message: string;
+  user?: OAUTH_TABLE;
+  cookies?: string;
 }
 
-
-
 export interface GuestNameContextTypes {
-  name: string;
-  handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  guestName: string;
+  guestLoginClick: boolean;
+  handleGuestNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isGuestNameClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 export interface UserContextTypes {
   user: UserInfoType | undefined;
-  saveUserInfo: (data: OauthResponse, isLoggedIn: boolean) => void
+  saveUserInfo: (data: OauthResponse, isLoggedIn: boolean) => void;
+  logoutUserInfo: () => void;
 }
 
 export interface StateInterface {
@@ -44,5 +44,5 @@ export interface StateInterface {
     AdminUser: UserInfoType;
     UserList: UserInfoType[];
     isLoggedIn: boolean;
-  }
+  };
 }

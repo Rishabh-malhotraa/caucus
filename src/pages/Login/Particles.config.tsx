@@ -1,5 +1,5 @@
-import React from 'react';
-import Particles from 'react-particles-js';
+import React from "react";
+import Particles from "react-particles-js";
 
 const ParticlesConfig = () => {
   return (
@@ -29,19 +29,19 @@ const ParticlesConfig = () => {
             move: {
               random: true,
               speed: 1,
-              direction: 'top',
-              out_mode: 'out',
+              direction: "top",
+              out_mode: "out",
             },
           },
           interactivity: {
             events: {
               onhover: {
                 enable: true,
-                mode: 'bubble',
+                mode: "bubble",
               },
               onclick: {
                 enable: true,
-                mode: 'repulse',
+                mode: "repulse",
               },
             },
             modes: {

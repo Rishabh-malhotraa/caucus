@@ -1,5 +1,5 @@
 import React, { useState, createRef, useRef } from "react";
-import InputOutputFile from "component/InputOutputFile";
+import InputOutputFile from "component/InputOutputFile/InputOutputFile";
 import { ReflexContainer, ReflexElement, ReflexSplitter } from "react-reflex";
 import "react-reflex/styles.css";
 import "./Room.css";
@@ -10,7 +10,7 @@ import VoiceChat from "component/VoiceChat/VoiceChat";
 import { SnackbarProvider } from "notistack";
 import { useParams } from "react-router-dom";
 import MonacoEditor from "component/Editor/MonacoEditor";
-
+import "@convergencelabs/monaco-collab-ext/css/monaco-collab-ext.min.css.map";
 const Dashboard = () => {
   const { enqueueSnackbar } = useSnackbar();
 

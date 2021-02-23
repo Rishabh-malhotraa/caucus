@@ -1,29 +1,26 @@
-import React, { useState, useContext } from 'react';
-import {
-  Avatar,
-  Button,
-  Grid,
-  InputAdornment,
-  Paper,
-  TextField,
-} from '@material-ui/core';
-import axios from 'axios';
-import { UserContext } from 'service/UserContext';
-import { UserContextTypes } from 'types';
-import { Link, Redirect } from 'react-router-dom';
-import { CLIENT_URL, PUBLIC_ROOM } from 'config';
-import style from './NavigateRooms.module.css';
-import generate from 'project-name-generator';
+import React, { useState, useContext } from "react";
+import { Avatar, Button, Grid, InputAdornment, Paper, TextField } from "@material-ui/core";
+import axios from "axios";
+import { UserContext } from "service/UserContext";
+import { UserContextTypes } from "types";
+import { Link, Redirect } from "react-router-dom";
+import { CLIENT_URL, PUBLIC_ROOM, LOGOUT_URL } from "config";
+import style from "./NavigateRooms.module.css";
+import generate from "project-name-generator";
 
 const NavigateRoom = () => {
-  const { user } = useContext(UserContext) as UserContextTypes;
-  const [link, setLink] = useState('');
+  const { user, logoutUserInfo } = useContext(UserContext) as UserContextTypes;
+  const [link, setLink] = useState("");
   const [click, setClick] = useState(false);
+  const [backToLoginPage, setBackToLoginPage] = useState(false);
 
   const logoutUser = async () => {
-    localStorage.removeItem('isLoggedIn');
-    await axios.get('api/logout');
-    window.location.href = `${CLIENT_URL}/login`;
+    localStorage.removeItem("isLoggedIn");
+    const response = await axios.get(LOGOUT_URL);
+    logoutUserInfo();
+    // window.location.href = `${CLIENT_URL}`;
+    console.log(response);
+    setBackToLoginPage(true);
   };
 
   return (
@@ -48,11 +45,7 @@ const NavigateRoom = () => {
             variant="outlined"
             onChange={(e) => setLink(e.target.value)}
             InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  {CLIENT_URL + '/room/'}
-                </InputAdornment>
-              ),
+              startAdornment: <InputAdornment position="start">{CLIENT_URL + "/room/"}</InputAdornment>,
             }}
           />
           <Button
@@ -65,9 +58,7 @@ const NavigateRoom = () => {
           </Button>
         </Grid>
         <Grid className={style.createRoom}>
-          <Link
-            to={`/room/${generate({ words: 2, alliterative: true }).dashed}`}
-          >
+          <Link to={`/room/${generate({ words: 2, alliterative: true }).dashed}`}>
             <Button variant="contained">Create a Private Room</Button>
           </Link>
           <Link to={`/room/${PUBLIC_ROOM}`}>
@@ -76,15 +67,13 @@ const NavigateRoom = () => {
         </Grid>
       </Grid>
       <footer>
-        Made with <span>&#9829;</span> by Rishabh Malhotra{'  '}•{'  '}
-        <a
-          href="https://github.com/Rishabh-malhotraa/codeforces-diary"
-          target="__blank"
-        >
+        Made with <span>&#9829;</span> by Rishabh Malhotra{"  "}•{"  "}
+        <a href="https://github.com/Rishabh-malhotraa/codeforces-diary" target="__blank">
           Github
         </a>
       </footer>
       {click ? <Redirect to={`/room/${link}`} /> : <></>}
+      {backToLoginPage ? <Redirect to={`/`} /> : <></>}
     </div>
   );
 };

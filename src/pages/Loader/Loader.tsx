@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './Loader.module.css';
-import clsx from 'clsx';
+import React from "react";
+import styles from "./Loader.module.css";
+import clsx from "clsx";
 
 const Loader = () => {
   return (

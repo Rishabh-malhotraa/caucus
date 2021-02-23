@@ -40,6 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -62,7 +63,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8000",
   "devDependencies": {
     "@convergencelabs/monaco-collab-ext": "^0.3.1",
     "@types/jest": "^26.0.20",

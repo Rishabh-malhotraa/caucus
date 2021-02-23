@@ -1,41 +1,41 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { socket } from 'service/socket';
-import ChatMsg from './ChatMessage';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
+import React, { useState, useEffect, useRef } from "react";
+import { socket } from "service/socket";
+import ChatMsg from "./ChatMessage";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      paddding: '1rem',
-      height: 'inherit',
+      paddding: "1rem",
+      height: "inherit",
     },
     formStyle: {
-      background: 'rgba(0, 0, 0, 0.15)',
-      padding: '0.25rem',
-      display: 'flex',
-      boxSizing: 'border-box',
-      backdropFilter: 'blur(10px)',
+      background: "rgba(0, 0, 0, 0.15)",
+      padding: "0.25rem",
+      display: "flex",
+      boxSizing: "border-box",
+      backdropFilter: "blur(10px)",
     },
     inputStyle: {
-      border: 'none',
-      padding: '0 1rem',
+      border: "none",
+      padding: "0 1rem",
       flexGrow: 1,
-      borderRadius: '2rem',
-      width: '100%',
-      margin: '0.25rem',
-      height: '2rem',
-      '&:focus': {
-        outline: 'none',
+      borderRadius: "2rem",
+      width: "100%",
+      margin: "0.25rem",
+      height: "2rem",
+      "&:focus": {
+        outline: "none",
       },
     },
     formButton: {
-      background: '#333',
-      border: 'none',
-      padding: '0 1rem',
-      margin: '0.25rem',
-      borderRadius: '3px',
-      outline: 'none',
-      color: '#fff',
+      background: "#333",
+      border: "none",
+      padding: "0 1rem",
+      margin: "0.25rem",
+      borderRadius: "3px",
+      outline: "none",
+      color: "#fff",
     },
   })
 );
@@ -49,16 +49,16 @@ const ChatApp = () => {
   const classes = useStyles();
   const chatBoxRef = useRef<HTMLDivElement>(null);
 
-  const [yourID, setYourID] = useState('');
-  const [message, setMessage] = useState('');
+  const [yourID, setYourID] = useState("");
+  const [message, setMessage] = useState("");
   const [body, setBody] = useState<MessageProps[]>([]);
 
   useEffect(() => {
-    socket.on('your-id', (id: string) => {
+    socket.on("your-id", (id: string) => {
       setYourID(id);
     });
 
-    socket.on('message', (body: MessageProps) => {
+    socket.on("message", (body: MessageProps) => {
       receivedMessages(body);
     });
     const receivedMessages = (newMessage: MessageProps) => {
@@ -85,8 +85,8 @@ const ChatApp = () => {
       id: yourID,
       messages: [message],
     };
-    setMessage('');
-    socket.emit('send-message', messageObject);
+    setMessage("");
+    socket.emit("send-message", messageObject);
   };
 
   useEffect(() => {
@@ -97,38 +97,27 @@ const ChatApp = () => {
     <>
       <div
         style={{
-          display: 'flex',
-          height: 'inherit',
-          flexDirection: 'column',
+          display: "flex",
+          height: "inherit",
+          flexDirection: "column",
         }}
       >
         <div
           style={{
-            margin: '1rem',
+            margin: "1rem",
             flexGrow: 1,
           }}
         >
           <h1>MESSENGER</h1>
           {body.map((element, index) => {
             if (element.id === yourID) {
-              return (
-                <ChatMsg
-                  key={index}
-                  avatar={''}
-                  side={'right'}
-                  messages={[...element.messages]}
-                />
-              );
+              return <ChatMsg key={index} avatar={""} side={"right"} messages={[...element.messages]} />;
             }
             return <ChatMsg key={index} messages={[...element.messages]} />;
           })}
         </div>
         <div style={{}} ref={chatBoxRef}>
-          <form
-            onSubmit={sendMessage}
-            id="chat-form"
-            className={classes.formStyle}
-          >
+          <form onSubmit={sendMessage} id="chat-form" className={classes.formStyle}>
             <input
               className={classes.inputStyle}
               autoComplete="off"
