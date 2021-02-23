@@ -4,6 +4,7 @@ import LoginPage from "./pages/Login/Login";
 import ProtectedRoute from "service/ProtectedRoute";
 import LoginRoute from "service/LoginRoute";
 import Dashboard from "pages/Room/Room";
+import Loader from "pages/Loader/Loader";
 import NavigateRoom from "pages/NavigateRooms/NavigateRooms";
 import GuestNameProvider from "./service/GuestNameContext";
 import UserContextProvider, { UserContext } from "service/UserContext";
@@ -43,6 +44,7 @@ const App = () => {
     <div style={{ height: "auto" }}>
       <Router>
         <Switch>
+          <Route path="/loader" component={Loader} />
           <Route path="/room/:id" component={Dashboard} />
           <ProtectedRoute exact user={user} path="/home" NavigationRoom={NavigateRoom} />
           <LoginRoute exact path="/" component={LoginPage} user={user} />
