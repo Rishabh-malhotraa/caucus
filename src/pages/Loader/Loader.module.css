@@ -11,7 +11,7 @@
   height: 100vh;
   width: 100vw;
   font-family: "Montserrat", sans-serif;
-  background: #232741;
+  background: #343a40;
   color: whitesmoke;
   position: relative;
   overflow: hidden;
@@ -38,42 +38,42 @@
 .background0 {
   left: 0%;
   height: 100vh;
-  background-color: #0d1321;
+  background-color: #50514f;
 }
 .background1 {
   left: 12.5%;
   height: 100vh;
-  background-color: #240046;
+  background-color: #f25f5c;
 }
 .background2 {
   left: 25%;
   height: 100vh;
-  background-color: #3c096c;
+  background-color: #ffe066;
 }
 .background3 {
   left: 37.5%;
   height: 100vh;
-  background-color: #5a189a;
+  background-color: #247ba0;
 }
 .background4 {
   left: 50%;
   height: 100vh;
-  background-color: #7b2cbf;
+  background-color: #c0c0c0;
 }
 .background5 {
   left: 62.5%;
   height: 100vh;
-  background-color: #9d4edd;
+  background-color: #ebebeb;
 }
 .background6 {
   left: 75%;
   height: 100vh;
-  background-color: #c77dff;
+  background-color: #ee6c4d;
 }
 .background7 {
   left: 87.5%;
   height: 100vh;
-  background-color: #e0aaff;
+  background-color: #293241;
 }
 /*
 * text
@@ -403,7 +403,7 @@
 @-webkit-keyframes text-after-animation0 {
   0% {
     width: 0px;
-    background-color: #e0aaff;
+    background-color: #293241;
     opacity: 1;
   }
   50% {
@@ -418,7 +418,7 @@
 @keyframes text-after-animation0 {
   0% {
     width: 0px;
-    background-color: #0d1321;
+    background-color: #50514f;
     opacity: 1;
   }
   50% {
@@ -433,7 +433,7 @@
 @-webkit-keyframes text-after-animation1 {
   0% {
     width: 0px;
-    background-color: #240046;
+    background-color: #f25f5c;
     opacity: 1;
   }
   50% {
@@ -448,7 +448,7 @@
 @keyframes text-after-animation1 {
   0% {
     width: 0px;
-    background-color: #240046;
+    background-color: #f25f5c;
     opacity: 1;
   }
   50% {
@@ -463,7 +463,7 @@
 @-webkit-keyframes text-after-animation2 {
   0% {
     width: 0px;
-    background-color: #3c096c;
+    background-color: #ffe066;
     opacity: 1;
   }
   50% {
@@ -478,7 +478,7 @@
 @keyframes text-after-animation2 {
   0% {
     width: 0px;
-    background-color: #3c096c;
+    background-color: #ffe066;
     opacity: 1;
   }
   50% {
@@ -493,7 +493,7 @@
 @-webkit-keyframes text-after-animation3 {
   0% {
     width: 0px;
-    background-color: #5a189a;
+    background-color: #247ba0;
     opacity: 1;
   }
   50% {
@@ -508,7 +508,7 @@
 @keyframes text-after-animation3 {
   0% {
     width: 0px;
-    background-color: #5a189a;
+    background-color: #247ba0;
     opacity: 1;
   }
   50% {
@@ -523,7 +523,7 @@
 @-webkit-keyframes text-after-animation4 {
   0% {
     width: 0px;
-    background-color: #7b2cbf;
+    background-color: #c0c0c0;
     opacity: 1;
   }
   50% {
@@ -538,7 +538,7 @@
 @keyframes text-after-animation4 {
   0% {
     width: 0px;
-    background-color: #7b2cbf;
+    background-color: #c0c0c0;
     opacity: 1;
   }
   50% {
@@ -553,7 +553,7 @@
 @-webkit-keyframes text-after-animation5 {
   0% {
     width: 0px;
-    background-color: #9d4edd;
+    background-color: #ebebeb;
     opacity: 1;
   }
   50% {
@@ -568,7 +568,7 @@
 @keyframes text-after-animation5 {
   0% {
     width: 0px;
-    background-color: #9d4edd;
+    background-color: #ebebeb;
     opacity: 1;
   }
   50% {
@@ -583,7 +583,7 @@
 @-webkit-keyframes text-after-animation6 {
   0% {
     width: 0px;
-    background-color: #c77dff;
+    background-color: #ee6c4d;
     opacity: 1;
   }
   50% {
@@ -598,7 +598,7 @@
 @keyframes text-after-animation6 {
   0% {
     width: 0px;
-    background-color: #c77dff;
+    background-color: #ee6c4d;
     opacity: 1;
   }
   50% {
@@ -613,7 +613,7 @@
 @-webkit-keyframes text-after-animation7 {
   0% {
     width: 0px;
-    background-color: #e0aaff;
+    background-color: #293241;
     opacity: 1;
   }
   50% {
@@ -628,7 +628,7 @@
 @keyframes text-after-animation7 {
   0% {
     width: 0px;
-    background-color: #e0aaff;
+    background-color: #293241;
     opacity: 1;
   }
   50% {
@@ -921,56 +921,56 @@
   top: 0;
   -webkit-animation: frame-animation0 1s ease-in-out 0ms 1 normal forwards;
   animation: frame-animation0 1s ease-in-out 0ms 1 normal forwards;
-  background-color: #0d1321;
+  background-color: #50514f;
 }
 .frame1 {
   left: -120px;
   top: 0;
   -webkit-animation: frame-animation1 1s ease-in-out 200ms 1 normal forwards;
   animation: frame-animation1 1s ease-in-out 200ms 1 normal forwards;
-  background-color: #240046;
+  background-color: #f25f5c;
 }
 .frame2 {
   left: -60px;
   top: 0;
   -webkit-animation: frame-animation2 1s ease-in-out 400ms 1 normal forwards;
   animation: frame-animation2 1s ease-in-out 400ms 1 normal forwards;
-  background-color: #3c096c;
+  background-color: #ffe066;
 }
 .frame3 {
   left: 0px;
   top: 0;
   -webkit-animation: frame-animation3 1s ease-in-out 600ms 1 normal forwards;
   animation: frame-animation3 1s ease-in-out 600ms 1 normal forwards;
-  background-color: #5a189a;
+  background-color: #247ba0;
 }
 .frame4 {
   left: 60px;
   top: 0;
   -webkit-animation: frame-animation4 1s ease-in-out 800ms 1 normal forwards;
   animation: frame-animation4 1s ease-in-out 800ms 1 normal forwards;
-  background-color: #7b2cbf;
+  background-color: #c0c0c0;
 }
 .frame5 {
   left: 120px;
   top: 0;
   -webkit-animation: frame-animation5 1s ease-in-out 1000ms 1 normal forwards;
   animation: frame-animation5 1s ease-in-out 1000ms 1 normal forwards;
-  background-color: #9d4edd;
+  background-color: #ebebeb;
 }
 .frame6 {
   left: 180px;
   top: 0;
   -webkit-animation: frame-animation6 1s ease-in-out 1200ms 1 normal forwards;
   animation: frame-animation6 1s ease-in-out 1200ms 1 normal forwards;
-  background-color: #c77dff;
+  background-color: #ee6c4d;
 }
 .frame7 {
   left: 240px;
   top: 0;
   -webkit-animation: frame-animation7 1s ease-in-out 1400ms 1 normal forwards;
   animation: frame-animation7 1s ease-in-out 1400ms 1 normal forwards;
-  background-color: #e0aaff;
+  background-color: #293241;
 }
 @-webkit-keyframes frame-animation0 {
   0% {
@@ -1192,392 +1192,392 @@
 .particle00 {
   left: -180px;
   opacity: 0;
-  background-color: #0d1321;
+  background-color: #50514f;
   -webkit-animation: particle-animation00 1s ease-in-out 1s 1 normal forwards;
   animation: particle-animation00 1s ease-in-out 1s 1 normal forwards;
 }
 .particle01 {
   left: -180px;
   opacity: 0;
-  background-color: #0d1321;
+  background-color: #50514f;
   -webkit-animation: particle-animation01 1s ease-in-out 1s 1 normal forwards;
   animation: particle-animation01 1s ease-in-out 1s 1 normal forwards;
 }
 .particle02 {
   left: -180px;
   opacity: 0;
-  background-color: #0d1321;
+  background-color: #50514f;
   -webkit-animation: particle-animation02 1s ease-in-out 1s 1 normal forwards;
   animation: particle-animation02 1s ease-in-out 1s 1 normal forwards;
 }
 .particle03 {
   left: -180px;
   opacity: 0;
-  background-color: #0d1321;
+  background-color: #50514f;
   -webkit-animation: particle-animation03 1s ease-in-out 1s 1 normal forwards;
   animation: particle-animation03 1s ease-in-out 1s 1 normal forwards;
 }
 .particle04 {
   left: -180px;
   opacity: 0;
-  background-color: #0d1321;
+  background-color: #50514f;
   -webkit-animation: particle-animation04 1s ease-in-out 1s 1 normal forwards;
   animation: particle-animation04 1s ease-in-out 1s 1 normal forwards;
 }
 .particle05 {
   left: -180px;
   opacity: 0;
-  background-color: #0d1321;
+  background-color: #50514f;
   -webkit-animation: particle-animation05 1s ease-in-out 1s 1 normal forwards;
   animation: particle-animation05 1s ease-in-out 1s 1 normal forwards;
 }
 .particle06 {
   left: -180px;
   opacity: 0;
-  background-color: #0d1321;
+  background-color: #50514f;
   -webkit-animation: particle-animation06 1s ease-in-out 1s 1 normal forwards;
   animation: particle-animation06 1s ease-in-out 1s 1 normal forwards;
 }
 .particle10 {
   left: -120px;
   opacity: 0;
-  background-color: #240046;
+  background-color: #f25f5c;
   -webkit-animation: particle-animation10 1s ease-in-out 1.2s 1 normal forwards;
   animation: particle-animation10 1s ease-in-out 1.2s 1 normal forwards;
 }
 .particle11 {
   left: -120px;
   opacity: 0;
-  background-color: #240046;
+  background-color: #f25f5c;
   -webkit-animation: particle-animation11 1s ease-in-out 1.2s 1 normal forwards;
   animation: particle-animation11 1s ease-in-out 1.2s 1 normal forwards;
 }
 .particle12 {
   left: -120px;
   opacity: 0;
-  background-color: #240046;
+  background-color: #f25f5c;
   -webkit-animation: particle-animation12 1s ease-in-out 1.2s 1 normal forwards;
   animation: particle-animation12 1s ease-in-out 1.2s 1 normal forwards;
 }
 .particle13 {
   left: -120px;
   opacity: 0;
-  background-color: #240046;
+  background-color: #f25f5c;
   -webkit-animation: particle-animation13 1s ease-in-out 1.2s 1 normal forwards;
   animation: particle-animation13 1s ease-in-out 1.2s 1 normal forwards;
 }
 .particle14 {
   left: -120px;
   opacity: 0;
-  background-color: #240046;
+  background-color: #f25f5c;
   -webkit-animation: particle-animation14 1s ease-in-out 1.2s 1 normal forwards;
   animation: particle-animation14 1s ease-in-out 1.2s 1 normal forwards;
 }
 .particle15 {
   left: -120px;
   opacity: 0;
-  background-color: #240046;
+  background-color: #f25f5c;
   -webkit-animation: particle-animation15 1s ease-in-out 1.2s 1 normal forwards;
   animation: particle-animation15 1s ease-in-out 1.2s 1 normal forwards;
 }
 .particle16 {
   left: -120px;
   opacity: 0;
-  background-color: #240046;
+  background-color: #f25f5c;
   -webkit-animation: particle-animation16 1s ease-in-out 1.2s 1 normal forwards;
   animation: particle-animation16 1s ease-in-out 1.2s 1 normal forwards;
 }
 .particle20 {
   left: -60px;
   opacity: 0;
-  background-color: #3c096c;
+  background-color: #ffe066;
   -webkit-animation: particle-animation20 1s ease-in-out 1.4s 1 normal forwards;
   animation: particle-animation20 1s ease-in-out 1.4s 1 normal forwards;
 }
 .particle21 {
   left: -60px;
   opacity: 0;
-  background-color: #3c096c;
+  background-color: #ffe066;
   -webkit-animation: particle-animation21 1s ease-in-out 1.4s 1 normal forwards;
   animation: particle-animation21 1s ease-in-out 1.4s 1 normal forwards;
 }
 .particle22 {
   left: -60px;
   opacity: 0;
-  background-color: #3c096c;
+  background-color: #ffe066;
   -webkit-animation: particle-animation22 1s ease-in-out 1.4s 1 normal forwards;
   animation: particle-animation22 1s ease-in-out 1.4s 1 normal forwards;
 }
 .particle23 {
   left: -60px;
   opacity: 0;
-  background-color: #3c096c;
+  background-color: #ffe066;
   -webkit-animation: particle-animation23 1s ease-in-out 1.4s 1 normal forwards;
   animation: particle-animation23 1s ease-in-out 1.4s 1 normal forwards;
 }
 .particle24 {
   left: -60px;
   opacity: 0;
-  background-color: #3c096c;
+  background-color: #ffe066;
   -webkit-animation: particle-animation24 1s ease-in-out 1.4s 1 normal forwards;
   animation: particle-animation24 1s ease-in-out 1.4s 1 normal forwards;
 }
 .particle25 {
   left: -60px;
   opacity: 0;
-  background-color: #3c096c;
+  background-color: #ffe066;
   -webkit-animation: particle-animation25 1s ease-in-out 1.4s 1 normal forwards;
   animation: particle-animation25 1s ease-in-out 1.4s 1 normal forwards;
 }
 .particle26 {
   left: -60px;
   opacity: 0;
-  background-color: #3c096c;
+  background-color: #ffe066;
   -webkit-animation: particle-animation26 1s ease-in-out 1.4s 1 normal forwards;
   animation: particle-animation26 1s ease-in-out 1.4s 1 normal forwards;
 }
 .particle30 {
   left: 0px;
   opacity: 0;
-  background-color: #5a189a;
+  background-color: #247ba0;
   -webkit-animation: particle-animation30 1s ease-in-out 1.6s 1 normal forwards;
   animation: particle-animation30 1s ease-in-out 1.6s 1 normal forwards;
 }
 .particle31 {
   left: 0px;
   opacity: 0;
-  background-color: #5a189a;
+  background-color: #247ba0;
   -webkit-animation: particle-animation31 1s ease-in-out 1.6s 1 normal forwards;
   animation: particle-animation31 1s ease-in-out 1.6s 1 normal forwards;
 }
 .particle32 {
   left: 0px;
   opacity: 0;
-  background-color: #5a189a;
+  background-color: #247ba0;
   -webkit-animation: particle-animation32 1s ease-in-out 1.6s 1 normal forwards;
   animation: particle-animation32 1s ease-in-out 1.6s 1 normal forwards;
 }
 .particle33 {
   left: 0px;
   opacity: 0;
-  background-color: #5a189a;
+  background-color: #247ba0;
   -webkit-animation: particle-animation33 1s ease-in-out 1.6s 1 normal forwards;
   animation: particle-animation33 1s ease-in-out 1.6s 1 normal forwards;
 }
 .particle34 {
   left: 0px;
   opacity: 0;
-  background-color: #5a189a;
+  background-color: #247ba0;
   -webkit-animation: particle-animation34 1s ease-in-out 1.6s 1 normal forwards;
   animation: particle-animation34 1s ease-in-out 1.6s 1 normal forwards;
 }
 .particle35 {
   left: 0px;
   opacity: 0;
-  background-color: #5a189a;
+  background-color: #247ba0;
   -webkit-animation: particle-animation35 1s ease-in-out 1.6s 1 normal forwards;
   animation: particle-animation35 1s ease-in-out 1.6s 1 normal forwards;
 }
 .particle36 {
   left: 0px;
   opacity: 0;
-  background-color: #5a189a;
+  background-color: #247ba0;
   -webkit-animation: particle-animation36 1s ease-in-out 1.6s 1 normal forwards;
   animation: particle-animation36 1s ease-in-out 1.6s 1 normal forwards;
 }
 .particle40 {
   left: 60px;
   opacity: 0;
-  background-color: #7b2cbf;
+  background-color: #c0c0c0;
   -webkit-animation: particle-animation40 1s ease-in-out 1.8s 1 normal forwards;
   animation: particle-animation40 1s ease-in-out 1.8s 1 normal forwards;
 }
 .particle41 {
   left: 60px;
   opacity: 0;
-  background-color: #7b2cbf;
+  background-color: #c0c0c0;
   -webkit-animation: particle-animation41 1s ease-in-out 1.8s 1 normal forwards;
   animation: particle-animation41 1s ease-in-out 1.8s 1 normal forwards;
 }
 .particle42 {
   left: 60px;
   opacity: 0;
-  background-color: #7b2cbf;
+  background-color: #c0c0c0;
   -webkit-animation: particle-animation42 1s ease-in-out 1.8s 1 normal forwards;
   animation: particle-animation42 1s ease-in-out 1.8s 1 normal forwards;
 }
 .particle43 {
   left: 60px;
   opacity: 0;
-  background-color: #7b2cbf;
+  background-color: #c0c0c0;
   -webkit-animation: particle-animation43 1s ease-in-out 1.8s 1 normal forwards;
   animation: particle-animation43 1s ease-in-out 1.8s 1 normal forwards;
 }
 .particle44 {
   left: 60px;
   opacity: 0;
-  background-color: #7b2cbf;
+  background-color: #c0c0c0;
   -webkit-animation: particle-animation44 1s ease-in-out 1.8s 1 normal forwards;
   animation: particle-animation44 1s ease-in-out 1.8s 1 normal forwards;
 }
 .particle45 {
   left: 60px;
   opacity: 0;
-  background-color: #7b2cbf;
+  background-color: #c0c0c0;
   -webkit-animation: particle-animation45 1s ease-in-out 1.8s 1 normal forwards;
   animation: particle-animation45 1s ease-in-out 1.8s 1 normal forwards;
 }
 .particle46 {
   left: 60px;
   opacity: 0;
-  background-color: #7b2cbf;
+  background-color: #c0c0c0;
   -webkit-animation: particle-animation46 1s ease-in-out 1.8s 1 normal forwards;
   animation: particle-animation46 1s ease-in-out 1.8s 1 normal forwards;
 }
 .particle50 {
   left: 120px;
   opacity: 0;
-  background-color: #9d4edd;
+  background-color: #ebebeb;
   -webkit-animation: particle-animation50 1s ease-in-out 2s 1 normal forwards;
   animation: particle-animation50 1s ease-in-out 2s 1 normal forwards;
 }
 .particle51 {
   left: 120px;
   opacity: 0;
-  background-color: #9d4edd;
+  background-color: #ebebeb;
   -webkit-animation: particle-animation51 1s ease-in-out 2s 1 normal forwards;
   animation: particle-animation51 1s ease-in-out 2s 1 normal forwards;
 }
 .particle52 {
   left: 120px;
   opacity: 0;
-  background-color: #9d4edd;
+  background-color: #ebebeb;
   -webkit-animation: particle-animation52 1s ease-in-out 2s 1 normal forwards;
   animation: particle-animation52 1s ease-in-out 2s 1 normal forwards;
 }
 .particle53 {
   left: 120px;
   opacity: 0;
-  background-color: #9d4edd;
+  background-color: #ebebeb;
   -webkit-animation: particle-animation53 1s ease-in-out 2s 1 normal forwards;
   animation: particle-animation53 1s ease-in-out 2s 1 normal forwards;
 }
 .particle54 {
   left: 120px;
   opacity: 0;
-  background-color: #9d4edd;
+  background-color: #ebebeb;
   -webkit-animation: particle-animation54 1s ease-in-out 2s 1 normal forwards;
   animation: particle-animation54 1s ease-in-out 2s 1 normal forwards;
 }
 .particle55 {
   left: 120px;
   opacity: 0;
-  background-color: #9d4edd;
+  background-color: #ebebeb;
   -webkit-animation: particle-animation55 1s ease-in-out 2s 1 normal forwards;
   animation: particle-animation55 1s ease-in-out 2s 1 normal forwards;
 }
 .particle56 {
   left: 120px;
   opacity: 0;
-  background-color: #9d4edd;
+  background-color: #ebebeb;
   -webkit-animation: particle-animation56 1s ease-in-out 2s 1 normal forwards;
   animation: particle-animation56 1s ease-in-out 2s 1 normal forwards;
 }
 .particle60 {
   left: 180px;
   opacity: 0;
-  background-color: #c77dff;
+  background-color: #ee6c4d;
   -webkit-animation: particle-animation60 1s ease-in-out 2.2s 1 normal forwards;
   animation: particle-animation60 1s ease-in-out 2.2s 1 normal forwards;
 }
 .particle61 {
   left: 180px;
   opacity: 0;
-  background-color: #c77dff;
+  background-color: #ee6c4d;
   -webkit-animation: particle-animation61 1s ease-in-out 2.2s 1 normal forwards;
   animation: particle-animation61 1s ease-in-out 2.2s 1 normal forwards;
 }
 .particle62 {
   left: 180px;
   opacity: 0;
-  background-color: #c77dff;
+  background-color: #ee6c4d;
   -webkit-animation: particle-animation62 1s ease-in-out 2.2s 1 normal forwards;
   animation: particle-animation62 1s ease-in-out 2.2s 1 normal forwards;
 }
 .particle63 {
   left: 180px;
   opacity: 0;
-  background-color: #c77dff;
+  background-color: #ee6c4d;
   -webkit-animation: particle-animation63 1s ease-in-out 2.2s 1 normal forwards;
   animation: particle-animation63 1s ease-in-out 2.2s 1 normal forwards;
 }
 .particle64 {
   left: 180px;
   opacity: 0;
-  background-color: #c77dff;
+  background-color: #ee6c4d;
   -webkit-animation: particle-animation64 1s ease-in-out 2.2s 1 normal forwards;
   animation: particle-animation64 1s ease-in-out 2.2s 1 normal forwards;
 }
 .particle65 {
   left: 180px;
   opacity: 0;
-  background-color: #c77dff;
+  background-color: #ee6c4d;
   -webkit-animation: particle-animation65 1s ease-in-out 2.2s 1 normal forwards;
   animation: particle-animation65 1s ease-in-out 2.2s 1 normal forwards;
 }
 .particle66 {
   left: 180px;
   opacity: 0;
-  background-color: #c77dff;
+  background-color: #ee6c4d;
   -webkit-animation: particle-animation66 1s ease-in-out 2.2s 1 normal forwards;
   animation: particle-animation66 1s ease-in-out 2.2s 1 normal forwards;
 }
 .particle70 {
   left: 240px;
   opacity: 0;
-  background-color: #e0aaff;
+  background-color: #293241;
   -webkit-animation: particle-animation70 1s ease-in-out 2.4s 1 normal forwards;
   animation: particle-animation70 1s ease-in-out 2.4s 1 normal forwards;
 }
 .particle71 {
   left: 240px;
   opacity: 0;
-  background-color: #e0aaff;
+  background-color: #293241;
   -webkit-animation: particle-animation71 1s ease-in-out 2.4s 1 normal forwards;
   animation: particle-animation71 1s ease-in-out 2.4s 1 normal forwards;
 }
 .particle72 {
   left: 240px;
   opacity: 0;
-  background-color: #e0aaff;
+  background-color: #293241;
   -webkit-animation: particle-animation72 1s ease-in-out 2.4s 1 normal forwards;
   animation: particle-animation72 1s ease-in-out 2.4s 1 normal forwards;
 }
 .particle73 {
   left: 240px;
   opacity: 0;
-  background-color: #e0aaff;
+  background-color: #293241;
   -webkit-animation: particle-animation73 1s ease-in-out 2.4s 1 normal forwards;
   animation: particle-animation73 1s ease-in-out 2.4s 1 normal forwards;
 }
 .particle74 {
   left: 240px;
   opacity: 0;
-  background-color: #e0aaff;
+  background-color: #293241;
   -webkit-animation: particle-animation74 1s ease-in-out 2.4s 1 normal forwards;
   animation: particle-animation74 1s ease-in-out 2.4s 1 normal forwards;
 }
 .particle75 {
   left: 240px;
   opacity: 0;
-  background-color: #e0aaff;
+  background-color: #293241;
   -webkit-animation: particle-animation75 1s ease-in-out 2.4s 1 normal forwards;
   animation: particle-animation75 1s ease-in-out 2.4s 1 normal forwards;
 }
 .particle76 {
   left: 240px;
   opacity: 0;
-  background-color: #e0aaff;
+  background-color: #293241;
   -webkit-animation: particle-animation76 1s ease-in-out 2.4s 1 normal forwards;
   animation: particle-animation76 1s ease-in-out 2.4s 1 normal forwards;
 }
