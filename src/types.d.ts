@@ -13,3 +13,11 @@ export interface MessageProps {
   messages: string[];
   id: string;
 }
+
+export interface PostJSDoodleResponse {
+  output: string;
+  statusCode: string;
+  memeory: string;
+  cpuTime: string;
+  error?: string;
+}

@@ -8,6 +8,7 @@ import authRoutes from "./routes/auth-routes";
 import apiRoutes from "./routes/api-routes";
 import cookieParser from "cookie-parser";
 import http from "http";
+import bodyParser from "body-parser";
 import chatService from "./service/chatService";
 
 const app = express();
@@ -32,12 +33,15 @@ app.use(
 app.use(cookieParser()); // parse cookies
 app.use(passport.initialize());
 app.use(passport.session()); // deserialize cookie from the browser
+app.use(bodyParser.json());
 
 app.use("/auth", authRoutes);
 app.use("/api", apiRoutes);
 
 app.listen(port, () => console.log(chalk.blueBright(`Express Server listening to port ${port}`)));
 
-httpServer.listen(socket_port, () => console.log(chalk.cyanBright(`Socket-io Server listening to port ${socket_port}`)));
+httpServer.listen(socket_port, () =>
+  console.log(chalk.cyanBright(`Socket-io Server listening to port ${socket_port}`))
+);
 
 export type ServerType = typeof httpServer;

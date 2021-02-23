@@ -4,6 +4,14 @@ import passport from "passport";
 const router = express.Router();
 import "../service/passport";
 
+// when login failed, send failed msg
+router.get("/login/failed", (req, res) => {
+  res.status(401).json({
+    isLoggedIn: false,
+    message: "user failed to authenticate.",
+  });
+});
+
 // auth with google+
 router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 
@@ -11,7 +19,7 @@ router.get(
   "/google/redirect",
   passport.authenticate("google", {
     successRedirect: CLIENT_DASHBOARD_URL,
-    failureRedirect: "/api/login/failed",
+    failureRedirect: "/login/failed",
   })
 );
 
@@ -20,7 +28,7 @@ router.get(
   "/github/redirect",
   passport.authenticate("github", {
     successRedirect: CLIENT_DASHBOARD_URL,
-    failureRedirect: "/api/login/failed",
+    failureRedirect: "/login/failed",
   })
 );
 
@@ -30,7 +38,7 @@ router.get(
   "/twitter/redirect",
   passport.authenticate("twitter", {
     successRedirect: CLIENT_DASHBOARD_URL,
-    failureRedirect: "/api/login/failed",
+    failureRedirect: "/login/failed",
   })
 );
 
