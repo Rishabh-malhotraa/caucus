@@ -32,15 +32,4 @@ const DB = {
   DATABASE: "rtce",
 };
 
-export {
-  GITHUB_KEY,
-  GOOGLE_KEY,
-  TWITTER_KEY,
-  COOKIE_KEYS,
-  CLIENT_DASHBOARD_URL,
-  CLIENT_LOGIN_URL,
-  port,
-  socket_port,
-  CLIENT_URL,
-  DB,
-};
+export { GITHUB_KEY, GOOGLE_KEY, TWITTER_KEY, COOKIE_KEYS, CLIENT_DASHBOARD_URL, CLIENT_LOGIN_URL, port, socket_port, CLIENT_URL, DB };

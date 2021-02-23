@@ -35,23 +35,14 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       // check if user already exists in our own db
       try {
-        const currentUser = await (await db.query("SELECT * FROM oauth WHERE user_id= $1", [profile.id]))
-          .rows[0];
+        const currentUser = await (await db.query("SELECT * FROM oauth WHERE user_id= $1", [profile.id])).rows[0];
         if (currentUser) {
           done(null, currentUser);
         } else {
           // if not, create user in our db
           const newUser = await db.query(
             "INSERT INTO oauth (user_id, name, image_link, create_time, oauth_provider, access_token, refresh_token) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-            [
-              profile.id,
-              profile.displayName,
-              profile.photos ? profile.photos[0].value : dummyImage,
-              date,
-              profile.provider,
-              accessToken,
-              refreshToken,
-            ]
+            [profile.id, profile.displayName, profile.photos ? profile.photos[0].value : dummyImage, date, profile.provider, accessToken, refreshToken]
           );
           done(null, newUser);
         }
@@ -73,22 +64,13 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        const currentUser = await (await db.query("SELECT * FROM oauth WHERE user_id= $1", [profile.id]))
-          .rows[0];
+        const currentUser = await (await db.query("SELECT * FROM oauth WHERE user_id= $1", [profile.id])).rows[0];
         if (currentUser) {
           done(undefined, currentUser);
         } else {
           const newUser = await db.query(
             "INSERT INTO oauth (user_id, name, image_link, create_time, oauth_provider, access_token, refresh_token) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-            [
-              profile.id,
-              profile.displayName,
-              profile.photos ? profile.photos[0].value : dummyImage,
-              date,
-              profile.provider,
-              accessToken,
-              refreshToken,
-            ]
+            [profile.id, profile.displayName, profile.photos ? profile.photos[0].value : dummyImage, date, profile.provider, accessToken, refreshToken]
           );
           done(undefined, newUser);
         }
@@ -111,22 +93,13 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        const currentUser = await (await db.query("SELECT * FROM oauth WHERE user_id= $1", [profile.id]))
-          .rows[0];
+        const currentUser = await (await db.query("SELECT * FROM oauth WHERE user_id= $1", [profile.id])).rows[0];
         if (currentUser) {
           done(null, currentUser);
         } else {
           const newUser = await db.query(
             "INSERT INTO oauth (user_id, name, image_link, create_time, oauth_provider, access_token, refresh_token) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-            [
-              profile.id,
-              profile.displayName,
-              profile.photos ? profile.photos[0].value : dummyImage,
-              date,
-              profile.provider,
-              accessToken,
-              refreshToken,
-            ]
+            [profile.id, profile.displayName, profile.photos ? profile.photos[0].value : dummyImage, date, profile.provider, accessToken, refreshToken]
           );
           done(null, newUser);
         }

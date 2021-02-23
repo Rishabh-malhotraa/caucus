@@ -11,13 +11,14 @@ router.get("/auth", (req, res) => {
       user: undefined,
       cookies: undefined,
     });
+  } else {
+    return res.status(200).json({
+      isLoggedIn: true,
+      message: "User is logged in",
+      user: req.user,
+      cookies: req.cookies,
+    });
   }
-  return res.status(200).json({
-    isLoggedIn: true,
-    message: "User is logged in",
-    user: req.user,
-    cookies: req.cookies,
-  });
 });
 
 // auth logout

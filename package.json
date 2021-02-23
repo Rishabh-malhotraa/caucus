@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node-dev --respawn src/chat.ts",
-    "dev": "nodemon --exec ts-node src/index.ts"
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "author": "Rishabh Malhotra",
   "license": "MIT",

@@ -30,16 +30,16 @@ const chatService = (httpServer: ServerType): void => {
   // >;
 
   const users: Record<string, string[]> = {};
-
   const socketToRoom: Record<string, string> = {};
 
   // remember we want socket-id name and url link
   io.on("connection", (socket: Socket) => {
+    console.log(`A user ${chalk.green(socket.id.slice(0, 5))} conmnection`);
     socket.on("join-room", (roomID: string) => {
       if (users[roomID]) {
         const length = users[roomID].length;
-        if (length === 4) {
-          socket.emit("room full");
+        if (length === 2) {
+          socket.emit("room-full");
           return;
         }
         users[roomID].push(socket.id);
@@ -50,20 +50,21 @@ const chatService = (httpServer: ServerType): void => {
       // return everyone but you in the room
       const usersInThisRoom = users[roomID].filter((id) => id !== socket.id);
 
-      socket.broadcast.emit("all-users", usersInThisRoom);
+      socket.emit("all-users", usersInThisRoom);
       // socket.broadcast.emit("connected", notification); The above should act like connected notification thingy
     });
 
     // --------------VOICE CHAT---------------------------
     socket.on("sending-signal", (payload) => {
-      io.to(payload.userToSignal).emit("user joined", {
+      // userIdToSignal is the userid of the person who is already in the room
+      io.to(payload.userToSignal).emit("user-joined", {
         signal: payload.signal,
         callerID: payload.callerID,
       });
     });
 
     socket.on("returning-signal", (payload) => {
-      io.to(payload.callerID).emit("receiving returned signal", {
+      io.to(payload.callerID).emit("receiving-returned-signal", {
         signal: payload.signal,
         id: socket.id,
       });
