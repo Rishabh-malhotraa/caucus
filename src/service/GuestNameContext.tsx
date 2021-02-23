@@ -1,10 +1,11 @@
 import React from "react";
 import { GuestNameContextTypes } from "types";
+import generate from "dog-names";
 
 export const GuestNameContext = React.createContext<GuestNameContextTypes | null>(null);
 
 const GuestNameProvider: React.FC<React.ReactNode> = ({ children }) => {
-  const [guestName, setGuestName] = React.useState<string>("");
+  const [guestName, setGuestName] = React.useState<string>(generate.allRandom());
   const [guestLoginClick, setGuestLoginClick] = React.useState<boolean>(false);
 
   const isGuestNameClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

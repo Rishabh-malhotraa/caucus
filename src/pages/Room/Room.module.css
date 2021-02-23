@@ -46,3 +46,22 @@
 .splitter-horizontal {
   height: 12px !important;
 }
+
+.footer {
+  width: 100%;
+  bottom: 0px;
+  text-align: center;
+  background-color: #2d2d30;
+  opacity: 0.7;
+  color: whitesmoke;
+  padding: 0.1rem 0rem;
+}
+
+.footer a {
+  color: whitesmoke;
+  opacity: 0.8;
+}
+.footer span {
+  padding: 0px 2px;
+  color: red;
+}

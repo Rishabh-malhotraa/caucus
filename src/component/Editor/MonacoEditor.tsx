@@ -7,7 +7,6 @@ import { GuestNameContext } from "service/GuestNameContext";
 import { UserContext } from "service/UserContext";
 import { GuestNameContextTypes, UserContextTypes } from "types";
 import "@convergencelabs/monaco-collab-ext/css/monaco-collab-ext.css";
-import generate from "project-name-generator";
 
 interface AppProps {
   code: string | undefined;
@@ -24,7 +23,7 @@ const MonacoEditor: React.FC<AppProps> = ({ code, setCode, MonacoEditorRef }) =>
   const { guestName } = useContext(GuestNameContext) as GuestNameContextTypes;
 
   // if login then user that else guest name else randome name :)))
-  const username = user?.name ? user.name : guestName ? guestName : generate({ words: 1 }).spaced;
+  const username = user?.name ? user.name : guestName;
 
   useEffect(() => {
     Convergence.connectAnonymously(CONVERGENCE_URL, username)

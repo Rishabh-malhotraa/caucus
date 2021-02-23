@@ -5,14 +5,14 @@ import clsx from "clsx";
 const Loader = () => {
   return (
     <div className={styles.root}>
-      <div className={clsx(styles.background, styles.background0)}></div>
+      {/* <div className={clsx(styles.background, styles.background0)}></div>
       <div className={clsx(styles.background, styles.background1)}></div>
       <div className={clsx(styles.background, styles.background2)}></div>
       <div className={clsx(styles.background, styles.background3)}></div>
       <div className={clsx(styles.background, styles.background4)}></div>
       <div className={clsx(styles.background, styles.background5)}></div>
       <div className={clsx(styles.background, styles.background6)}></div>
-      <div className={clsx(styles.background, styles.background7)}></div>
+      <div className={clsx(styles.background, styles.background7)}></div> */}
       <div className={styles.criterion}>
         <div className={clsx(styles.text, styles.text0)}>C</div>
         <div className={clsx(styles.text, styles.text1)}>A</div>
@@ -20,7 +20,7 @@ const Loader = () => {
         <div className={clsx(styles.text, styles.text3)}>C</div>
         <div className={clsx(styles.text, styles.text4)}>U</div>
         <div className={clsx(styles.text, styles.text5)}>S</div>
-        <div className={clsx(styles.text, styles.text6)}>: )</div>
+        <div className={clsx(styles.text, styles.text6)}>:)</div>
         <div className={clsx(styles.frame, styles.frame0)}></div>
         <div className={clsx(styles.frame, styles.frame1)}></div>
         <div className={clsx(styles.frame, styles.frame2)}></div>

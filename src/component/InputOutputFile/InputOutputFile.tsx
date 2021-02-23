@@ -94,8 +94,9 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
       <Paper
         style={{
           position: "relative",
-          backgroundColor: "#272822",
+          backgroundColor: "#252526",
           color: "white",
+          borderRadius: "0px 8px 0px 0px",
         }}
       >
         <Tabs value={value} onChange={handleChange} indicatorColor="primary" textColor="inherit" centered>
@@ -105,6 +106,7 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
         <Box
           style={{
             height: "48px",
+            borderRadius: "0px 8px 0px 0px",
             position: "absolute",
             backgroundColor: "#00621E",
             top: "0px",
@@ -133,7 +135,7 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
           style={{
             display: "flex",
             flexGrow: 1,
-            backgroundColor: "#272822",
+            backgroundColor: "	#1e1e1e",
             color: "white",
           }}
         >

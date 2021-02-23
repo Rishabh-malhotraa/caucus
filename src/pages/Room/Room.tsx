@@ -130,10 +130,11 @@ const Dashboard = () => {
             </ReflexElement>
           </ReflexContainer>
         </ReflexElement>
-        <ReflexElement className={style.footer} flex={0.05}>
-          <div className={style["pane-content"]}>
-            <label>Footer (fixed)</label>
-          </div>
+        <ReflexElement className={style.footer} flex={0.025}>
+          Made with <span>&#9829;</span> by Rishabh Malhotra{"  "}•{"  "}
+          <a href="https://github.com/Rishabh-malhotraa/codeforces-diary" target="__blank">
+            Github
+          </a>
         </ReflexElement>
       </ReflexContainer>
     </div>
