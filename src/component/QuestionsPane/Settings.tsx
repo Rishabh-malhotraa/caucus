@@ -14,10 +14,6 @@ const Settings = () => {
     handleThemeChange,
   } = useContext(SettingContext) as SettingsContextType;
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as string);
-  };
-
   const CssFormControl = withStyles({
     root: {
       backgroundColor: "#	3e3e42",
