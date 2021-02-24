@@ -9,11 +9,17 @@ export interface OAUTH_TABLE {
   refresh_token?: string;
 }
 
-export interface MessageProps {
-  messages: string[];
-  id: string;
+export interface UserInfo {
+  name: string;
+  image_link: string;
+  roomID: string;
 }
 
+export interface MessageProps {
+  messages: string[];
+  userInfo: UserInfo;
+  socketID: strimg;
+}
 export interface PostJSDoodleResponse {
   output: string;
   statusCode: string;

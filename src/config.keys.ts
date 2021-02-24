@@ -21,7 +21,7 @@ export const TWITTER_KEY = {
   consumerSecret: "1pC1ILtST1yhtz6eYgbbuxpOayOu3lGbhDfVAVUWLXdFgzIgn4",
 };
 
-export const JSDOODLE = {
+export const JDOODLE = {
   clientID: "da358ecadea106b681e17e6dd1194863",
   clientSecret: "7b69d6ce85668cb6fe5dbd61d37433bf3ffe31c14fed906833faad7e2593f5ca",
 };
@@ -38,4 +38,4 @@ export const CLIENT_LOGIN_URL = "http://localhost:3000/";
 
 export const CLIENT_DASHBOARD_URL = "http://localhost:3000/home";
 
-export const JSDOODLE_URL = "https://api.jdoodle.com/v1/execute";
+export const JDOODLE_URL = "https://api.jdoodle.com/v1/execute";

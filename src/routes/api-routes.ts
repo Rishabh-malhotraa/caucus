@@ -1,6 +1,6 @@
 import { Router } from "express";
 import axios from "axios";
-import { JSDOODLE_URL, JSDOODLE } from "config.keys";
+import { JDOODLE, JDOODLE_URL } from "../config.keys";
 import getLanguageVersion from "../utils/getLanguageVersion";
 const router = Router();
 
@@ -30,7 +30,7 @@ router.get("/logout", (req, res) => {
   res.send({ message: "Successfully logged out" });
 });
 
-export interface PostJSDoodle {
+export interface PostJDoodle {
   script: string;
   language: string;
   versionIndex: string;
@@ -49,15 +49,15 @@ router.post("/execute", async (req, res) => {
 
   const response = await axios({
     method: "POST",
-    url: JSDOODLE_URL,
+    url: JDOODLE_URL,
     responseType: "json",
     data: {
       script: script,
       language: language,
       stdin: stdin,
       versionIndex: getLanguageVersion[language],
-      clientID: JSDOODLE.clientID,
-      clientSecret: JSDOODLE.clientSecret,
+      clientID: JDOODLE.clientID,
+      clientSecret: JDOODLE.clientSecret,
     },
   });
   res.json(response);

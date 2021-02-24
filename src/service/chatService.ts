@@ -1,12 +1,8 @@
 import { CLIENT_URL } from "../config.keys";
 import { Server, Socket } from "socket.io";
 import { ServerType } from "../index";
-import { MessageProps } from "../types";
+import { MessageProps, UserInfo } from "../types";
 import chalk from "chalk";
-
-// create peer and add peer -- new peer created for that person -- peer object- array of object and socket id -- when a person joins the room
-// notify all the people and
-//  exsisting peers refree -- and get all of their ids and create a new peer and sending a peer for all these peopl
 
 const chatService = (httpServer: ServerType): void => {
   const io = new Server(httpServer, {
@@ -15,81 +11,76 @@ const chatService = (httpServer: ServerType): void => {
       methods: ["GET", "POST"],
     },
   });
-  const notification = {
-    name: "Rishabh",
-    isConnected: true,
-  };
 
-  // type UserType = Record<
-  //   string,
-  //   {
-  //     id: string;
-  //     name: string;
-  //     photoUrl: string;
-  //   }[]
-  // >;
+  /**
+   * 1. On Connection save the socketid in a map along with the details
+   * 2. When you join a room you do the join room manupilation roomID -> players and player to player
+   * 3. on message send by as socket only to the person which is in the hashmap
+   */
 
-  const users: Record<string, string[]> = {};
   const socketToRoom: Record<string, string> = {};
+  const userInfoMap: Record<string, UserInfo> = {};
 
   // remember we want socket-id name and url link
   io.on("connection", (socket: Socket) => {
     console.log(`A user ${chalk.green(socket.id.slice(0, 5))} conmnection`);
-    socket.on("join-room", (roomID: string) => {
-      if (users[roomID]) {
-        const length = users[roomID].length;
-        if (length === 2) {
-          socket.emit("room-full");
-          return;
-        }
-        users[roomID].push(socket.id);
-      } else {
-        users[roomID] = [socket.id];
-      }
+
+    socket.on("join-room", (userInfo: UserInfo) => {
+      socket.emit("sid", socket.id);
+      const { roomID } = userInfo;
       socketToRoom[socket.id] = roomID;
-      // return everyone but you in the room
-      const usersInThisRoom = users[roomID].filter((id) => id !== socket.id);
+      userInfoMap[socket.id] = userInfo;
+      const usersInRoom = io.sockets.adapter.rooms.get(roomID)?.size;
 
-      socket.emit("all-users", usersInThisRoom);
-      // socket.broadcast.emit("connected", notification); The above should act like connected notification thingy
+      // adding people to rooms
+      if (!usersInRoom || usersInRoom < 2) {
+        socket.join(roomID);
+        socket.broadcast.to(roomID).emit("new-user-joined", userInfoMap[socket.id]);
+      } else {
+        socket.emit("room-full");
+        return;
+      }
     });
 
     // --------------VOICE CHAT---------------------------
-    socket.on("sending-signal", (payload) => {
-      // userIdToSignal is the userid of the person who is already in the room
-      io.to(payload.userToSignal).emit("user-joined", {
-        signal: payload.signal,
-        callerID: payload.callerID,
-      });
+    socket.on("callUser", (data) => {
+      console.log("call-user" + chalk.yellowBright(JSON.stringify(data)));
+      socket.broadcast.to(data.roomID).emit("someones-calling", { signal: data.signalData });
     });
 
-    socket.on("returning-signal", (payload) => {
-      io.to(payload.callerID).emit("receiving-returned-signal", {
-        signal: payload.signal,
-        id: socket.id,
-      });
+    socket.on("acceptCall", (data) => {
+      console.log("accecpt-call" + chalk.magentaBright(JSON.stringify(data)));
+      socket.broadcast.to(data.roomID).emit("callAccepted", data.signal);
     });
     // --------------VOICE CHAT---------------------------
 
-    // --------------CHAT MEASSAGES OLD---------------------------
-    socket.emit("your-id", socket.id);
+    // --------------CHAT MESSAGES ---------------------------
     socket.on("send-message", (body: MessageProps) => {
-      console.log(chalk.magenta(JSON.stringify(body)));
-      io.emit("message", body);
-      console.log(socket.id.slice(0, 5) + " messages :-  " + body.messages.pop());
+      const roomID = body.userInfo.roomID;
+      body.socketID = socket.id;
+      socket.broadcast.to(roomID).emit("message", body);
     });
-    // ---------------CHAT MEASSAGES OLD---------------------------
+    // ---------------CHAT MESSAGES ---------------------------
+
+    // ---------------OUTPUT FILE ---------------------------
+    socket.on("emit-input-data", (props) => {
+      const roomID = props.roomID;
+      socket.broadcast.to(roomID).emit("input-data", props.data);
+    });
+
+    // ---------------OUTPUT FILE ---------------------------
 
     // ------------DISCONNECTION----------------
     socket.on("disconnect", () => {
       const roomID = socketToRoom[socket.id];
-      let room = users[roomID];
-      if (room) {
-        room = room.filter((id) => id !== socket.id);
-        users[roomID] = room;
-      }
-      socket.broadcast.emit("disconnected", { ...notification, isConnected: false });
-      console.log(chalk.redBright(`A user ${socket.id.slice(0, 5)}  disconnected`));
+      const tempData = userInfoMap[socket.id];
+
+      delete socketToRoom[socket.id];
+      delete userInfoMap[socket.id];
+
+      socket.broadcast.in(roomID).emit("user-left", tempData);
+
+      console.log(`A user ${chalk.redBright(socket.id.slice(0, 5))}  disconnected`);
     });
     // --------------DISCONNECTION--------------
   });

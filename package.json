@@ -1,7 +1,15 @@
 {
-  "name": "rtce-server",
+  "name": "caucus-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Realtime Collaborate Editor with Embeded Compiler",
+  "private": true,
+  "author": {
+    "name": "Rishabh Malhotra",
+    "email": "rmalhotra_be18@thapar.edu"
+  },
+  "homepage": "https://github.com/rishabh-malhotraa/caucus-client",
+  "repository": "github:rishabh-malhtoraa/caucus-client",
+  "bugs": "https://github.com/rishabh-malhotraa/caucus-client/issues",
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
@@ -9,7 +17,6 @@
     "dev": "nodemon --exec ts-node src/index.ts",
     "format": "prettier --write \"src/**/*.ts\""
   },
-  "author": "Rishabh Malhotra",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
