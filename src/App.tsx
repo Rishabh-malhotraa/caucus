@@ -7,10 +7,12 @@ import Dashboard from "pages/Room/Room";
 import Loader from "pages/Loader/Loader";
 import NavigateRoom from "pages/NavigateRooms/NavigateRooms";
 import GuestNameProvider from "./service/GuestNameContext";
+import SettingsProvider from "./service/SettingsContext";
 import UserContextProvider, { UserContext } from "service/UserContext";
 import axios, { AxiosResponse } from "axios";
 import { OauthResponse, UserContextTypes } from "types";
 import { OAUTH_CHECK } from "config";
+import { SnackbarProvider } from "notistack";
 
 export const isAuthenticated = async () => {
   const { data }: AxiosResponse<OauthResponse> = await axios({
@@ -59,7 +61,11 @@ const contextWrappedApp = () => {
   return (
     <UserContextProvider>
       <GuestNameProvider>
-        <App />
+        <SettingsProvider>
+          <SnackbarProvider>
+            <App />
+          </SnackbarProvider>
+        </SettingsProvider>
       </GuestNameProvider>
     </UserContextProvider>
   );

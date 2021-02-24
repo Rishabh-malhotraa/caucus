@@ -1,4 +1,4 @@
-import React, { useState, createRef, useRef } from "react";
+import React, { useState, createRef, useRef, useContext } from "react";
 import InputOutputFile from "component/InputOutputFile/InputOutputFile";
 import { ReflexContainer, ReflexElement, ReflexSplitter } from "react-reflex";
 import "react-reflex/styles.css";
@@ -7,38 +7,63 @@ import { socket } from "service/socket";
 import { useSnackbar } from "notistack";
 import ChatApp from "component/TextChat";
 import VoiceChat from "component/VoiceChat/VoiceChat";
-import { SnackbarProvider } from "notistack";
 import { useParams } from "react-router-dom";
 import MonacoEditor from "component/Editor/MonacoEditor";
 import "@convergencelabs/monaco-collab-ext/css/monaco-collab-ext.min.css.map";
 import clsx from "clsx";
+import { GuestNameContext } from "service/GuestNameContext";
+import { UserContext } from "service/UserContext";
+import { UserContextTypes, GuestNameContextTypes, UserInfoSS } from "types";
+import { DUMMY_AVATAR_IMAGE } from "config";
+import TabsPanel from "component/QuestionsPane/Tabs";
+
 const Dashboard = () => {
   const { enqueueSnackbar } = useSnackbar();
-
-  const { id } = useParams<Record<string, string>>();
-
-  React.useEffect(() => {
-    const displayNotification = ({ name, isConnected }: Record<string, unknown>) => {
-      const text = isConnected ? "connected" : "disconnected";
-      const variantStyle = isConnected ? "success" : "error";
-      enqueueSnackbar(`${name} is ${text}`, {
-        variant: variantStyle,
-      });
-    };
-    socket.on("connected", (data: Record<string, unknown>) => {
-      displayNotification(data);
-      console.log(`I'm Connected with the backend ${data}`);
-    });
-    socket.on("disconnected", (data: Record<string, unknown>) => {
-      displayNotification(data);
-      console.log(`I'm Connected with the backend ${JSON.stringify(data)}`);
-    });
-  }, []);
-
+  const { user } = useContext(UserContext) as UserContextTypes;
+  const { guestName } = useContext(GuestNameContext) as GuestNameContextTypes;
   const [code, setCode] = useState<string>();
   const MonacoEditorRef = useRef<any>();
   const TextAreaRef = createRef<HTMLDivElement>();
   const [rows, setRows] = useState(4);
+  const [sid, setSid] = useState("");
+  const { id } = useParams<Record<string, string>>();
+
+  const prepareData = (): UserInfoSS => {
+    return {
+      name: user?.name ? user.name : guestName,
+      image_link: user?.image_link ? user.image_link : DUMMY_AVATAR_IMAGE,
+      roomID: id,
+    };
+  };
+
+  const displayNotification = (data: UserInfoSS, enter: boolean) => {
+    const text = enter ? "joined the room" : "left the room";
+    const variantStyle = enter ? "success" : "error";
+    enqueueSnackbar(`${data.name} ${text}`, {
+      variant: variantStyle,
+    });
+  };
+
+  React.useEffect(() => {
+    // socket.emit("user-data", prepareData());
+    socket.emit("join-room", prepareData());
+
+    socket.on("store-sid", (id: string) => setSid(id));
+    socket.on("new-user-joined", (data: UserInfoSS) => {
+      displayNotification(data, true);
+    });
+    socket.on("room-full", () => {
+      enqueueSnackbar("room is filled biatches", { variant: "warning" });
+    });
+
+    socket.on("connected", (data: Record<string, unknown>) => {
+      console.log(`I'm Connected with the backend ${data}`);
+    });
+    socket.on("user-left", (data: UserInfoSS) => {
+      displayNotification(data, false);
+    });
+  }, []);
+
   const resetEditorLayout = () => {
     const height = Math.floor(TextAreaRef!.current!.clientHeight);
     const adjustedRows = height > 340 ? height / 27 : height / 45;
@@ -49,49 +74,19 @@ const Dashboard = () => {
   return (
     <div className={style.root}>
       <ReflexContainer orientation="horizontal">
-        <ReflexElement className={style.header} flex={0.05}>
-          Hey
+        <ReflexElement className={style.header} flex={0.08}>
+          Caucus
         </ReflexElement>
         <ReflexElement>
           <ReflexContainer orientation="vertical">
             <ReflexElement>
               <ReflexContainer orientation="horizontal">
                 <ReflexElement className={style["pane-color"]}>
-                  <div className={style["pane-content"]}>
-                    <label style={{ height: "0%" }}>
-                      Left Pane <br /> Top
-                      <br />
-                      (splitter propagation)
-                    </label>
-                  </div>
-                </ReflexElement>
-                <ReflexSplitter
-                  className={clsx(style.splitter, style["splitter-horizontal"])}
-                  propagate={true}
-                />
-                <ReflexElement className={style["pane-color"]}>
-                  <div>
-                    <label style={{ height: "0%" }}>
-                      Left Pane <br /> Middle
-                      <br />
-                      (splitter propagation)
-                    </label>
-                  </div>
-                </ReflexElement>
-                <ReflexSplitter
-                  className={clsx(style.splitter, style["splitter-horizontal"])}
-                  propagate={true}
-                />
-                <ReflexElement className={style["pane-color"]}>
-                  <label style={{ height: "0%" }}>
-                    Left Pane <br /> Bottom
-                    <br />
-                    (splitter propagation)
-                  </label>
+                  <TabsPanel />
                 </ReflexElement>
               </ReflexContainer>
             </ReflexElement>
-            {/* 1st content */}
+            {/* End of 1st content */}
             <ReflexSplitter
               className={clsx(style.splitter, style["splitter-verticle"])}
               onStopResize={() => resetEditorLayout()}
@@ -124,13 +119,13 @@ const Dashboard = () => {
                 <ReflexSplitter className={clsx(style.splitter, style["splitter-horizontal"])} />
                 <ReflexElement className={style["chat-app"]}>
                   {/* Chat App Component */}
-                  <ChatApp />
+                  <ChatApp userInfo={prepareData()} socketID={sid} />
                 </ReflexElement>
               </ReflexContainer>
             </ReflexElement>
           </ReflexContainer>
         </ReflexElement>
-        <ReflexElement className={style.footer} flex={0.025}>
+        <ReflexElement className={style.footer} flex={0.028}>
           Made with <span>&#9829;</span> by Rishabh Malhotra{"  "}•{"  "}
           <a href="https://github.com/Rishabh-malhotraa/codeforces-diary" target="__blank">
             Github
@@ -141,12 +136,4 @@ const Dashboard = () => {
   );
 };
 
-export const NotificationWrappedDashBoard = () => {
-  return (
-    <SnackbarProvider>
-      <Dashboard />
-    </SnackbarProvider>
-  );
-};
-
-export default NotificationWrappedDashBoard;
+export default Dashboard;

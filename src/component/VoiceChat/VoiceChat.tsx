@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useRef, useState } from "react";
 import Peer, { Instance, SignalData } from "simple-peer";
 import { socket } from "service/socket";
@@ -45,7 +46,7 @@ const Video = ({ peer, muted }: { peer: Instance; muted: boolean }) => {
 
 export const Room = ({ params }: { params: string }) => {
   const [peers, setPeers] = useState<Instance[]>([]);
-  const userAudio = useRef({} as MediaSrcType);
+  const userVideo = useRef({} as MediaSrcType);
   const [stream, setStream] = useState<MediaStream>();
   const peersRef = useRef([] as PeerRefType[]);
   const [audioMuted, setAudioMuted] = useState(false);
@@ -53,46 +54,48 @@ export const Room = ({ params }: { params: string }) => {
 
   useEffect(() => {
     navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
-      userAudio.current.srcObject = stream;
       setStream(stream);
+      if (userVideo.current) {
+        userVideo.current.srcObject = stream;
+      }
+    });
 
-      // okay we are joining a room with the given room id huh
-      socket.emit("join-room", roomID);
-      // fetching all the users from the socker io server
-      socket.on("all-users", (users: string[]) => {
-        console.log(users);
-        const peers: Instance[] = [];
-        // looping thorugh all the users we got we want to create a new peer for them -- because peer meshes
-        users.forEach((userID) => {
-          const peer = createPeer(userID, socket.id, stream);
-          peersRef.current.push({
-            peerID: userID,
-            peer,
-          });
-          peers.push(peer);
-        });
-        setPeers(peers);
-      });
-
-      socket.on("user-joined", (payload: UserJoinedPayload) => {
-        /**
-         * @signal - this is the incomming signalz
-         * @calledID - is the id of the user which is calling us
-         * @stream - this is basically our own stream of data
-         *  */
-        const peer = addPeer(payload.signal, payload.callerID, stream);
+    // okay we are joining a room with the given room id huh
+    socket.emit("join-room", roomID);
+    // fetching all the users from the socker io server
+    socket.on("all-users", (users: string[]) => {
+      console.log(users);
+      const peers: Instance[] = [];
+      // looping thorugh all the users we got we want to create a new peer for them -- because peer meshes
+      users.forEach((userID) => {
+        const peer = createPeer(userID, socket.id, stream);
         peersRef.current.push({
-          peerID: payload.callerID,
+          peerID: userID,
           peer,
         });
+        peers.push(peer);
+      });
+      setPeers(peers);
+    });
 
-        setPeers((users) => [...users, peer]);
+    socket.on("user-joined", (payload: UserJoinedPayload) => {
+      /**
+       * @signal - this is the incomming signalz
+       * @calledID - is the id of the user which is calling us
+       * @stream - this is basically our own stream of data
+       *  */
+      const peer = addPeer(payload.signal, payload.callerID, stream);
+      peersRef.current.push({
+        peerID: payload.callerID,
+        peer,
       });
 
-      socket.on("receiving-returned-signal", (payload: ReturnSignalPayload) => {
-        const item = peersRef.current.find((p) => p.peerID === payload.id);
-        if (item) item.peer.signal(payload.signal);
-      });
+      setPeers((users) => [...users, peer]);
+    });
+
+    socket.on("receiving-returned-signal", (payload: ReturnSignalPayload) => {
+      const item = peersRef.current.find((p) => p.peerID === payload.id);
+      if (item) item.peer.signal(payload.signal);
     });
   }, []);
 
@@ -155,10 +158,10 @@ export const Room = ({ params }: { params: string }) => {
         <video
           muted
           //@ts-ignore
-          ref={userAudio}
+          ref={userVideo}
           autoPlay
           playsInline
-          style={{ width: "400px", height: "400px" }}
+          style={{ width: "100px", height: "100px" }}
         />
         {peers.map((peer, index) => {
           return <Video key={index} peer={peer} muted={false} />;

@@ -32,6 +32,15 @@ export interface GuestNameContextTypes {
   isGuestNameClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
+export interface SettingsContextType {
+  language: string;
+  fontSize: number;
+  theme: string;
+  handleLanguageChange: (value: string) => void;
+  handleFontSizeChange: (value: number) => void;
+  handleThemeChange: (value: string) => void;
+}
+
 export interface UserContextTypes {
   user: UserInfoType | undefined;
   saveUserInfo: (data: OauthResponse, isLoggedIn: boolean) => void;
@@ -45,4 +54,11 @@ export interface StateInterface {
     UserList: UserInfoType[];
     isLoggedIn: boolean;
   };
+}
+
+// SS -> short 😜
+export interface UserInfoSS {
+  name: string;
+  image_link: string;
+  roomID: string;
 }

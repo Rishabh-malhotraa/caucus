@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Paper, Tab, Tabs, Button, Box, TextField } from "@material-ui/core";
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { withStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
+import { socket } from "service/socket";
+import { useParams } from "react-router-dom";
+
 interface AppProps {
   TextAreaRef: React.RefObject<HTMLDivElement>;
   rows: number;
@@ -19,26 +22,27 @@ const CssTextField = withStyles({
       color: "whitesmoke",
     },
     "& label.Mui-focused": {
-      color: "dimgrey",
+      color: "#0055bb",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: "dimgrey",
+      borderBottomColor: "#0055bb",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        borderColor: "dimgrey",
+        borderColor: "#0055bb",
       },
       "&:hover fieldset": {
-        borderColor: "dimgrey",
+        borderColor: "#0055bb",
       },
       "&.Mui-focused fieldset": {
-        borderColor: "dimgrey",
+        borderColor: "#0055bb",
       },
     },
   },
 })(TextField);
 
 const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
+  const { id } = useParams<Record<string, string>>();
   const [value, setValue] = useState(0);
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
@@ -51,8 +55,20 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
     });
   };
 
+  useEffect(() => {
+    socket.on("input-data", (inputData: string) => {
+      console.log("hey" + inputData);
+      setInputText(inputData);
+    });
+  });
+
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
+  };
+
+  const inputTextFn = (value: string) => {
+    setInputText(value);
+    socket.emit("emit-input-data", { data: value, roomID: id });
   };
 
   const renderTextArea = (value: number) => {
@@ -63,7 +79,7 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
           size="medium"
           variant="outlined"
           value={inputText}
-          onChange={(event) => setInputText(event.target.value)}
+          onChange={(event) => inputTextFn(event.target.value)}
           multiline
           rows={rows}
         />
@@ -75,7 +91,7 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
           variant="outlined"
           value={outputText}
           rows={rows}
-          onChange={(event) => setOutputText(event.target.value)}
+          onChange={(event) => setOutputText(event.target.value as string)}
           multiline
         />
       );

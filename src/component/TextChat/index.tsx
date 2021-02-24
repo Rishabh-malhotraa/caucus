@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { socket } from "service/socket";
 import ChatMsg from "./ChatMessage";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { UserInfoSS } from "types";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -42,38 +43,25 @@ const useStyles = makeStyles(() =>
 
 interface MessageProps {
   messages: string[];
-  id: string;
+  socketID: string;
+  userInfo: UserInfoSS;
 }
 
-const ChatApp = () => {
+const ChatApp = ({ userInfo, socketID }: { userInfo: UserInfoSS; socketID: string }) => {
   const classes = useStyles();
   const chatBoxRef = useRef<HTMLDivElement>(null);
 
-  const [yourID, setYourID] = useState("");
   const [message, setMessage] = useState("");
   const [body, setBody] = useState<MessageProps[]>([]);
 
   useEffect(() => {
-    socket.on("your-id", (id: string) => {
-      setYourID(id);
-    });
-
     socket.on("message", (body: MessageProps) => {
+      console.log(JSON.stringify(body));
       receivedMessages(body);
     });
     const receivedMessages = (newMessage: MessageProps) => {
       setBody((body) => {
         return [...body, newMessage];
-        // if (!body.length) return [...body, newMessage];
-        // else if (body[body.length - 1].id === newMessage.id) {
-        //   const newbody = body;
-        //   newbody[newbody.length - 1].messages.push(newMessage.messages[0]);
-        //   return newbody;
-        // } else {
-        //   const newbody = body;
-        //   newbody.push({ id: newMessage.id, messages: newMessage.messages });
-        //   return newbody;
-        // }
       });
     };
   }, []);
@@ -82,9 +70,13 @@ const ChatApp = () => {
     e.preventDefault();
     if (!message) return;
     const messageObject: MessageProps = {
-      id: yourID,
       messages: [message],
+      socketID: socketID,
+      userInfo: userInfo,
     };
+    setBody((body) => {
+      return [...body, messageObject];
+    });
     setMessage("");
     socket.emit("send-message", messageObject);
   };
@@ -110,10 +102,19 @@ const ChatApp = () => {
         >
           <h1>MESSENGER</h1>
           {body.map((element, index) => {
-            if (element.id === yourID) {
-              return <ChatMsg key={index} avatar={""} side={"right"} messages={[...element.messages]} />;
+            if (element.socketID === socketID) {
+              return (
+                <ChatMsg
+                  key={index}
+                  avatar={element.userInfo.image_link}
+                  side={"right"}
+                  messages={[...element.messages]}
+                />
+              );
             }
-            return <ChatMsg key={index} messages={[...element.messages]} />;
+            return (
+              <ChatMsg key={index} messages={[...element.messages]} avatar={element.userInfo.image_link} />
+            );
           })}
         </div>
         <div style={{}} ref={chatBoxRef}>

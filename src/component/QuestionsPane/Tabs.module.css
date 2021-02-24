@@ -1,0 +1,52 @@
+.problem {
+  margin: 1rem;
+  padding-bottom: 1rem;
+  background-color: initial;
+}
+
+.problem pre {
+  white-space: pre-wrap;
+  background: #2d2d30;
+  padding: 10px 15px;
+  color: whitesmoke;
+  line-height: 1.6;
+  font-size: 13px;
+  border-radius: 3px;
+  margin-top: 0;
+  margin-bottom: 1em;
+  overflow: auto;
+  overflow: hidden;
+}
+.problem b,
+strong {
+  font-weight: bolder;
+}
+.problem #title {
+  font-size: 16px;
+  color: #212121;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.problem hr {
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
+.problem ul {
+  background-color: #2d2d30;
+}
+
+.problem li {
+  padding: 8px;
+}
+
+.tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.tags > * {
+  margin: 9px;
+  background-color: #3e3e42 !important;
+}

@@ -1,0 +1,13 @@
+.tabs_root {
+  background-color: initial;
+}
+
+.react-tabs__tab--selected {
+  background-color: #3e3e42;
+  border-color: #252526;
+  color: white;
+}
+
+.react-tabs__tab-list {
+  border-bottom: 1px solid #252526;
+}

@@ -1,5 +1,16 @@
 import React, { useState, useContext } from "react";
-import { Avatar, Button, Grid, InputAdornment, Paper, TextField } from "@material-ui/core";
+import {
+  Avatar,
+  Button,
+  Grid,
+  InputAdornment,
+  Paper,
+  TextField,
+  Theme,
+  Tooltip,
+  withStyles,
+  Zoom,
+} from "@material-ui/core";
 import axios from "axios";
 import { UserContext } from "service/UserContext";
 import { UserContextTypes } from "types";
@@ -7,6 +18,16 @@ import { Link, Redirect } from "react-router-dom";
 import { CLIENT_URL, PUBLIC_ROOM, LOGOUT_URL } from "config";
 import style from "./NavigateRooms.module.css";
 import generate from "project-name-generator";
+
+const LightTooltip = withStyles((theme: Theme) => ({
+  tooltip: {
+    backgroundColor: theme.palette.common.white,
+    color: "rgba(0, 0, 0, 1)",
+    boxShadow: theme.shadows[2],
+    fontSize: "14px",
+    borderRadius: "25px",
+  },
+}))(Tooltip);
 
 const NavigateRoom = () => {
   const { user, logoutUserInfo } = useContext(UserContext) as UserContextTypes;
@@ -26,9 +47,12 @@ const NavigateRoom = () => {
   return (
     <div className={style.root}>
       <Paper elevation={5} className={style.toolbar}>
-        <div>RTCE</div>
+        <div className={style.toolbarHeading}>Caucus</div>
         <div className={style.avatarFlex}>
-          <Avatar alt={user?.name} src={user?.image_link} />
+          <LightTooltip TransitionComponent={Zoom} title={user?.name || "John Doe"} placement="bottom">
+            <Avatar alt={user?.name} src={user?.image_link} />
+          </LightTooltip>
+
           <Button
             onClick={async () => {
               await logoutUser();
