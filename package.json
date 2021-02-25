@@ -1,15 +1,15 @@
 {
-  "name": "caucus-client",
-  "description": "Realtime Collaborate Editor with Embeded Compiler",
+  "name": "caucus",
+  "description": "Realtime Collaborate Editor with embedded Compiler",
   "version": "1.0.0",
   "private": true,
   "author": {
     "name": "Rishabh Malhotra",
     "email": "rmalhotra_be18@thapar.edu"
   },
-  "homepage": "https://github.com/rishabh-malhotraa/caucus-client",
-  "repository": "github:rishabh-malhtoraa/caucus-client",
-  "bugs": "https://github.com/rishabh-malhotraa/caucus-client/issues",
+  "homepage": "https://github.com/rishabh-malhotraa/caucus",
+  "repository": "github:rishabh-malhtoraa/caucus",
+  "bugs": "https://github.com/rishabh-malhotraa/caucus/issues",
   "type": "module",
   "dependencies": {
     "@convergence/color-assigner": "^0.3.0",
