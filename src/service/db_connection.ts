@@ -1,13 +1,8 @@
 import { Pool } from "pg";
-import { DB } from "../config.keys";
-// typescript safe conversion
+import { DATABASE_URL } from "../config.keys";
 
 const pool = new Pool({
-  host: DB.HOST,
-  user: DB.USER,
-  password: DB.PASSWORD,
-  port: DB.PORT,
-  database: DB.DATABASE,
+  connectionString: DATABASE_URL,
 });
 
 export default pool;

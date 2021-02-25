@@ -38,6 +38,8 @@ app.use(bodyParser.json());
 app.use("/auth", authRoutes);
 app.use("/api", apiRoutes);
 
+app.use("/", (req, res) => res.send("<h1>Hey</h1>"));
+
 app.listen(port, () => console.log(chalk.blueBright(`Express Server listening to port ${port}`)));
 
 httpServer.listen(socket_port, () =>

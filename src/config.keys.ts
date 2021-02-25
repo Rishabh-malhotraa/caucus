@@ -1,36 +1,43 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+// .dotenv why you do me dirty like this FML
+import dotenv from "dotenv";
+dotenv.config();
+
 export const DB = {
-  HOST: "localhost",
-  USER: "postgres",
-  PASSWORD: "youtube",
-  PORT: 8080,
-  DATABASE: "rtce",
+  HOST: process.env.DB_HOST,
+  USER: process.env.DB_USER,
+  PASSWORD: process.env.DB_PASSWORD,
+  PORT: parseInt(<string>process.env.DB_PORT),
+  DATABASE: process.env.DB_DATABASE,
 };
 
+export const DATABASE_URL = process.env.DATABASE_URL!;
+
 export const GITHUB_KEY = {
-  clientID: "b35d16e0bfa179167917",
-  clientSecret: "324c49b43c62b862d8e8da3518368a5b4de1378f",
+  clientID: process.env.GITHUB_KEY_CLIENTID!,
+  clientSecret: process.env.GITHUB_KEY_CLIENTSECRET!,
 };
 
 export const GOOGLE_KEY = {
-  clientID: "145271664049-203bd95ukiik0lel9qcvr50drq5v7bfc.apps.googleusercontent.com",
-  clientSecret: "1mFNkewXPeIYngupedOLjd5K",
+  clientID: process.env.GOOGLE_KEY_CLIENTID!,
+  clientSecret: process.env.GOOGLE_KEY_CLIENTSECRET!,
 };
 
-export const TWITTER_KEY = {
-  consumerKey: "pyNhCyN5Gio2DcM6yCKA4B0qU",
-  consumerSecret: "1pC1ILtST1yhtz6eYgbbuxpOayOu3lGbhDfVAVUWLXdFgzIgn4",
+export const TWITTER_KEY: Record<string, string> = {
+  consumerKey: process.env.TWITTER_KEY_CONSUMERKEY!,
+  consumerSecret: process.env.TWITTER_KEY_CONSUMERSECRET!,
 };
 
 export const JDOODLE = {
-  clientID: "da358ecadea106b681e17e6dd1194863",
-  clientSecret: "7b69d6ce85668cb6fe5dbd61d37433bf3ffe31c14fed906833faad7e2593f5ca",
+  clientID: process.env.JDOODLE_CLIENTID,
+  clientSecret: process.env.JDOOLDE_CLIENTSECRET,
 };
 
-export const port = 5000 || process.env.PORT;
+export const port = parseInt(<string>process.env.PORT) || 5000;
 
 export const socket_port = port + 1;
 
-export const COOKIE_KEYS = ["bitcointomoon", "chocoyogurt", "rtce-server"];
+export const COOKIE_KEYS = [process.env.COOKIE_KEYS!];
 
 export const CLIENT_URL = "http://localhost:3000";
 

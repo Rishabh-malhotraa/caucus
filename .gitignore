@@ -3,7 +3,6 @@ build/**/*
 certs/**/*
 
 .env
-src/config.keys.ts
 
 *.jks
 *.p8

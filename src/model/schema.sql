@@ -1,5 +1,5 @@
 -- OAuth2.0 SCHEMA
-CREATE DATABASE rtce;
+CREATE DATABASE caucus_db;
 CREATE TABLE oauth (
   id SERIAL,
   user_id VARCHAR(255) PRIMARY KEY,

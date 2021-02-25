@@ -10,10 +10,12 @@
   "homepage": "https://github.com/rishabh-malhotraa/caucus-client",
   "repository": "github:rishabh-malhtoraa/caucus-client",
   "bugs": "https://github.com/rishabh-malhotraa/caucus-client/issues",
-  "main": "src/index.ts",
+  "main": "build/index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "ts-node-dev --respawn src/chat.ts",
+    "build-ts": "tsc",
+    "postinstall": "npm run build-ts",
+    "start": "npm run serve",
+    "serve": "node build/index.js",
     "dev": "nodemon --exec ts-node src/index.ts",
     "format": "prettier --write \"src/**/*.ts\""
   },
@@ -26,6 +28,7 @@
     "cookie-session": "^1.4.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "nodemon": "^2.0.7",
     "passport": "^0.4.1",
     "passport-github": "^1.1.0",
     "passport-google-oauth20": "^2.0.0",
@@ -33,6 +36,8 @@
     "pg": "^8.5.1",
     "project-name-generator": "^2.1.9",
     "socket.io": "^3.1.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.2",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -51,10 +56,6 @@
     "@typescript-eslint/eslint-plugin": "^4.13.0",
     "@typescript-eslint/parser": "^4.13.0",
     "eslint": "^7.18.0",
-    "nodemon": "^2.0.7",
-    "prettier": "^2.2.1",
-    "ts-node": "^9.1.1",
-    "ts-node-dev": "^1.1.1",
-    "typescript": "^4.1.3"
+    "prettier": "^2.2.1"
   }
 }
