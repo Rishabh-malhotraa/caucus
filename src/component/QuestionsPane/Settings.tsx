@@ -16,48 +16,41 @@ const Settings = () => {
 
   const CssFormControl = withStyles({
     root: {
-      backgroundColor: "#	3e3e42",
+      // backgroundColor: "#3e3e42",
       width: "70%",
       margin: "1rem",
-      "& .MuiInputBase-root": {
-        outline: "none",
-        color: "whitesmoke",
+      "& svg": {
+        fill: "#3f51b5",
       },
-      "& label.Mui-focused": {
-        color: "#0055bb",
+
+      "&:before": {
+        borderColor: "#0055bb",
       },
-      "& .MuiInput-underline:after": {
-        borderBottomColor: "#0055bb",
+      "&:after": {
+        borderColor: "#0055bb",
       },
-      "& .MuiOutlinedInput-root": {
-        "& fieldset": {
-          borderColor: "#0055bb",
-        },
-        "&:hover fieldset": {
-          borderColor: "#0055bb",
-        },
-        "&.Mui-focused fieldset": {
-          borderColor: "#0055bb",
-        },
-        "& > *": {
-          color: "white !impportant",
-        },
-        "& .MuiSelect-root": {
-          color: "white",
-        },
-        "&.MuiPaper-root": {
-          backgroundColor: "black",
-          color: "white",
-        },
+
+      "& .MuiSelect-root": {
+        color: "white",
+      },
+      "&.MuiPaper-root": {
+        backgroundColor: "black",
+        color: "white",
       },
     },
   })(FormControl);
 
   return (
     <div>
-      <CssFormControl variant="outlined">
-        <InputLabel style={{ color: "white" }}>Language</InputLabel>
-        <Select value={language} onChange={(e) => handleLanguageChange(e.target.value as string)}>
+      <CssFormControl variant="filled">
+        <InputLabel id="language-select" style={{ color: "white" }}>
+          Language
+        </InputLabel>
+        <Select
+          labelId="langauge-select"
+          value={language}
+          onChange={(e) => handleLanguageChange(e.target.value as string)}
+        >
           <MenuItem value={"cpp"}>C++</MenuItem>
           <MenuItem value={"java"}>Java</MenuItem>
           <MenuItem value={"python"}>Python</MenuItem>
@@ -66,7 +59,7 @@ const Settings = () => {
         </Select>
       </CssFormControl>
 
-      <CssFormControl variant="outlined">
+      <CssFormControl variant="filled">
         <InputLabel style={{ color: "white" }}>FontSize</InputLabel>
         <Select value={fontSize} onChange={(e) => handleFontSizeChange(e.target.value as number)}>
           <MenuItem value={10}>10px</MenuItem>
@@ -80,7 +73,7 @@ const Settings = () => {
         </Select>
       </CssFormControl>
 
-      <CssFormControl variant="outlined">
+      <CssFormControl variant="filled">
         <InputLabel style={{ color: "white" }}>Theme</InputLabel>
         <Select value={theme} onChange={(e) => handleThemeChange(e.target.value as string)}>
           <MenuItem value={"vs-dark"}>Dark Theme</MenuItem>

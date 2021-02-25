@@ -26,6 +26,7 @@ const Dashboard = () => {
   const TextAreaRef = createRef<HTMLDivElement>();
   const [rows, setRows] = useState(4);
   const [sid, setSid] = useState("");
+  const [partnerUser, setPartnerUser] = useState<UserInfoSS>();
   const { id } = useParams<Record<string, string>>();
 
   const prepareData = (): UserInfoSS => {
@@ -50,6 +51,7 @@ const Dashboard = () => {
 
     socket.on("store-sid", (id: string) => setSid(id));
     socket.on("new-user-joined", (data: UserInfoSS) => {
+      setPartnerUser(data);
       displayNotification(data, true);
     });
     socket.on("room-full", () => {
@@ -62,7 +64,7 @@ const Dashboard = () => {
     socket.on("user-left", (data: UserInfoSS) => {
       displayNotification(data, false);
     });
-  }, []);
+  }, [partnerUser]);
 
   const resetEditorLayout = () => {
     const height = Math.floor(TextAreaRef!.current!.clientHeight);
@@ -114,7 +116,7 @@ const Dashboard = () => {
               <ReflexContainer orientation="horizontal">
                 <ReflexElement className={style["pane-color"]} flex={0.3}>
                   <h2>Video Icons</h2>
-                  <VoiceChat params={id} />
+                  <VoiceChat params={id} user={prepareData()} partnerUser={partnerUser} />
                 </ReflexElement>
                 <ReflexSplitter className={clsx(style.splitter, style["splitter-horizontal"])} />
                 <ReflexElement className={style["chat-app"]}>
