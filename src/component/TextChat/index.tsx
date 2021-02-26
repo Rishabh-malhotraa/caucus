@@ -18,13 +18,13 @@ const useStyles = makeStyles(() =>
       backdropFilter: "blur(10px)",
     },
     inputStyle: {
-      border: "none",
       padding: "0 1rem",
       flexGrow: 1,
       borderRadius: "2rem",
       width: "100%",
       margin: "0.25rem",
       height: "2rem",
+      border: "1px solid #0055bb",
       "&:focus": {
         outline: "none",
       },
@@ -134,26 +134,3 @@ const ChatApp = ({ userInfo, socketID }: { userInfo: UserInfoSS; socketID: strin
 };
 
 export default ChatApp;
-
-// // do the thing here
-// console.log(body);
-// const n = body.length - 1;
-// let cloneMessages = [...body];
-// if (n < 0) {
-//   setBody([...body, recievedMessage]);
-//   return;
-// } else {
-//   const currID = recievedMessage.id;
-//   const id = body[n].id;
-
-//   if (currID === id && cloneMessages) {
-//     const clonedMsg = cloneMessages[n].messages;
-//     const new_messages = [...clonedMsg, ...recievedMessage.messages];
-//     cloneMessages[n] = { id: currID, messages: new_messages };
-//   } else {
-//     cloneMessages.push({
-//       id: currID,
-//       messages: [recievedMessage.messages[0]],
-//     });
-//   }
-//   setBody(cloneMessages);

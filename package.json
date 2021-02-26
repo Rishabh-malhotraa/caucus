@@ -7,7 +7,6 @@
     "name": "Rishabh Malhotra",
     "email": "rmalhotra_be18@thapar.edu"
   },
-  "homepage": "https://github.com/rishabh-malhotraa/caucus",
   "repository": "github:rishabh-malhtoraa/caucus",
   "bugs": "https://github.com/rishabh-malhotraa/caucus/issues",
   "type": "module",
@@ -16,6 +15,7 @@
     "@convergence/convergence": "^1.0.0-rc.7",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "@monaco-editor/react": "^4.0.10",
     "@mui-treasury/components": "^1.10.1",
     "@testing-library/jest-dom": "^5.11.9",

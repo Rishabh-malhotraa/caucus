@@ -62,3 +62,9 @@ export interface UserInfoSS {
   image_link: string;
   roomID: string;
 }
+
+export interface LabelType {
+  name: string;
+  color: string;
+  description?: string;
+}
