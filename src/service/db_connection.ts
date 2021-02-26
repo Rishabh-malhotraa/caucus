@@ -3,7 +3,10 @@ import Knex from "knex";
 
 const client = Knex({
   client: "pg",
-  connection: DATABASE_URL,
+  connection: {
+    connectionString: DATABASE_URL,
+    ssl: true,
+  },
   searchPath: ["knex", "public"],
 });
 
