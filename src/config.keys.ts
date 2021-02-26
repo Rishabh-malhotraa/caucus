@@ -33,6 +33,8 @@ export const JDOODLE = {
   clientSecret: process.env.JDOOLDE_CLIENTSECRET,
 };
 
+export const PROD: boolean = JSON.parse(process.env.PROD!);
+
 export const port = parseInt(<string>process.env.PORT) || 5000;
 
 export const socket_port = port + 1;

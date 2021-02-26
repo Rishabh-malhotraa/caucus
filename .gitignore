@@ -1,7 +1,10 @@
 node_modules/**/*
 build/**/*
 certs/**/*
+src/data
+
 .env
+
 
 *.jks
 *.p8

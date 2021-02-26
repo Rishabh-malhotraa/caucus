@@ -11,24 +11,21 @@ CREATE TABLE oauth (
   refresh_token VARCHAR(255),
   expiry_date TIMESTAMP
 );
--- INSERT INTO oauth(first_name, last_name, oauth_provider) VALUES ('rishabh', 'malhotra', 'google');
--- SELECT * FROM oauth where first_name = "Rishabh"
--- SELECT {COLNAME} FROM {TABLENAME} WHERE {CONDITION}
 CREATE TABLE questions(
-  question_id INT PRIMARY KEY,
-  title VARCHAR(255),
+  question_id INT PRIMARY KEY UNIQUE,
+  title VARCHAR(255) UNIQUE,
   question_title VARCHAR(255),
   problem_url VARCHAR(255),
   difficulty_level smallint,
   difficulty varchar(10)
 );
-CREATE TABLE question_data(
-  question_id INT PRIMARY KEY,
-  question TEXT,
+CREATE TABLE questions_data(
+  question_id INT PRIMARY KEY UNIQUE,
+  question TEXT UNIQUE,
   foreign key (question_id) references questions(question_id)
 );
 CREATE TABLE companies(
-  question_id INT PRIMARY KEY,
+  question_id INT PRIMARY KEY UNIQUE,
   "Snapchat" boolean DEFAULT FALSE NOT NULL,
   "JP Morgan" boolean DEFAULT FALSE NOT NULL,
   "Uber" boolean DEFAULT FALSE NOT NULL,
@@ -58,7 +55,7 @@ CREATE TABLE companies(
   foreign key (question_id) references questions(question_id) ON DELETE CASCADE
 );
 CREATE TABLE tags (
-  question_id INT PRIMARY KEY,
+  question_id INT PRIMARY KEY UNIQUE,
   "Binary Search" boolean DEFAULT FALSE NOT NULL,
   "Divide and Conquer" boolean DEFAULT FALSE NOT NULL,
   "Dynamic Programming" boolean DEFAULT FALSE NOT NULL,
@@ -102,4 +99,4 @@ CREATE TABLE tags (
   "Sort" boolean DEFAULT FALSE NOT NULL,
   "Tree" boolean DEFAULT FALSE NOT NULL,
   foreign key (question_id) references questions(question_id) ON DELETE CASCADE
-)
+);
