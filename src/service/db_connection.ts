@@ -1,8 +1,10 @@
-import { Pool } from "pg";
 import { DATABASE_URL } from "../config.keys";
+import Knex from "knex";
 
-const pool = new Pool({
-  connectionString: DATABASE_URL,
+const client = Knex({
+  client: "pg",
+  connection: DATABASE_URL,
+  searchPath: ["knex", "public"],
 });
 
-export default pool;
+export default client;

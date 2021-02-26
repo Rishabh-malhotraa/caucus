@@ -11,13 +11,95 @@ CREATE TABLE oauth (
   refresh_token VARCHAR(255),
   expiry_date TIMESTAMP
 );
-
 -- INSERT INTO oauth(first_name, last_name, oauth_provider) VALUES ('rishabh', 'malhotra', 'google');
-
 -- SELECT * FROM oauth where first_name = "Rishabh"
-
 -- SELECT {COLNAME} FROM {TABLENAME} WHERE {CONDITION}
-
--- update  enrollments set year = 2015 where id >= 20 and id <= 100;
-
-
+CREATE TABLE questions(
+  question_id INT PRIMARY KEY,
+  title VARCHAR(255),
+  question_title VARCHAR(255),
+  problem_url VARCHAR(255),
+  difficulty_level smallint,
+  difficulty varchar(10)
+);
+CREATE TABLE question_data(
+  question_id INT PRIMARY KEY,
+  question TEXT,
+  foreign key (question_id) references questions(question_id)
+);
+CREATE TABLE companies(
+  question_id INT PRIMARY KEY,
+  Snapchat boolean DEFAULT FALSE NOT NULL,
+  "JP Morgan" boolean DEFAULT FALSE NOT NULL,
+  Uber boolean DEFAULT FALSE NOT NULL,
+  Bloomberg boolean DEFAULT FALSE NOT NULL,
+  ByteDance boolean DEFAULT FALSE NOT NULL,
+  "DE Shaw" boolean DEFAULT FALSE NOT NULL,
+  Yahoo boolean DEFAULT FALSE NOT NULL,
+  Paypal boolean DEFAULT FALSE NOT NULL,
+  Walmart boolean DEFAULT FALSE NOT NULL,
+  "BNY Mellon" boolean DEFAULT FALSE NOT NULL,
+  LinkedIn boolean DEFAULT FALSE NOT NULL,
+  Spotify boolean DEFAULT FALSE NOT NULL,
+  Google boolean DEFAULT FALSE NOT NULL,
+  Salesforce boolean DEFAULT FALSE NOT NULL,
+  Microsoft boolean DEFAULT FALSE NOT NULL,
+  Directi boolean DEFAULT FALSE NOT NULL,
+  "Goldman Sachs" boolean DEFAULT FALSE NOT NULL,
+  Twitter boolean DEFAULT FALSE NOT NULL,
+  Arcesium boolean DEFAULT FALSE NOT NULL,
+  Cisco boolean DEFAULT FALSE NOT NULL,
+  Apple boolean DEFAULT FALSE NOT NULL,
+  Flipkart boolean DEFAULT FALSE NOT NULL,
+  Adobe boolean DEFAULT FALSE NOT NULL,
+  Amazon boolean DEFAULT FALSE NOT NULL,
+  Facebook boolean DEFAULT FALSE NOT NULL,
+  Oracle boolean DEFAULT FALSE NOT NULL,
+  foreign key (question_id) references questions(question_id) ON DELETE CASCADE
+);
+CREATE TABLE tags (
+  question_id INT PRIMARY KEY,
+  "Binary Search" boolean DEFAULT FALSE NOT NULL,
+  "Divide and Conquer" boolean DEFAULT FALSE NOT NULL,
+  "Dynamic Programming" boolean DEFAULT FALSE NOT NULL,
+  "Heap" boolean DEFAULT FALSE NOT NULL,
+  "Random" boolean DEFAULT FALSE NOT NULL,
+  "Stack" boolean DEFAULT FALSE NOT NULL,
+  "Binary Indexed Tree" boolean DEFAULT FALSE NOT NULL,
+  "Geometry" boolean DEFAULT FALSE NOT NULL,
+  "Hash Table" boolean DEFAULT FALSE NOT NULL,
+  "Depth-first Search" boolean DEFAULT FALSE NOT NULL,
+  "Rolling Hash" boolean DEFAULT FALSE NOT NULL,
+  "String" boolean DEFAULT FALSE NOT NULL,
+  "Suffix Array" boolean DEFAULT FALSE NOT NULL,
+  "Union Find" boolean DEFAULT FALSE NOT NULL,
+  "Math" boolean DEFAULT FALSE NOT NULL,
+  "Two Pointers" boolean DEFAULT FALSE NOT NULL,
+  "Sliding Window" boolean DEFAULT FALSE NOT NULL,
+  "Greedy" boolean DEFAULT FALSE NOT NULL,
+  "Line Sweep" boolean DEFAULT FALSE NOT NULL,
+  "Graph" boolean DEFAULT FALSE NOT NULL,
+  "Brainteaser" boolean DEFAULT FALSE NOT NULL,
+  "Dequeue" boolean DEFAULT FALSE NOT NULL,
+  "Topological Sort" boolean DEFAULT FALSE NOT NULL,
+  "Reservoir Sampling" boolean DEFAULT FALSE NOT NULL,
+  "Recursion" boolean DEFAULT FALSE NOT NULL,
+  "Backtracking" boolean DEFAULT FALSE NOT NULL,
+  "Ordered Map" boolean DEFAULT FALSE NOT NULL,
+  "Design" boolean DEFAULT FALSE NOT NULL,
+  "Minimax" boolean DEFAULT FALSE NOT NULL,
+  "Bit Manipulation" boolean DEFAULT FALSE NOT NULL,
+  "Trie" boolean DEFAULT FALSE NOT NULL,
+  "Queue" boolean DEFAULT FALSE NOT NULL,
+  "Segment Tree" boolean DEFAULT FALSE NOT NULL,
+  "Rejection Sampling" boolean DEFAULT FALSE NOT NULL,
+  "Binary Search Tree" boolean DEFAULT FALSE NOT NULL,
+  "Meet in the Middle" boolean DEFAULT FALSE NOT NULL,
+  "Array" boolean DEFAULT FALSE NOT NULL,
+  "Memoization" boolean DEFAULT FALSE NOT NULL,
+  "Breadth-first Search" boolean DEFAULT FALSE NOT NULL,
+  "Linked List" boolean DEFAULT FALSE NOT NULL,
+  "Sort" boolean DEFAULT FALSE NOT NULL,
+  "Tree" boolean DEFAULT FALSE NOT NULL,
+  foreign key (question_id) references questions(question_id) ON DELETE CASCADE
+)
