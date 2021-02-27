@@ -68,3 +68,9 @@ export interface LabelType {
   color: string;
   description?: string;
 }
+
+export interface QuestionListResponse {
+  question_id: int;
+  question_title: string;
+  difficulty: string;
+}

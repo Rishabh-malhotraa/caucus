@@ -93,6 +93,9 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
           rows={rows}
           onChange={(event) => setOutputText(event.target.value as string)}
           multiline
+          InputProps={{
+            readOnly: true,
+          }}
         />
       );
     } else setValue(0);

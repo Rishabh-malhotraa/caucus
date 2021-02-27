@@ -1,5 +1,8 @@
 .tabs_root {
+  height: 100%;
   background-color: initial;
+  display: flex;
+  flex-direction: column;
 }
 
 .react-tabs__tab--selected {

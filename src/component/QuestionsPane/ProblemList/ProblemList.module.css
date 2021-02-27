@@ -1,0 +1,62 @@
+.root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.autocomplete {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem 0rem;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  padding: 1rem 0rem;
+}
+.btn-group span {
+  font-size: 12px !important;
+}
+
+.pagination {
+  flex-grow: 1;
+}
+
+.divider {
+  background-color: #757575 !important;
+}
+
+.pagination-container {
+  width: 100%;
+  padding: 0rem 1rem;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.list-container {
+  width: 100%;
+}
+.list-item {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0.5rem !important;
+  align-items: flex-start !important;
+}
+
+.pagination-group {
+  display: flex;
+  flex-shrink: 1;
+  margin: 1rem 0rem !important;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.pagination-element div {
+  color: white;
+}

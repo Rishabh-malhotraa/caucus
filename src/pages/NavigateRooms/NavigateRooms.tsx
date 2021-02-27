@@ -15,7 +15,7 @@ import axios from "axios";
 import { UserContext } from "service/UserContext";
 import { UserContextTypes } from "types";
 import { Link, Redirect } from "react-router-dom";
-import { CLIENT_URL, PUBLIC_ROOM, LOGOUT_URL } from "config";
+import { CLIENT_URL, PUBLIC_ROOM as pr, SERVER_URL } from "config";
 import style from "./NavigateRooms.module.css";
 import generate from "project-name-generator";
 
@@ -34,10 +34,12 @@ const NavigateRoom = () => {
   const [link, setLink] = useState("");
   const [click, setClick] = useState(false);
   const [backToLoginPage, setBackToLoginPage] = useState(false);
+  const PUBLIC_ROOM = pr[Math.floor(Math.random() * pr.length)];
 
   const logoutUser = async () => {
     localStorage.removeItem("isLoggedIn");
-    const response = await axios.get(LOGOUT_URL);
+    console.log(SERVER_URL);
+    const response = await axios.get(`${SERVER_URL}/api/logout`);
     logoutUserInfo();
     // window.location.href = `${CLIENT_URL}`;
     console.log(response);

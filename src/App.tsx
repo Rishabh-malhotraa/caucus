@@ -11,13 +11,13 @@ import SettingsProvider from "./service/SettingsContext";
 import UserContextProvider, { UserContext } from "service/UserContext";
 import axios, { AxiosResponse } from "axios";
 import { OauthResponse, UserContextTypes } from "types";
-import { OAUTH_CHECK } from "config";
+import { SERVER_URL } from "config";
 import { SnackbarProvider } from "notistack";
 
 export const isAuthenticated = async () => {
   const { data }: AxiosResponse<OauthResponse> = await axios({
     method: "GET",
-    url: OAUTH_CHECK,
+    url: `${SERVER_URL}/api/auth`,
     responseType: "json",
     withCredentials: true,
   });

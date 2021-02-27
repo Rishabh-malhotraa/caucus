@@ -6,7 +6,7 @@ import { GuestNameContextTypes } from "types";
 import GoogleSVG from "assets/google.svg";
 import GithubPNG from "assets/github.png";
 import TwitterPNG from "assets/twitter.png";
-import { OAUTH_URL } from "config";
+import { SERVER_URL } from "config";
 import Particles from "pages/Login/Particles.config";
 import Loader from "pages/Loader/Loader";
 import { Redirect } from "react-router-dom";
@@ -18,7 +18,7 @@ const Login = () => {
 
   const handleLogin = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, provider: string) => {
     event.preventDefault();
-    window.open(OAUTH_URL.concat(provider), "_self");
+    window.open(`${SERVER_URL}/auth/${provider}`, "_self");
   };
 
   return (

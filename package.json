@@ -44,6 +44,7 @@
   "scripts": {
     "start": "react-scripts start",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\"",
+    "lint": "eslint src/**/*.ts src/**/*.tsx",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -78,9 +79,10 @@
     "@types/simple-peer": "^9.6.2",
     "@types/socket.io-client": "^1.4.35",
     "@types/uuid": "^8.3.0",
-    "@typescript-eslint/eslint-plugin": "^4.13.0",
-    "@typescript-eslint/parser": "^4.13.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
     "eslint": "^7.18.0",
+    "eslint-plugin-react": "^7.22.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1"
   }

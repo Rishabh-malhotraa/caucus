@@ -4,7 +4,6 @@ import { SettingContext } from "service/SettingsContext";
 import { SettingsContextType } from "types";
 
 const Settings = () => {
-  const [age, setAge] = React.useState("");
   const {
     language,
     fontSize,
@@ -41,7 +40,7 @@ const Settings = () => {
   })(FormControl);
 
   return (
-    <div>
+    <div style={{ margin: "2rem 0rem" }}>
       <CssFormControl variant="filled">
         <InputLabel id="language-select" style={{ color: "white" }}>
           Language

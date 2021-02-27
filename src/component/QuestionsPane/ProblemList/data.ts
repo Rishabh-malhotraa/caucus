@@ -269,78 +269,78 @@ export const companiesData = [
   },
   {
     name: "Paypal",
-    color: "#003554",
+    color: "#ffba08",
     description: "",
   },
   {
-    name: "Directo",
-    color: "#0e8a16",
+    name: "Directi",
+    color: "#faa307",
     description: "",
   },
   {
     name: "Walmart",
-    color: "#0582ca",
+    color: "#f48c06",
     description: "",
   },
   {
     name: "LinkedIn",
-    color: "#006494",
+    color: "#e85d04",
     description: "",
   },
   {
     name: "Spotify",
-    color: "#003554",
+    color: "#dc2f02",
     description: "",
   },
   {
     name: "Salesforce",
-    color: "#051923",
+    color: "#d00000",
     description: "",
   },
   {
     name: "Twitter",
-    color: "#283d3b",
+    color: "#9d0208",
     description: "",
   },
   {
     name: "Arcesium",
-    color: "#197278",
+    color: "#6a040f",
     description: "",
   },
   {
     name: "Cisco",
-    color: "#edddd4",
+    color: "#370617",
     description: "",
   },
 
   {
     name: "Flipkart",
-    color: "#ff6700",
+    color: "#001d3d",
     description: "",
   },
   {
     name: "Oracle",
-    color: "#ebebeb",
+    color: "#133c55",
     description: "",
   },
   {
     name: "DE Shaw",
-    color: "#c0c0c0",
+    color: "#386fa4",
     description: "",
   },
   {
     name: "BNY Mellon",
-    color: "#3a6ea5",
+    color: "#3e7cb1",
     description: "",
   },
   {
     name: "Goldman Sachs",
-    color: "#004e98",
+    color: "#81a4cd",
     description: "",
   },
   {
     name: "JP Morgan",
-    color: "#003249",
+    color: "#c0d6df",
     description: "",
   },
 ];
@@ -362,3 +362,7 @@ export const difficultyData = [
     description: "It's going to be a bumpy road ahead.",
   },
 ];
+
+export const allDifficulties = difficultyData.map((el) => el.name);
+export const allTags = tagsData.map((el) => el.name);
+export const allCompanies = companiesData.map((el) => el.name);

@@ -1,5 +1,6 @@
 //@ts-nocheck
 /* eslint-disable no-use-before-define */
+// please dont expect me to re-write css for this mess X-X
 import React from "react";
 import { useTheme, fade, makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Popper from "@material-ui/core/Popper";
@@ -156,8 +157,6 @@ export default function AutoCompleteLabel({ value, setValue, labels, type }) {
 
   const open = Boolean(anchorEl);
   const id = open ? "autocomplete-label" : undefined;
-  console.log("pendingValue");
-  console.log(pendingValue);
 
   return (
     <React.Fragment>
