@@ -27,6 +27,14 @@ export interface PostJSDoodleResponse {
   cpuTime: string;
   error?: string;
 }
+export interface PostJDoodle {
+  script: string;
+  language: string;
+  versionIndex: string;
+  clientId: string;
+  stdin: string;
+  clientSecret: string;
+}
 
 export interface Question {
   question_id: int;

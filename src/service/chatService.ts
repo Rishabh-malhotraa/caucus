@@ -70,6 +70,15 @@ const chatService = (httpServer: ServerType): void => {
 
     // ---------------OUTPUT FILE ---------------------------
 
+    // ---------------QUESTION SELECTED ---------------------------
+
+    socket.on("selected-question", (props) => {
+      const roomID = props.roomID;
+      socket.broadcast.to(roomID).emit("change-question", props.data);
+    });
+
+    // ---------------QUESTION SELECTED ---------------------------
+
     // ------------DISCONNECTION----------------
     socket.on("disconnect", () => {
       const roomID = socketToRoom[socket.id];

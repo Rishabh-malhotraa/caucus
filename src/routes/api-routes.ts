@@ -2,6 +2,8 @@ import { Router } from "express";
 import axios from "axios";
 import { JDOODLE, JDOODLE_URL } from "../config.keys";
 import getLanguageVersion from "../utils/getLanguageVersion";
+import { filterQuestions, renderQuestion } from "../utils/databaseQueries";
+
 const router = Router();
 
 // we will do our re-routing from the client side just send information from here
@@ -30,14 +32,15 @@ router.get("/logout", (req, res) => {
   res.send({ message: "Successfully logged out" });
 });
 
-export interface PostJDoodle {
-  script: string;
-  language: string;
-  versionIndex: string;
-  clientId: string;
-  stdin: string;
-  clientSecret: string;
-}
+router.post("/fetch-problems", async (req, res) => {
+  const { tags, difficulty, companies } = req.body as Record<string, string[]>;
+  res.json(await filterQuestions(tags, difficulty, companies));
+});
+
+router.post("/get-problem", async (req, res) => {
+  const { question_id } = req.body as Record<string, string>;
+  res.json(await renderQuestion(question_id));
+});
 
 router.post("/execute", async (req, res) => {
   const { script, language, stdin } = req.body;

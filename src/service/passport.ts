@@ -46,8 +46,8 @@ passport.use(
               image_link: profile.photos ? profile.photos[0].value : "",
               create_time: date,
               oauth_provider: profile.provider,
-              access_token: accessToken || "",
-              refresh_token: refreshToken || "",
+              access_token: accessToken,
+              refresh_token: refreshToken,
             })
             .returning("*");
 
