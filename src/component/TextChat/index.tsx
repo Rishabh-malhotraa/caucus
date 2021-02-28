@@ -11,7 +11,7 @@ const useStyles = makeStyles(() =>
       height: "inherit",
     },
     formStyle: {
-      background: "rgba(0, 0, 0, 0.15)",
+      background: "rgba(0, 0, 0,0.4)",
       padding: "0.25rem",
       display: "flex",
       boxSizing: "border-box",
@@ -24,9 +24,12 @@ const useStyles = makeStyles(() =>
       width: "100%",
       margin: "0.25rem",
       height: "2rem",
+      backgroundColor: "#1A1D1E",
+      color: "whitesmoke",
       border: "1px solid #0055bb",
       "&:focus": {
         outline: "none",
+        border: "2px solid #0055bb",
       },
     },
     formButton: {

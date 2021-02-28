@@ -1,9 +1,21 @@
 .problem {
+  text-align: left;
   margin: 1rem;
   padding-bottom: 1rem;
   background-color: initial;
 }
 
+.problem a {
+  color: grey;
+}
+.problem a:hover {
+  color: dimgray;
+}
+
+.problem img {
+  /* mix-blend-mode: multiply; */
+  margin: 1rem;
+}
 .problem pre {
   white-space: pre-wrap;
   background: #2d2d30;
@@ -41,12 +53,17 @@ strong {
   padding: 8px;
 }
 
-.tags {
+.container-item {
+  width: 100%;
+  padding: 1rem;
+}
+
+.chips {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
-.tags > * {
-  margin: 9px;
+.chips > * {
+  margin: 4px;
   background-color: #3e3e42 !important;
 }

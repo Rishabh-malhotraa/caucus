@@ -57,10 +57,9 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
 
   useEffect(() => {
     socket.on("input-data", (inputData: string) => {
-      console.log("hey" + inputData);
       setInputText(inputData);
     });
-  });
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -72,7 +71,6 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
   };
 
   const renderTextArea = (value: number) => {
-    // console.log('text-area  ' + rows);
     if (value === 0) {
       return (
         <CssTextField

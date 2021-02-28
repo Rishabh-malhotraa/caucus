@@ -8,6 +8,7 @@ import Loader from "pages/Loader/Loader";
 import NavigateRoom from "pages/NavigateRooms/NavigateRooms";
 import GuestNameProvider from "./service/GuestNameContext";
 import SettingsProvider from "./service/SettingsContext";
+import TabsProvider from "./service/TabsContext";
 import UserContextProvider, { UserContext } from "service/UserContext";
 import axios, { AxiosResponse } from "axios";
 import { OauthResponse, UserContextTypes } from "types";
@@ -63,7 +64,9 @@ const contextWrappedApp = () => {
       <GuestNameProvider>
         <SettingsProvider>
           <SnackbarProvider>
-            <App />
+            <TabsProvider>
+              <App />
+            </TabsProvider>
           </SnackbarProvider>
         </SettingsProvider>
       </GuestNameProvider>

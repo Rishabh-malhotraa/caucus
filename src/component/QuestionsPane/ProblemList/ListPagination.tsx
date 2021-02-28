@@ -1,10 +1,14 @@
-import React, { createRef, useEffect, useState } from "react";
+import React, { createRef, useEffect, useState, useContext } from "react";
 import Grid from "@material-ui/core/Grid";
 import Pagination from "@material-ui/lab/Pagination";
 import styles from "./ProblemList.module.css";
-import { StylesProvider } from "@material-ui/core/styles";
-import { QuestionListResponse } from "types";
+import { withStyles } from "@material-ui/core/styles";
+import { QuestionListResponse, TabsContextTypes } from "types";
 import { List, ListItem } from "@material-ui/core";
+import axios from "axios";
+import { SERVER_URL } from "config";
+import { TabsContext } from "service/TabsContext";
+import { useParams } from "react-router-dom";
 
 const getColor = (diff: string) => {
   if (diff === "easy") return "#1faa00";
@@ -12,10 +16,27 @@ const getColor = (diff: string) => {
   else return "#dd2c00";
 };
 
+const CssPagination = withStyles({
+  root: {
+    // backgroundColor: "#3e3e42",
+
+    color: "white",
+    "& svg": {
+      fill: "white",
+    },
+    "& button": {
+      color: "white",
+    },
+  },
+})(Pagination);
+
 const PaginationComponent = ({ rows }: { rows: QuestionListResponse[] }) => {
+  const { filterResponseData } = useContext(TabsContext) as TabsContextTypes;
+
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = React.useState(1);
   const navRef = createRef<HTMLElement>();
+  const { id } = useParams<Record<string, string>>();
 
   useEffect(() => {
     //@ts-ignore
@@ -23,44 +44,54 @@ const PaginationComponent = ({ rows }: { rows: QuestionListResponse[] }) => {
     setRowsPerPage(height);
   }, []);
 
-  console.log(rows);
-  // const rows = [1, 2, 3, 4, 5];
+  const getQuestion = (question_id: number) => {
+    axios({
+      method: "post",
+      url: `${SERVER_URL}/api/get-problem`,
+      data: { question_id: question_id },
+      responseType: "json",
+    }).then((response) => {
+      console.log(response.data);
+      filterResponseData(response.data, id);
+    });
+  };
+
   const count = Math.floor(
     rows.length % rowsPerPage === 0 ? rows.length / rowsPerPage : rows.length / rowsPerPage + 1
   );
   return (
-    <StylesProvider injectFirst>
-      <>
-        <Grid item className={styles["pagination-container"]}>
-          <List component="nav" aria-label="contacts" className={styles["list-container"]} ref={navRef}>
-            {(rowsPerPage > 0
-              ? rows.slice((page - 1) * rowsPerPage, (page - 1) * rowsPerPage + rowsPerPage)
-              : rows
-            ).map((el: QuestionListResponse) => {
-              return (
-                <>
-                  <ListItem button className={styles["list-item"]}>
-                    <div style={{ flexGrow: 1 }}>{`${el.question_id}. ${el.question_title}`}</div>
-                    <div style={{ color: getColor(el.difficulty), paddingLeft: "8px", fontWeight: "bold" }}>
-                      {el.difficulty}
-                    </div>
-                  </ListItem>
-                </>
-              );
-            })}
-          </List>
-        </Grid>
-        <Grid item className={styles["pagination-group"]}>
-          <Pagination
-            count={count}
-            page={page}
-            onChange={(event, val) => setPage(val)}
-            color="primary"
-            className={styles["pagination-element"]}
-          />
-        </Grid>
-      </>
-    </StylesProvider>
+    // <StylesProvider injectFirst>
+    <>
+      <Grid item className={styles["pagination-container"]}>
+        <List component="nav" aria-label="contacts" className={styles["list-container"]} ref={navRef}>
+          {(rowsPerPage > 0
+            ? rows.slice((page - 1) * rowsPerPage, (page - 1) * rowsPerPage + rowsPerPage)
+            : rows
+          ).map((el: QuestionListResponse) => {
+            return (
+              <>
+                <ListItem button className={styles["list-item"]} onClick={() => getQuestion(el.question_id)}>
+                  <div style={{ flexGrow: 1 }}>{`${el.question_id}. ${el.question_title}`}</div>
+                  <div style={{ color: getColor(el.difficulty), paddingLeft: "8px", fontWeight: "bold" }}>
+                    {el.difficulty}
+                  </div>
+                </ListItem>
+              </>
+            );
+          })}
+        </List>
+      </Grid>
+      <Grid item className={styles["pagination-group"]}>
+        <CssPagination
+          count={count}
+          page={page}
+          onChange={(event, val) => setPage(val)}
+          color="primary"
+          className={styles["pagination-element"]}
+        />
+      </Grid>
+    </>
+    // </StylesProvider>
   );
 };
 

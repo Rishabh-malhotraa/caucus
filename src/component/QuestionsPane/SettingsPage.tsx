@@ -16,6 +16,7 @@ const Settings = () => {
   const CssFormControl = withStyles({
     root: {
       // backgroundColor: "#3e3e42",
+
       width: "70%",
       margin: "1rem",
       "& svg": {
@@ -35,6 +36,10 @@ const Settings = () => {
       "&.MuiPaper-root": {
         backgroundColor: "black",
         color: "white",
+      },
+      "& > ul": {
+        display: "flex",
+        flexDirection: "column",
       },
     },
   })(FormControl);

@@ -46,7 +46,6 @@ export interface UserContextTypes {
   saveUserInfo: (data: OauthResponse, isLoggedIn: boolean) => void;
   logoutUserInfo: () => void;
 }
-
 export interface StateInterface {
   appData: {
     guestName: string;
@@ -70,7 +69,20 @@ export interface LabelType {
 }
 
 export interface QuestionListResponse {
-  question_id: int;
+  question_id: number;
   question_title: string;
   difficulty: string;
+}
+
+export interface QuestionDataSS {
+  question_data: any;
+  companies: string[];
+  tags: string[];
+}
+export interface TabsContextTypes {
+  tabIndex: number;
+  questionData: QuestionDataSS;
+  filterResponseData: (data: Record<string, any>, id: string) => void;
+  onTabsChange: (value: number) => void;
+  onQuestionDataChange: (value: QuestionDataSS) => void;
 }

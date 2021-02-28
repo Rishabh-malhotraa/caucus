@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import AutoCompleteLabel from "./Autocomplete";
-import { LabelType } from "types";
-import { tagsData, companiesData, difficultyData } from "./data";
 import { Button, ButtonGroup, Divider } from "@material-ui/core";
 import axios, { AxiosResponse } from "axios";
 import { SERVER_URL } from "config";
@@ -9,12 +7,28 @@ import { allCompanies, allDifficulties, allTags } from "./data";
 import ListPagination from "./ListPagination";
 import Grid from "@material-ui/core/Grid";
 import styles from "./ProblemList.module.css";
-import { QuestionListResponse } from "types";
+import { LabelType, QuestionListResponse, TabsContextTypes } from "types";
+import { tagsData, companiesData, difficultyData } from "./data";
+import { TabsContext } from "service/TabsContext";
+import { useParams } from "react-router-dom";
 
-const ProblemList = () => {
-  const [companies, setCompanies] = useState<LabelType[]>([companiesData[0]]);
-  const [tags, setTags] = useState<LabelType[]>([tagsData[5]]);
-  const [difficulty, setDifficulty] = useState<LabelType[]>([difficultyData[1]]);
+interface AppProps {
+  companies: LabelType[];
+  tags: LabelType[];
+  difficulty: LabelType[];
+  setCompanies: React.Dispatch<React.SetStateAction<LabelType[]>>;
+  setTags: React.Dispatch<React.SetStateAction<LabelType[]>>;
+  setDifficulty: React.Dispatch<React.SetStateAction<LabelType[]>>;
+}
+
+const ProblemList: React.FC<AppProps> = ({
+  companies,
+  difficulty,
+  tags,
+  setCompanies,
+  setDifficulty,
+  setTags,
+}) => {
   const [response, setResponse] = useState<QuestionListResponse[]>([]);
 
   useEffect(() => {
@@ -23,11 +37,13 @@ const ProblemList = () => {
       .then((res: AxiosResponse<QuestionListResponse[]>) => setResponse(res.data));
   }, []);
 
+  const { filterResponseData } = useContext(TabsContext) as TabsContextTypes;
+  const { id } = useParams<Record<string, string>>();
+
   const prepareData = () => {
     const c = companies.map((el) => el.name);
     const d = difficulty.map((el) => el.name);
     const t = tags.map((el) => el.name);
-    console.log(c, d, t);
     return {
       companies: c.length ? c : allCompanies,
       difficulty: d.length ? d : allDifficulties,
@@ -35,7 +51,6 @@ const ProblemList = () => {
     };
   };
 
-  console.log(prepareData());
   const fetchProblems = async () => {
     const response: AxiosResponse<QuestionListResponse[]> = await axios({
       method: "post",
@@ -45,7 +60,15 @@ const ProblemList = () => {
     });
     setResponse(response.data);
   };
-
+  const getRandomQuestion = () => {
+    const randomID = Math.floor(Math.random() * 169);
+    axios({
+      method: "post",
+      url: `${SERVER_URL}/api/get-problem`,
+      data: { question_id: randomID },
+      responseType: "json",
+    }).then((response) => filterResponseData(response.data, id));
+  };
   return (
     <>
       <Grid container className={styles.root}>
@@ -66,7 +89,7 @@ const ProblemList = () => {
         </Grid>
         <Grid item className={styles["btn-group"]}>
           <ButtonGroup color="inherit">
-            <Button>Random Problem</Button>
+            <Button onClick={getRandomQuestion}>Random Problem</Button>
             <Button
               onClick={async () => {
                 await fetchProblems();
