@@ -63,9 +63,9 @@ const chatService = (httpServer: ServerType): void => {
     // ---------------CHAT MESSAGES ---------------------------
 
     // ---------------OUTPUT FILE ---------------------------
-    socket.on("emit-input-data", (props) => {
+    socket.on("input-data", (props) => {
       const roomID = props.roomID;
-      socket.broadcast.to(roomID).emit("input-data", props.data);
+      socket.broadcast.to(roomID).emit("emit-input-data", props.data);
     });
 
     // ---------------OUTPUT FILE ---------------------------
@@ -78,6 +78,14 @@ const chatService = (httpServer: ServerType): void => {
     });
 
     // ---------------QUESTION SELECTED ---------------------------
+    // ---------------CODE RUNNING ---------------------------
+
+    socket.on("code-executed", (props) => {
+      const roomID = props.roomID;
+      socket.broadcast.to(roomID).emit("emit-code-executed", props.data);
+    });
+
+    // ---------------CODE RUNNING ---------------------------
 
     // ------------DISCONNECTION----------------
     socket.on("disconnect", () => {

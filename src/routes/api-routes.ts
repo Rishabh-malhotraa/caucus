@@ -1,7 +1,7 @@
 import { Router } from "express";
 import axios from "axios";
 import { JDOODLE, JDOODLE_URL } from "../config.keys";
-import getLanguageVersion from "../utils/getLanguageVersion";
+import { getLanguageVersion, getLanguage } from "../utils/getLanguageVersion";
 import { filterQuestions, renderQuestion } from "../utils/databaseQueries";
 
 const router = Router();
@@ -53,17 +53,17 @@ router.post("/execute", async (req, res) => {
   const response = await axios({
     method: "POST",
     url: JDOODLE_URL,
-    responseType: "json",
     data: {
       script: script,
-      language: language,
       stdin: stdin,
+      language: getLanguage[language],
       versionIndex: getLanguageVersion[language],
-      clientID: JDOODLE.clientID,
+      clientId: JDOODLE.clientID,
       clientSecret: JDOODLE.clientSecret,
     },
+    responseType: "json",
   });
-  res.json(response);
+  res.json(response.data);
 });
 
 export default router;
