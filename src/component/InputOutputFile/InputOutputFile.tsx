@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Paper, Tab, Tabs, Button, Box, TextField } from "@material-ui/core";
+import React, { useState, useEffect, useContext } from "react";
+import { Paper, Tab, Tabs, Button, Box, TextField, CircularProgress } from "@material-ui/core";
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { withStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
 import { socket } from "service/socket";
 import { useParams } from "react-router-dom";
+import axios from "axios";
+import { SERVER_URL } from "config";
+import { SettingContext } from "service/SettingsContext";
+import { SettingsContextType } from "types";
+import styles from "./InputOutputFile.module.css";
 
 interface AppProps {
   TextAreaRef: React.RefObject<HTMLDivElement>;
+  MonacoEditorRef: React.MutableRefObject<any>;
   rows: number;
 }
 
@@ -41,25 +47,63 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
+const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, MonacoEditorRef }) => {
   const { id } = useParams<Record<string, string>>();
   const [value, setValue] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [inputText, setInputText] = useState("");
-  const [outputText, setOutputText] = useState("");
+  const [outputData, setOutputData] = useState<Record<string, any>>({
+    output: "",
+    memory: 1,
+    cpuTime: 1,
+  });
 
+  const { language } = useContext(SettingContext) as SettingsContextType;
   const { enqueueSnackbar } = useSnackbar();
 
-  const displayNotification = () => {
-    enqueueSnackbar("Connection is established", {
-      variant: "success",
-    });
-  };
-
   useEffect(() => {
-    socket.on("input-data", (inputData: string) => {
+    socket.on("emit-input-data", (inputData: string) => {
       setInputText(inputData);
     });
+    socket.on("emit-code-executed", (outputResponse: Record<string, any>) => {
+      enqueueSnackbar(
+        outputResponse.memory === null || outputResponse.memory === null
+          ? "Error in code-execution"
+          : "Code ran succesfully",
+        {
+          variant: outputResponse.memory === null || outputResponse.memory === null ? "error" : "success",
+        }
+      );
+      setOutputData(outputResponse);
+      setValue(1);
+    });
   }, []);
+
+  const submitProblem = async () => {
+    setLoading(true);
+    setValue(1);
+    const response = await axios({
+      method: "POST",
+      url: `${SERVER_URL}/api/execute`,
+      data: {
+        script: MonacoEditorRef.current?.getValue(),
+        language: language,
+        stdin: inputText,
+      },
+      responseType: "json",
+    });
+    socket.emit("code-executed", { data: response.data, roomID: id });
+    enqueueSnackbar(
+      response.data.memory === null || response.data.memory === null
+        ? "Error in code-execution"
+        : "Code ran succesfully",
+      {
+        variant: response.data.memory === null || response.data.memory === null ? "error" : "success",
+      }
+    );
+    setOutputData(response.data);
+    setLoading(false);
+  };
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -67,98 +111,72 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows }) => {
 
   const inputTextFn = (value: string) => {
     setInputText(value);
-    socket.emit("emit-input-data", { data: value, roomID: id });
+    socket.emit("input-data", { data: value, roomID: id });
   };
 
-  const renderTextArea = (value: number) => {
-    if (value === 0) {
-      return (
-        <CssTextField
-          size="medium"
-          variant="outlined"
-          value={inputText}
-          onChange={(event) => inputTextFn(event.target.value)}
-          multiline
-          rows={rows}
-        />
-      );
-    } else if (value === 1) {
-      return (
-        <CssTextField
-          size="medium"
-          variant="outlined"
-          value={outputText}
-          rows={rows}
-          onChange={(event) => setOutputText(event.target.value as string)}
-          multiline
-          InputProps={{
-            readOnly: true,
-          }}
-        />
-      );
-    } else setValue(0);
+  /**
+   * Here we render text area based on index position and additional
+   * logic for handling how to display the output on code execution
+   * @param index - Tabs Index value 0 from output 1 from input
+   */
+  const RenderTextArea = ({ index }: { index: number }) => {
+    return loading ? (
+      <div className={styles.loader}>
+        <CircularProgress size="5rem" />
+      </div>
+    ) : (
+      <div
+        style={{
+          padding: "1rem",
+          color: outputData.memory === null || outputData.memory === null ? "#dd2c00" : "inherit",
+        }}
+      >
+        <pre>{outputData.output}</pre>
+      </div>
+    );
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-      }}
-      ref={TextAreaRef}
-    >
-      <Paper
-        style={{
-          position: "relative",
-          backgroundColor: "#252526",
-          color: "white",
-          borderRadius: "0px 8px 0px 0px",
-        }}
-      >
-        <Tabs value={value} onChange={handleChange} indicatorColor="primary" textColor="inherit" centered>
+    <div className={styles.root} ref={TextAreaRef}>
+      <Paper className={styles.toolbar}>
+        <Tabs
+          value={value}
+          onChange={(event, value) => handleChange(event, value)}
+          indicatorColor="primary"
+          textColor="inherit"
+          centered
+        >
           <Tab label="Input"></Tab>
           <Tab label="Output"></Tab>
         </Tabs>
-        <Box
-          style={{
-            height: "48px",
-            borderRadius: "0px 8px 0px 0px",
-            position: "absolute",
-            backgroundColor: "#00621E",
-            top: "0px",
-            right: "0px",
-            fontWeight: "bold",
-
-            color: "whitesmoke",
-          }}
-        >
+        <Box className={styles["btn-box"]}>
           <Button
             variant="text"
             color="inherit"
             endIcon={<SendRoundedIcon />}
-            style={{ height: "48px" }}
-            onClick={() => {
-              displayNotification();
+            onClick={async () => {
+              await submitProblem();
             }}
           >
             Run Code
           </Button>
         </Box>
       </Paper>
-      {
-        //@ts-ignore
-        <div
-          style={{
-            display: "flex",
-            flexGrow: 1,
-            backgroundColor: "	#1e1e1e",
-            color: "white",
-          }}
-        >
-          {renderTextArea(value)}
-        </div>
-      }
+      <div className={styles["text-area"]}>
+        {value === 0 ? (
+          <CssTextField
+            key="1"
+            size="medium"
+            variant="outlined"
+            value={inputText}
+            onChange={(event) => inputTextFn(event.target.value)}
+            multiline
+            rows={rows}
+          />
+        ) : (
+          <RenderTextArea index={value} />
+        )}
+      </div>
     </div>
   );
 };

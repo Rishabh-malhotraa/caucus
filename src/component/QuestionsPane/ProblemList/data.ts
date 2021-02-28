@@ -1,28 +1,98 @@
 export const tagsData = [
   {
-    name: "Binary Search",
-    color: "#7057ff",
-    description: "",
-  },
-  {
-    name: "Divide and Conquer",
-    color: "#008672",
-    description: "Extra attention is needed",
-  },
-  {
     name: "Dynamic Programming",
-    color: "#b60205",
-    description: "",
+    color: "#BFCBC2",
+    description: "Those who cannot remember the past are condemned to repeat it",
+  },
+  {
+    name: "Array",
+    color: "#e9c46a",
+    description: "Harder than they seem",
+  },
+  {
+    name: "Graph",
+    color: "#90E0F3",
+    description: "Easier than they seem.",
+  },
+  {
+    name: "Trie",
+    color: "#264653",
+    description: "Yes. Tries. Not a typo.",
+  },
+  {
+    name: "Linked List",
+    color: "#dc2f02",
+    description: "Reverse them.",
+  },
+  {
+    name: "Tree",
+    color: "#f4a261",
+    description: "Invert them.",
+  },
+  {
+    name: "String",
+    color: "#d73a4a",
+    description: `"This is a string."`,
+  },
+  {
+    name: "Sort",
+    color: "#e76f51",
+    description: "Ah! Another Weasley. I know just what to do with you... GRYFFINDOR!",
+  },
+  {
+    name: "Recursion",
+    color: "#605F5E",
+    description: "GNU = GNU not unix",
   },
   {
     name: "Heap",
     color: "#d93f0b",
-    description: "",
+    description: "Fancy trees.",
+  },
+  {
+    name: "Binary Search Tree",
+    color: "#f48c06",
+    description: "BS Trees",
+  },
+  {
+    name: "Binary Indexed Tree",
+    color: "#fec1c1",
+    description: "Really Hard Trees",
+  },
+  {
+    name: "Greedy",
+    color: "#d876e3",
+    description: "💰🤑",
+  },
+  {
+    name: "Divide and Conquer",
+    color: "#008672",
+    description: "British Raj",
   },
   {
     name: "Random",
     color: "#0e8a16",
-    description: "",
+    description: "🔀",
+  },
+  {
+    name: "Geometry",
+    color: "#215cea",
+    description: "(⌐■_■)",
+  },
+  {
+    name: "Brainteaser",
+    color: "#B8B3E9",
+    description: "( ͡° ͜ʖ ͡°)",
+  },
+  {
+    name: "Rolling Hash",
+    color: "#eeeeee",
+    description: "🚬",
+  },
+  {
+    name: "Two Pointers",
+    color: "#3e4b9e",
+    description: "🐫",
   },
   {
     name: "Stack",
@@ -30,35 +100,22 @@ export const tagsData = [
     description: "",
   },
   {
-    name: "Binary Indexed Tree",
-    color: "#fec1c1",
+    name: "Binary Search",
+    color: "#7057ff",
     description: "",
   },
-  {
-    name: "Geometry",
-    color: "#215cea",
-    description: "",
-  },
+
   {
     name: "Hash Table",
     color: "#cfd3d7",
-    description: "This issue or pull request already exists",
+    description: "",
   },
   {
     name: "Depth-first Search",
     color: "#fef2c0",
     description: "",
   },
-  {
-    name: "Rolling Hash",
-    color: "#eeeeee",
-    description: "This will not be worked on",
-  },
-  {
-    name: "String",
-    color: "#d73a4a",
-    description: "Something isn't working",
-  },
+
   {
     name: "Suffix Array",
     color: "#d4c5f9",
@@ -74,34 +131,16 @@ export const tagsData = [
     color: "#84b6eb",
     description: "",
   },
-  {
-    name: "Two Pointers",
-    color: "#3e4b9e",
-    description: "A theme of work that contain sub-tasks",
-  },
+
   {
     name: "Sliding Window",
     color: "#fbca04",
-    description: "New feature or request",
+    description: "",
   },
-  {
-    name: "Greedy",
-    color: "#d876e3",
-    description: "Further information is requested",
-  },
+
   {
     name: "Line Sweep",
     color: "#75F4F4",
-    description: "",
-  },
-  {
-    name: "Graph",
-    color: "#90E0F3",
-    description: "",
-  },
-  {
-    name: "Brainteaser",
-    color: "#B8B3E9",
     description: "",
   },
   {
@@ -119,11 +158,7 @@ export const tagsData = [
     color: "#FB3640",
     description: "",
   },
-  {
-    name: "Recursion",
-    color: "#605F5E",
-    description: "",
-  },
+
   {
     name: "Backtracking",
     color: "#1D3461",
@@ -139,31 +174,13 @@ export const tagsData = [
     color: "#247BA0",
     description: "",
   },
-  {
-    name: "Trie",
-    color: "#264653",
-    description: "",
-  },
+
   {
     name: "Queue",
     color: "#2a9d8f",
     description: "",
   },
-  {
-    name: "Array",
-    color: "#e9c46a",
-    description: "",
-  },
-  {
-    name: "Tree",
-    color: "#f4a261",
-    description: "",
-  },
-  {
-    name: "Sort",
-    color: "#e76f51",
-    description: "",
-  },
+
   {
     name: "Memoization",
     color: "#03071e",
@@ -194,16 +211,7 @@ export const tagsData = [
     color: "#dc2f02",
     description: "",
   },
-  {
-    name: "Linked List",
-    color: "#dc2f02",
-    description: "",
-  },
-  {
-    name: "Binary Search Tree",
-    color: "#f48c06",
-    description: "",
-  },
+
   {
     name: "Meet in the Middle",
     color: "#ffba08",

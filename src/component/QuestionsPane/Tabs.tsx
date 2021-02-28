@@ -7,14 +7,14 @@ import ProblemList from "./ProblemList/ProblemList";
 import { TabsContext } from "service/TabsContext";
 import { LabelType, TabsContextTypes, QuestionDataSS } from "types";
 import ProblemPage from "./ProblemPage";
-import { tagsData, companiesData, difficultyData } from "./ProblemList/data";
+import { tagsData, companiesData } from "./ProblemList/data";
 import { socket } from "service/socket";
 
 export default function TabsComponent() {
   const { tabIndex, onTabsChange, onQuestionDataChange } = useContext(TabsContext) as TabsContextTypes;
   const [companies, setCompanies] = useState<LabelType[]>([companiesData[0]]);
-  const [tags, setTags] = useState<LabelType[]>([tagsData[5]]);
-  const [difficulty, setDifficulty] = useState<LabelType[]>([difficultyData[1]]);
+  const [tags, setTags] = useState<LabelType[]>([tagsData[0]]);
+  const [difficulty, setDifficulty] = useState<LabelType[]>([]);
 
   useEffect(() => {
     socket.on("change-question", (value: QuestionDataSS) => {

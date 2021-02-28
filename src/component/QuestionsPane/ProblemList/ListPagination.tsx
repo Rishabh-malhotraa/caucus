@@ -67,16 +67,19 @@ const PaginationComponent = ({ rows }: { rows: QuestionListResponse[] }) => {
           {(rowsPerPage > 0
             ? rows.slice((page - 1) * rowsPerPage, (page - 1) * rowsPerPage + rowsPerPage)
             : rows
-          ).map((el: QuestionListResponse) => {
+          ).map((el: QuestionListResponse, index) => {
             return (
-              <>
-                <ListItem button className={styles["list-item"]} onClick={() => getQuestion(el.question_id)}>
-                  <div style={{ flexGrow: 1 }}>{`${el.question_id}. ${el.question_title}`}</div>
-                  <div style={{ color: getColor(el.difficulty), paddingLeft: "8px", fontWeight: "bold" }}>
-                    {el.difficulty}
-                  </div>
-                </ListItem>
-              </>
+              <ListItem
+                key={index}
+                button
+                className={styles["list-item"]}
+                onClick={() => getQuestion(el.question_id)}
+              >
+                <div style={{ flexGrow: 1 }}>{`${el.question_id}. ${el.question_title}`}</div>
+                <div style={{ color: getColor(el.difficulty), paddingLeft: "8px", fontWeight: "bold" }}>
+                  {el.difficulty}
+                </div>
+              </ListItem>
             );
           })}
         </List>

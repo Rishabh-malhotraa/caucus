@@ -46,7 +46,6 @@ const Dashboard = () => {
   };
 
   React.useEffect(() => {
-    // socket.emit("user-data", prepareData());
     socket.emit("join-room", prepareData());
 
     socket.on("store-sid", (id: string) => setSid(id));
@@ -93,7 +92,7 @@ const Dashboard = () => {
               className={clsx(style.splitter, style["splitter-verticle"])}
               onStopResize={() => resetEditorLayout()}
             />
-            <ReflexElement flex={0.5}>
+            <ReflexElement flex={0.45}>
               <ReflexContainer orientation="horizontal">
                 <ReflexElement style={{ display: "flex" }}>
                   <MonacoEditor code={code} setCode={setCode} MonacoEditorRef={MonacoEditorRef} />
@@ -103,7 +102,7 @@ const Dashboard = () => {
                   onStopResize={() => resetEditorLayout()}
                 />
                 <ReflexElement flex={0.3}>
-                  <InputOutputFile rows={rows} TextAreaRef={TextAreaRef} />
+                  <InputOutputFile rows={rows} TextAreaRef={TextAreaRef} MonacoEditorRef={MonacoEditorRef} />
                 </ReflexElement>
               </ReflexContainer>
             </ReflexElement>

@@ -26,10 +26,10 @@ const useStyles = makeStyles(() =>
       height: "2rem",
       backgroundColor: "#1A1D1E",
       color: "whitesmoke",
-      border: "1px solid #0055bb",
+      border: "1px solid #3e3e42",
       "&:focus": {
         outline: "none",
-        border: "2px solid #0055bb",
+        border: "1px solid #0055bb",
       },
     },
     formButton: {
