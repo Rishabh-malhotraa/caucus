@@ -29,6 +29,18 @@
   justify-content: space-between;
   align-items: center;
 }
+.toolbarHeading {
+  display: flex;
+  align-items: center;
+}
+.toolbarHeading span {
+  display: flex;
+  font-size: 48px;
+}
+
+.toolbarText {
+  margin-left: 1rem;
+}
 
 .root button {
   font-size: 1.2rem;
@@ -88,14 +100,15 @@
 
 .createRoom {
   padding-top: 5rem;
-  margin: auto;
+  margin: 0rem 5rem;
+  display: flex;
+  justify-content: space-evenly;
 }
 .createRoom button {
   font-weight: bolder;
   background-color: #ffda68;
   font-size: 1.2rem;
   padding: 0.8rem;
-  margin: 0rem 5rem;
 }
 .createRoom button:hover {
   background-color: #ffda68;

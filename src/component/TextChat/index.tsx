@@ -97,13 +97,8 @@ const ChatApp = ({ userInfo, socketID }: { userInfo: UserInfoSS; socketID: strin
           flexDirection: "column",
         }}
       >
-        <div
-          style={{
-            margin: "1rem",
-            flexGrow: 1,
-          }}
-        >
-          <h1>MESSENGER</h1>
+        <h1 style={{ marginBottom: "8px", backgroundColor: "#252526", fontWeight: 600 }}>MESSENGER</h1>
+        <div style={{ flexGrow: 1, margin: "1rem" }}>
           {body.map((element, index) => {
             if (element.socketID === socketID) {
               return (

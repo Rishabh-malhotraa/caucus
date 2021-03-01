@@ -6,7 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { QuestionListResponse, TabsContextTypes } from "types";
 import { List, ListItem } from "@material-ui/core";
 import axios from "axios";
-import { SERVER_URL } from "config";
+import { SERVER_URL } from "config.keys";
 import { TabsContext } from "service/TabsContext";
 import { useParams } from "react-router-dom";
 
@@ -86,6 +86,7 @@ const PaginationComponent = ({ rows }: { rows: QuestionListResponse[] }) => {
       </Grid>
       <Grid item className={styles["pagination-group"]}>
         <CssPagination
+          shape="rounded"
           count={count}
           page={page}
           onChange={(event, val) => setPage(val)}

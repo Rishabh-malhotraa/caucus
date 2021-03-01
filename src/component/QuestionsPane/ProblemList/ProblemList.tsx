@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import AutoCompleteLabel from "./Autocomplete";
 import { Button, ButtonGroup, Divider } from "@material-ui/core";
 import axios, { AxiosResponse } from "axios";
-import { SERVER_URL } from "config";
+import { SERVER_URL } from "config.keys";
 import { allCompanies, allDifficulties, allTags } from "./data";
 import ListPagination from "./ListPagination";
 import Grid from "@material-ui/core/Grid";

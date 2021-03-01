@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import Editor from "@monaco-editor/react";
 import { Convergence } from "@convergence/convergence";
-import { CONVERGENCE_URL } from "config";
+import { CONVERGENCE_URL } from "config.keys";
 import MonacoConvergenceAdapter from "./MonacoAdapter";
 import { GuestNameContext } from "service/GuestNameContext";
 import { UserContext } from "service/UserContext";
@@ -10,8 +10,8 @@ import "@convergencelabs/monaco-collab-ext/css/monaco-collab-ext.css";
 import { SettingContext } from "service/SettingsContext";
 
 interface AppProps {
-  code: string | undefined;
-  setCode: React.Dispatch<React.SetStateAction<string | undefined>>;
+  code: string;
+  setCode: React.Dispatch<React.SetStateAction<string>>;
   MonacoEditorRef: React.MutableRefObject<any>;
 }
 
@@ -55,7 +55,7 @@ const MonacoEditor: React.FC<AppProps> = ({ code, setCode, MonacoEditorRef }) =>
         onMount={(editor) => handleEditorDidMount(editor)}
         theme={theme}
         language={language}
-        onChange={(value) => setCode(value)}
+        onChange={(value) => setCode(value || "")}
         options={{ wordWrap: "on", fontSize: fontSize, autoIndent: "advanced" }}
       />
     </div>

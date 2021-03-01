@@ -4,21 +4,14 @@ function Proxy(app: any) {
   app.use(
     "/",
     createProxyMiddleware({
-      target: "http://localhost:5000",
+      target: process.env.REACT_APP_SERVER_URL,
       changeOrigin: true,
     })
   );
   app.use(
     "/",
     createProxyMiddleware({
-      target: "http://localhost:5001",
-      changeOrigin: true,
-    })
-  );
-  app.use(
-    "/",
-    createProxyMiddleware({
-      target: "http://localhost:8000",
+      target: process.env.REACT_APP_CONVERGENCE_URL,
       changeOrigin: true,
     })
   );

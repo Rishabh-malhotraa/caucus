@@ -6,7 +6,7 @@ import { GuestNameContextTypes } from "types";
 import GoogleSVG from "assets/google.svg";
 import GithubPNG from "assets/github.png";
 import TwitterPNG from "assets/twitter.png";
-import { SERVER_URL } from "config";
+import { SERVER_URL } from "config.keys";
 import Particles from "pages/Login/Particles.config";
 import Loader from "pages/Loader/Loader";
 import { Redirect } from "react-router-dom";
@@ -28,7 +28,7 @@ const Login = () => {
         <div className={classes["login-box"]}>
           <div className={classes["login-box-formbox"]}>
             <div className={classes["login-box-signup"]}>
-              Want to know how I made this? <a href="/login">Read the Blog</a>
+              Want to know how I made this? <a href="">Read the Blog</a>
             </div>
             <div className={classes["login-box-login"]}>
               <h1>Welcome to Caucus</h1>

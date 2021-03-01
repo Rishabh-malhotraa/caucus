@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { UserInfoType, UserContextTypes, OauthResponse } from "types";
 
 export const UserContext = React.createContext<UserContextTypes | null>(null);
 
 const UserProvider: React.FC<React.ReactNode> = ({ children }) => {
-  const [user, setUser] = React.useState<UserInfoType>({
+  const retrived_name = localStorage.getItem("name");
+  const retrived_image_link = localStorage.getItem("image_link");
+
+  const name = retrived_name ? JSON.parse(retrived_name) : "";
+  const image_link = retrived_image_link ? JSON.parse(retrived_image_link) : undefined;
+
+  const [user, setUser] = useState<UserInfoType>({
+    name: name,
+    image_link: image_link,
     isLoggedIn: false,
   });
 

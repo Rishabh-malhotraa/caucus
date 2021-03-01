@@ -12,7 +12,7 @@ import TabsProvider from "./service/TabsContext";
 import UserContextProvider, { UserContext } from "service/UserContext";
 import axios, { AxiosResponse } from "axios";
 import { OauthResponse, UserContextTypes } from "types";
-import { SERVER_URL } from "config";
+import { SERVER_URL } from "config.keys";
 import { SnackbarProvider } from "notistack";
 
 export const isAuthenticated = async () => {
@@ -35,6 +35,8 @@ const App = () => {
       const { isLoggedIn, data } = await isAuthenticated();
 
       localStorage.setItem("isLoggedIn", JSON.stringify(data.isLoggedIn));
+      localStorage.setItem("name", JSON.stringify(data.user?.name));
+      localStorage.setItem("image_link", JSON.stringify(data.user?.image_link));
       saveUserInfo(data, isLoggedIn);
       if (isLoggedIn === false) {
         return <Redirect to="/"></Redirect>;

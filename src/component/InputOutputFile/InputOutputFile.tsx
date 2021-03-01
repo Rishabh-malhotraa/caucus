@@ -6,7 +6,7 @@ import { useSnackbar } from "notistack";
 import { socket } from "service/socket";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { SERVER_URL } from "config";
+import { SERVER_URL } from "config.keys";
 import { SettingContext } from "service/SettingsContext";
 import { SettingsContextType } from "types";
 import styles from "./InputOutputFile.module.css";
