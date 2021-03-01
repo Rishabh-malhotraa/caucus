@@ -17,7 +17,7 @@ export default function TabsComponent() {
   const [difficulty, setDifficulty] = useState<LabelType[]>([]);
 
   useEffect(() => {
-    socket.on("change-question", (value: QuestionDataSS) => {
+    socket.on("emit-selected-question", (value: QuestionDataSS) => {
       onQuestionDataChange(value);
     });
   }, []);

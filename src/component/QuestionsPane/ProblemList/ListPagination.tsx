@@ -86,6 +86,7 @@ const PaginationComponent = ({ rows }: { rows: QuestionListResponse[] }) => {
       </Grid>
       <Grid item className={styles["pagination-group"]}>
         <CssPagination
+          shape="rounded"
           count={count}
           page={page}
           onChange={(event, val) => setPage(val)}

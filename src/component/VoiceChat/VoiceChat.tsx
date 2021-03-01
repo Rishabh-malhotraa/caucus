@@ -57,10 +57,29 @@ const Room: React.FC<AppProps> = ({ params, partnerUser, user }) => {
   const userAudio = useRef({} as MediaSrcType);
   const partnerAudio = useRef({} as MediaSrcType);
 
-  const [stream, setStream] = useState<MediaStream>();
-  const [partnerStream, setPartnerStream] = useState<MediaStream>();
+  // const [stream, setStream] = useState<MediaStream>();
+  // const [partnerStream, setPartnerStream] = useState<MediaStream>();
   const [audioMuted, setAudioMuted] = useState(false);
   const [partnerAudioMuted, setPartnerAudioMuted] = useState(false);
+
+  useEffect(() => {
+    navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
+      if (userAudio.current) {
+        userAudio.current.srcObject = stream;
+      }
+    });
+
+    // if (partnerUser) callPeer();
+
+    // socket.on("someones-calling", (data) => {
+    //   partnerAudio.current.srcObject = data;
+    //   acceptCall();
+    // });
+
+    // socket.on("partner-muted", (data) => {
+    //   setPartnerAudioMuted(data.muted);
+    // });
+  });
 
   function callPeer() {
     const peer = new Peer({
@@ -80,7 +99,7 @@ const Room: React.FC<AppProps> = ({ params, partnerUser, user }) => {
           },
         ],
       },
-      stream: stream,
+      stream: userAudio.current.srcObject,
     });
 
     peer.on("signal", (data) => {
@@ -100,10 +119,11 @@ const Room: React.FC<AppProps> = ({ params, partnerUser, user }) => {
   }
 
   function acceptCall() {
+    console.log("heyyy");
     const peer = new Peer({
       initiator: false,
       trickle: false,
-      stream: stream,
+      stream: userAudio.current.srcObject,
     });
     peer.on("signal", (data) => {
       socket.emit("acceptCall", { signal: data, roomID: user?.roomID });
@@ -113,61 +133,22 @@ const Room: React.FC<AppProps> = ({ params, partnerUser, user }) => {
       partnerVideo.current.srcObject = stream;
     });
 
-    peer.signal(callerSignal);
+    peer.signal(partnerAudio.current.srcObject);
   }
 
   // callUser -> somones-calling -> acceptCall -> callAccepted
-  useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
-      setStream(stream);
-      if (userAudio.current) {
-        userAudio.current.srcObject = stream;
-      }
-    });
-
-    if (partnerUser) callPeer();
-
-    socket.on("someones-calling", (data) => {
-      setPartnerStream(data.signal);
-      acceptCall();
-    });
-
-    socket.on("partner-muted", (data) => {
-      setPartnerAudioMuted(data.muted);
-    });
-  }, []);
-
+  console.log(userAudio);
+  console.log(partnerAudio);
   return (
-    <div style={{ display: "flex" }}>
-      <RenderIcons user={user} AudioRef={userAudio} muted={audioMuted} />
-      {partnerUser?.roomID ? (
-        <RenderIcons user={partnerUser} AudioRef={partnerAudio} muted={partnerAudioMuted} />
-      ) : (
-        <></>
-      )}
-    </div>
-  );
-};
-
-export const RoomII = ({ params }: { params: string }) => {
-  console.log(params);
-  return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "space-around",
-        }}
-      >
-        <Avatar
-          alt="Remy Sharp"
-          src={`https://stylizedbay.com/wp-content/uploads/2018/02/unknown-avatar.jpg`}
-          style={{ width: "64px", height: "64px", margin: ".6rem 1rem" }}
-        ></Avatar>
-      </div>
-    </>
+    // <div style={{ display: "flex" }}>
+    //   <RenderIcons user={user} AudioRef={userAudio} muted={audioMuted} />
+    //   {partnerUser?.roomID ? (
+    //     <RenderIcons user={partnerUser} AudioRef={partnerAudio} muted={partnerAudioMuted} />
+    //   ) : (
+    //     <></>
+    //   )}
+    // </div>
+    <div className="h1">Hey there</div>
   );
 };
 

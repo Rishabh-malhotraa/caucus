@@ -35,6 +35,8 @@ const App = () => {
       const { isLoggedIn, data } = await isAuthenticated();
 
       localStorage.setItem("isLoggedIn", JSON.stringify(data.isLoggedIn));
+      localStorage.setItem("name", JSON.stringify(data.user?.name));
+      localStorage.setItem("image_link", JSON.stringify(data.user?.image_link));
       saveUserInfo(data, isLoggedIn);
       if (isLoggedIn === false) {
         return <Redirect to="/"></Redirect>;
