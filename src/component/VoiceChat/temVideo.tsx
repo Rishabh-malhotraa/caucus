@@ -1,64 +1,70 @@
 //@ts-nocheck
-import React, { useEffect, useState, useRef } from "react";
-import "./App.css";
-import io from "socket.io-client";
-import Peer from "simple-peer";
+import React, { useEffect, useRef, useState } from "react";
+import { socket } from "service/socket";
+import { Avatar, Button, withStyles, Theme, Tooltip, Zoom } from "@material-ui/core";
+import { UserInfoSS } from "types";
+import Peer from "peerjs";
 
-const Container = styled.div`
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
+/**
+ * Invoke Call Peer when the component loads and if the guest user is empty then chill just return
+ */
 
-const Row = styled.div`
-  display: flex;
-  width: 100%;
-`;
+const LightTooltip = withStyles((theme: Theme) => ({
+  tooltip: {
+    backgroundColor: theme.palette.common.white,
+    color: "rgba(0, 0, 0, 1)",
+    boxShadow: theme.shadows[2],
+    fontSize: "14px",
+    borderRadius: "25px",
+  },
+}))(Tooltip);
 
-const Video = styled.video`
-  border: 1px solid blue;
-  width: 50%;
-  height: 50%;
-`;
+interface MediaSrcType {
+  srcObject: MediaStream;
+}
 
-function App() {
-  const [yourID, setYourID] = useState("");
-  const [users, setUsers] = useState({});
-  const [stream, setStream] = useState();
-  const [receivingCall, setReceivingCall] = useState(false);
-  const [caller, setCaller] = useState("");
-  const [callerSignal, setCallerSignal] = useState();
-  const [callAccepted, setCallAccepted] = useState(false);
+interface AppProps {
+  params: string;
+  partnerUser?: UserInfoSS;
+  user?: UserInfoSS;
+}
 
-  const userVideo = useRef();
-  const partnerVideo = useRef();
-  const socket = useRef();
+const RenderIcons = ({
+  user,
+  AudioRef,
+  muted,
+}: {
+  user: UserInfoSS;
+  AudioRef: MediaSrcType;
+  muted: boolean;
+}) => {
+  if (!user) return <></>;
+  return (
+    <>
+      <LightTooltip TransitionComponent={Zoom} title={user?.name || "John Doe"} placement="bottom">
+        <Avatar
+          alt={user.name}
+          src={user.image_link}
+          style={{ width: "64px", height: "64px", margin: ".6rem 1rem" }}
+        ></Avatar>
+      </LightTooltip>
+      <video playsInline muted ref={AudioRef} autoPlay style={{ height: "0px", width: "0px" }} />
+      {/* {AudioRef.srcObject ? <video ref={AudioRef}></video> : <></>} */}
+    </>
+  );
+};
 
-  useEffect(() => {
-    socket.current = io.connect("/");
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
-      setStream(stream);
-      if (userVideo.current) {
-        userVideo.current.srcObject = stream;
-      }
-    });
+const Room: React.FC<AppProps> = ({ params, partnerUser, user }) => {
+  const userAudio = useRef({} as MediaSrcType);
+  const partnerAudio = useRef({} as MediaSrcType);
 
-    socket.current.on("yourID", (id) => {
-      setYourID(id);
-    });
-    socket.current.on("allUsers", (users) => {
-      setUsers(users);
-    });
+  const [stream, setStream] = useState<MediaStream>();
+  const [partnerStream, setPartnerStream] = useState<MediaStream>();
+  const [audioMuted, setAudioMuted] = useState(false);
+  const [partnerAudioMuted, setPartnerAudioMuted] = useState(false);
 
-    socket.current.on("hey", (data) => {
-      setReceivingCall(true);
-      setCaller(data.from);
-      setCallerSignal(data.signal);
-    });
-  }, []);
-
-  function callPeer(id) {
+  function callPeer() {
+    console.log(stream);
     const peer = new Peer({
       initiator: true,
       trickle: false,
@@ -80,7 +86,7 @@ function App() {
     });
 
     peer.on("signal", (data) => {
-      socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID });
+      socket.emit("callUser", { roomID: partnerUser?.roomID, signalData: data });
     });
 
     peer.on("stream", (stream) => {
@@ -89,21 +95,20 @@ function App() {
       }
     });
 
-    socket.current.on("callAccepted", (signal) => {
-      setCallAccepted(true);
+    // final thing reciecing the thing back from the user
+    socket.on("callAccepted", (signal) => {
       peer.signal(signal);
     });
   }
 
   function acceptCall() {
-    setCallAccepted(true);
     const peer = new Peer({
       initiator: false,
       trickle: false,
       stream: stream,
     });
     peer.on("signal", (data) => {
-      socket.current.emit("acceptCall", { signal: data, to: caller });
+      socket.emit("acceptCall", { signal: data, roomID: user?.roomID });
     });
 
     peer.on("stream", (stream) => {
@@ -113,42 +118,82 @@ function App() {
     peer.signal(callerSignal);
   }
 
-  let UserVideo;
-  if (stream) {
-    UserVideo = <Video playsInline muted ref={userVideo} autoPlay />;
-  }
+  // callUser -> somones-calling -> acceptCall -> callAccepted
+  useEffect(() => {
+    navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
+      setStream(stream);
+      if (userAudio.current) {
+        userAudio.current.srcObject = stream;
+      }
+    });
 
-  let PartnerVideo;
-  if (callAccepted) {
-    PartnerVideo = <Video playsInline ref={partnerVideo} autoPlay />;
-  }
+    if (partnerUser) callPeer();
 
-  let incomingCall;
-  if (receivingCall) {
-    incomingCall = (
-      <div>
-        <h1>{caller} is calling you</h1>
-        <button onClick={acceptCall}>Accept</button>
-      </div>
-    );
-  }
+    socket.on("someones-calling", (data) => {
+      setPartnerStream(data.signal);
+      acceptCall();
+    });
+
+    socket.on("partner-muted", (data) => {
+      setPartnerAudioMuted(data.muted);
+    });
+  }, []);
+
   return (
-    <Container>
-      <Row>
-        {UserVideo}
-        {PartnerVideo}
-      </Row>
-      <Row>
-        {Object.keys(users).map((key) => {
-          if (key === yourID) {
-            return null;
-          }
-          return <button onClick={() => callPeer(key)}>Call {key}</button>;
-        })}
-      </Row>
-      <Row>{incomingCall}</Row>
-    </Container>
+    <div style={{ display: "flex" }}>
+      <RenderIcons user={user} AudioRef={userAudio} muted={audioMuted} />
+      {partnerUser?.roomID ? (
+        <RenderIcons user={partnerUser} AudioRef={partnerAudio} muted={partnerAudioMuted} />
+      ) : (
+        <></>
+      )}
+    </div>
   );
-}
+};
 
-export default App;
+export const RoomII = ({ params }: { params: string }) => {
+  console.log(params);
+  return (
+    <>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+        }}
+      >
+        <Avatar
+          alt="Remy Sharp"
+          src={`https://stylizedbay.com/wp-content/uploads/2018/02/unknown-avatar.jpg`}
+          style={{ width: "64px", height: "64px", margin: ".6rem 1rem" }}
+        ></Avatar>
+      </div>
+    </>
+  );
+};
+
+export default Room;
+
+// export default RoomII;
+
+// const Video = ({ peer, muted }: { peer: Instance; muted: boolean }) => {
+//   const ref = useRef({} as MediaSrcType);
+
+//   useEffect(() => {
+//     peer.on("stream", (stream: MediaStream) => {
+//       ref.current.srcObject = stream;
+//     });
+//   }, []);
+//   console.log(ref);
+//   return (
+//     <video
+//       muted={muted}
+//       playsInline
+//       autoPlay
+//       //@ts-ignore
+//       ref={ref}
+//       style={{ width: "150px", height: "150px" }}
+//     />
+//   );
+// };

@@ -86,3 +86,7 @@ export interface TabsContextTypes {
   onTabsChange: (value: number) => void;
   onQuestionDataChange: (value: QuestionDataSS) => void;
 }
+
+export interface MediaSrcType {
+  srcObject: MediaStream;
+}

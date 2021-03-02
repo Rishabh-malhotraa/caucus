@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useState, createRef, useRef, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import InputOutputFile from "component/InputOutputFile/InputOutputFile";
@@ -14,9 +15,10 @@ import "@convergencelabs/monaco-collab-ext/css/monaco-collab-ext.min.css.map";
 import clsx from "clsx";
 import { GuestNameContext } from "service/GuestNameContext";
 import { UserContext } from "service/UserContext";
-import { UserContextTypes, GuestNameContextTypes, UserInfoSS } from "types";
-import { DUMMY_AVATAR_IMAGE } from "config";
+import { UserContextTypes, GuestNameContextTypes, UserInfoSS, MediaSrcType } from "types";
+import { DUMMY_AVATAR_IMAGE, SERVER_URL } from "config";
 import TabsPanel from "component/QuestionsPane/Tabs";
+import Peer from "peerjs";
 
 const Dashboard = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -29,7 +31,13 @@ const Dashboard = () => {
   const [sid, setSid] = useState("");
   const [goBack, setGoBack] = useState(false);
   const [partnerUser, setPartnerUser] = useState<UserInfoSS>();
+  const [partnerPID, setPartnerPID] = useState("");
   const { id } = useParams<Record<string, string>>();
+
+  const [userStream, setUserStream] = useState<MediaStream>({} as MediaStream);
+  const [partnerStream, setPartnerStream] = useState<MediaStream>();
+  const userAudio = useRef({} as MediaSrcType);
+  const partnerVideo = useRef({} as MediaSrcType);
 
   const prepareData = (): UserInfoSS => {
     return {
@@ -46,23 +54,68 @@ const Dashboard = () => {
       variant: variantStyle,
     });
   };
-
+  const myPeer = new Peer(undefined, {
+    host: "localhost",
+    port: 5001,
+    path: "/voice-chat",
+  });
   React.useEffect(() => {
-    socket.emit("join-room", prepareData());
+    const connectToNewUser = (userID: string, stream: MediaStream) => {
+      const call = myPeer.call(userID, stream);
+      console.log(call);
+      call.on("stream", (userVideoStream: MediaStream) => {
+        partnerVideo.current.srcObject = userVideoStream;
+        setPartnerStream(userVideoStream);
+      });
+
+      call.on("close", () => {
+        //@ts-ignore
+        partnerVideo.current.remove();
+      });
+    };
+
+    myPeer.on("open", (id) => {
+      socket.emit("join-room", prepareData(), id);
+    });
 
     socket.on("store-sid", (id: string) => setSid(id));
-    socket.on("new-user-joined", (data: UserInfoSS) => {
+    socket.on("new-user-joined", (data: UserInfoSS, peerID: string) => {
+      console.log(peerID);
       setPartnerUser(data);
+      setPartnerPID(peerID);
       displayNotification(data, true);
     });
     socket.on("room-full", () => {
       setGoBack(true);
     });
 
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
+      if (userAudio.current) {
+        userAudio.current.srcObject = stream;
+        setUserStream(stream);
+      }
+    });
+    console.log("PartnerUser" + partnerVideo.current.srcObject);
+    // console.log(partnerAudio);
+
+    if (partnerPID) connectToNewUser(partnerPID, userStream);
+
+    myPeer.on("call", (call) => {
+      call.answer(userAudio);
+
+      call.on("stream", (partnerUserVideo: MediaStream) => {
+        console.log("hey");
+        console.log(partnerUserVideo);
+        partnerVideo.current.srcObject = partnerUserVideo;
+      });
+    });
+
     socket.on("connected", (data: Record<string, unknown>) => {
       console.log(`I'm Connected with the backend ${data}`);
     });
     socket.on("user-left", (data: UserInfoSS) => {
+      //@ts-ignore
+      // partnerVideo.current.close();
       displayNotification(data, false);
     });
   }, []);
@@ -122,7 +175,14 @@ const Dashboard = () => {
                 <ReflexContainer orientation="horizontal">
                   <ReflexElement className={style["pane-color"]} flex={0.3}>
                     <h2>Video Icons</h2>
-                    <VoiceChat params={id} user={prepareData()} partnerUser={partnerUser} />
+                    <VoiceChat
+                      params={id}
+                      user={prepareData()}
+                      partnerUser={partnerUser}
+                      myPeer={myPeer}
+                      partnerVideo={partnerVideo}
+                      partnerPID={partnerPID}
+                    />
                   </ReflexElement>
                   <ReflexSplitter className={clsx(style.splitter, style["splitter-horizontal"])} />
                   <ReflexElement className={style["chat-app"]}>
