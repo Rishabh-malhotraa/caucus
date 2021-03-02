@@ -37,14 +37,8 @@ export const PROD: boolean = JSON.parse(process.env.PROD!);
 
 export const port = parseInt(<string>process.env.PORT) || 5000;
 
-export const socket_port = port + 1;
-
 export const COOKIE_KEYS = [process.env.COOKIE_KEYS!];
 
-export const CLIENT_URL = "http://localhost:3000";
+export const JDOODLE_URL = process.env.JDOODLE_URL!;
 
-export const CLIENT_LOGIN_URL = "http://localhost:3000/";
-
-export const CLIENT_DASHBOARD_URL = "http://localhost:3000/home";
-
-export const JDOODLE_URL = "https://api.jdoodle.com/v1/execute";
+export const CLIENT_URL = process.env.CLIENT_URL!;

@@ -33,6 +33,7 @@
     "passport-github": "^1.1.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-twitter": "^1.0.4",
+    "peer": "^0.6.1",
     "pg": "^8.5.1",
     "project-name-generator": "^2.1.9",
     "socket.io": "^3.1.0",

@@ -3,17 +3,17 @@ import cors from "cors";
 import passport from "passport";
 import cookieSession from "cookie-session";
 import chalk from "chalk";
-import { COOKIE_KEYS, CLIENT_URL, port, socket_port } from "./config.keys";
+import { COOKIE_KEYS, CLIENT_URL, port } from "./config.keys";
 import authRoutes from "./routes/auth-routes";
 import apiRoutes from "./routes/api-routes";
 import cookieParser from "cookie-parser";
 import http from "http";
 import bodyParser from "body-parser";
-import chatService from "./service/chatService";
+import socketioService from "./service/socket-io-service";
 
 const app = express();
 const httpServer = new http.Server(app);
-chatService(httpServer);
+socketioService(httpServer, app);
 
 app.use(
   cors({
@@ -40,8 +40,6 @@ app.use("/api", apiRoutes);
 
 app.use("/", (req, res) => res.send("<h1>Server is Running :)))</h1>"));
 
-app.listen(port, () => console.log(chalk.blueBright(`Express Server listening to port ${port}`)));
-
-httpServer.listen(socket_port, () => console.log(chalk.cyanBright(`Socket-io Server listening to port ${socket_port}`)));
+httpServer.listen(port, () => console.log(chalk.blueBright(`Socket-io Server listening to port ${port}`)));
 
 export type ServerType = typeof httpServer;
