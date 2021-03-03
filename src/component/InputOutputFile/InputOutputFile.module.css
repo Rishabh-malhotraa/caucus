@@ -1,17 +1,7 @@
 .root {
-  display: flex;
-  flex-direction: column;
-  background-color: #252526;
+  background-color: #1e1e1e;
   height: 100%;
   border-radius: 0px 8px 0px 0px !important;
-}
-
-.loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
 }
 
 .toolbar {
@@ -42,3 +32,19 @@
   background-color: #1e1e1e;
   color: whitesmoke;
 }
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+} */

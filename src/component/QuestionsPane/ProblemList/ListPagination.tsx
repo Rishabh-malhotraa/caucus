@@ -51,7 +51,6 @@ const PaginationComponent = ({ rows }: { rows: QuestionListResponse[] }) => {
       data: { question_id: question_id },
       responseType: "json",
     }).then((response) => {
-      console.log(response.data);
       filterResponseData(response.data, id);
     });
   };

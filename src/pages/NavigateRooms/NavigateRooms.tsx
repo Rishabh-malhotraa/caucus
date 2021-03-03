@@ -41,7 +41,6 @@ const NavigateRoom = () => {
   const [backToLoginPage, setBackToLoginPage] = useState(false);
   const PUBLIC_ROOM = pr[Math.floor(Math.random() * pr.length)];
   const location = useLocation();
-  console.log(location.state);
 
   useEffect(() => {
     const tempLocation = location.state;
@@ -54,11 +53,8 @@ const NavigateRoom = () => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("name");
     localStorage.removeItem("image_link");
-    console.log(SERVER_URL);
     const response = await axios.get(`${SERVER_URL}/api/logout`);
     logoutUserInfo();
-    // window.location.href = `${CLIENT_URL}`;
-    console.log(response);
     setBackToLoginPage(true);
   };
 

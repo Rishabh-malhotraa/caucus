@@ -47,7 +47,6 @@ const MonacoEditor: React.FC<AppProps> = ({ code, setCode, MonacoEditorRef }) =>
         console.error("Could not open model ", error);
       });
   }, []);
-  // console.log(MonacoEditorRef.current?.getValue());
 
   return (
     <div style={{ flexGrow: 1, overflow: "hidden" }}>

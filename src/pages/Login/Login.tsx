@@ -8,7 +8,7 @@ import GithubPNG from "assets/github.png";
 import TwitterPNG from "assets/twitter.png";
 import { SERVER_URL } from "config.keys";
 import Particles from "pages/Login/Particles.config";
-import Loader from "pages/Loader/Loader";
+import Loader from "pages/LoadingAnimation/StartupAnimation";
 import { Redirect } from "react-router-dom";
 
 const Login = () => {

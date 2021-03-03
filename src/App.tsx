@@ -1,11 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-import LoginPage from "./pages/Login/Login";
+// import LoginPage from "./pages/Login/Login";
+// import Dashboard from "pages/Room/Room";
+// import NavigateRoom from "pages/NavigateRooms/NavigateRooms";
 import ProtectedRoute from "service/ProtectedRoute";
 import LoginRoute from "service/LoginRoute";
-import Dashboard from "pages/Room/Room";
-import Loader from "pages/Loader/Loader";
-import NavigateRoom from "pages/NavigateRooms/NavigateRooms";
 import GuestNameProvider from "./service/GuestNameContext";
 import SettingsProvider from "./service/SettingsContext";
 import TabsProvider from "./service/TabsContext";
@@ -14,6 +13,12 @@ import axios, { AxiosResponse } from "axios";
 import { OauthResponse, UserContextTypes } from "types";
 import { SERVER_URL } from "config.keys";
 import { SnackbarProvider } from "notistack";
+import Loader from "pages/LoadingAnimation/Loader";
+import StartupAnimation from "pages/LoadingAnimation/StartupAnimation";
+
+const Dashboard = lazy(() => import("./pages/Room/Room"));
+const NavigateRoom = lazy(() => import("./pages/NavigateRooms/NavigateRooms"));
+const LoginPage = lazy(() => import("./pages/Login/Login"));
 
 export const isAuthenticated = async () => {
   const { data }: AxiosResponse<OauthResponse> = await axios({
@@ -48,13 +53,16 @@ const App = () => {
   return (
     <div style={{ height: "auto" }}>
       <Router>
-        <Switch>
-          <Route path="/loader" component={Loader} />
-          <Route path="/room/:id" component={Dashboard} />
-          <ProtectedRoute exact user={user} path="/home" NavigationRoom={NavigateRoom} />
-          <LoginRoute exact path="/" component={LoginPage} user={user} />
-          <Redirect to="/" />
-        </Switch>
+        <Suspense fallback={<Loader />}>
+          <Switch>
+            <Route path="/room/:id" component={Dashboard} />
+            <ProtectedRoute exact user={user} path="/home" NavigationRoom={NavigateRoom} />
+            <LoginRoute exact path="/" component={LoginPage} user={user} />
+            <Route path="/startup-animation" component={StartupAnimation} />
+            <Route path="/loader" component={Loader} />
+            <Redirect to="/" />
+          </Switch>
+        </Suspense>
       </Router>
     </div>
   );

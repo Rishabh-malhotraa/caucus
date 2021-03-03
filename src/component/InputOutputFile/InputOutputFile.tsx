@@ -10,6 +10,8 @@ import { SERVER_URL } from "config.keys";
 import { SettingContext } from "service/SettingsContext";
 import { SettingsContextType } from "types";
 import styles from "./InputOutputFile.module.css";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 interface AppProps {
   TextAreaRef: React.RefObject<HTMLDivElement>;
@@ -122,12 +124,13 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, MonacoEditorRe
   const RenderTextArea = ({ index }: { index: number }) => {
     return loading ? (
       <div className={styles.loader}>
-        <CircularProgress size="5rem" />
+        <Loader type="Grid" color="#f5f5f5" height={80} width={80} />
       </div>
     ) : (
       <div
         style={{
           padding: "1rem",
+          minHeight: "70%",
           color: outputData.memory === null || outputData.memory === null ? "#dd2c00" : "inherit",
         }}
       >

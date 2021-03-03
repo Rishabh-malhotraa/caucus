@@ -24,9 +24,8 @@
   font-size: 2rem;
   width: 100vw;
   display: flex;
-  padding: 0rem 10rem;
   font-weight: bolder;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 .toolbarHeading {
@@ -47,6 +46,7 @@
 }
 
 .avatarFlex {
+  margin-left: 20%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

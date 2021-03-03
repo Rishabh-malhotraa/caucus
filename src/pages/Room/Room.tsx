@@ -24,7 +24,7 @@ const Dashboard = () => {
   const [code, setCode] = useState<string>("");
   const MonacoEditorRef = useRef<any>();
   const TextAreaRef = createRef<HTMLDivElement>();
-  const [rows, setRows] = useState(7);
+  const [rows, setRows] = useState(5);
   const [sid, setSid] = useState("");
   const [goBack, setGoBack] = useState(false);
   const [partnerUser, setPartnerUser] = useState<UserInfoSS>();
@@ -58,9 +58,6 @@ const Dashboard = () => {
       setGoBack(true);
     });
 
-    socket.on("connected", (data: Record<string, unknown>) => {
-      console.log(`I'm Connected with the backend ${data}`);
-    });
     socket.on("user-left", (data: UserInfoSS) => {
       displayNotification(data, false);
     });
@@ -68,7 +65,7 @@ const Dashboard = () => {
 
   const resetEditorLayout = () => {
     const height = Math.floor(TextAreaRef!.current!.clientHeight);
-    const adjustedRows = height > 340 ? height / 27 : height / 35;
+    const adjustedRows = height > 340 ? height / 27 : height / 39;
     setRows(Math.floor(adjustedRows));
     MonacoEditorRef.current.layout();
   };
@@ -119,7 +116,7 @@ const Dashboard = () => {
               />
               <ReflexElement>
                 <ReflexContainer orientation="horizontal">
-                  <ReflexElement className={style["pane-color"]} flex={0.1}>
+                  <ReflexElement className={style["pane-color"]} flex={0.12}>
                     <VoiceChat params={id} user={prepareData()} partnerUser={partnerUser} />
                   </ReflexElement>
                   <ReflexSplitter className={clsx(style.splitter, style["splitter-horizontal"])} />

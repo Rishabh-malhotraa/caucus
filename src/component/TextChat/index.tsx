@@ -59,7 +59,6 @@ const ChatApp = ({ userInfo, socketID }: { userInfo: UserInfoSS; socketID: strin
 
   useEffect(() => {
     socket.on("message", (body: MessageProps) => {
-      console.log(JSON.stringify(body));
       receivedMessages(body);
     });
     const receivedMessages = (newMessage: MessageProps) => {
@@ -97,7 +96,11 @@ const ChatApp = ({ userInfo, socketID }: { userInfo: UserInfoSS; socketID: strin
           flexDirection: "column",
         }}
       >
-        <h1 style={{ marginBottom: "8px", backgroundColor: "#252526", fontWeight: 600 }}>MESSENGER</h1>
+        <h1
+          style={{ margin: "0px 0px 8px 0px", padding: "4px", backgroundColor: "#252526", fontWeight: 600 }}
+        >
+          MESSENGER
+        </h1>
         <div style={{ flexGrow: 1, margin: "1rem" }}>
           {body.map((element, index) => {
             if (element.socketID === socketID) {

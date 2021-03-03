@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Loader.module.css";
+import styles from "./styles.module.css";
 import clsx from "clsx";
 
 const Loader = () => {
