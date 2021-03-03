@@ -37,6 +37,8 @@ export const PROD: boolean = JSON.parse(process.env.PROD!);
 
 export const port = parseInt(<string>process.env.PORT) || 5000;
 
+export const SERVER_URL = process.env.SERVER_URL!;
+
 export const COOKIE_KEYS = [process.env.COOKIE_KEYS!];
 
 export const JDOODLE_URL = process.env.JDOODLE_URL!;

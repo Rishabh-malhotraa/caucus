@@ -4,14 +4,19 @@ import { Strategy as TwitterStrategy } from "passport-twitter";
 import { Strategy as GithubStrategy } from "passport-github";
 import { GITHUB_KEY, GOOGLE_KEY, TWITTER_KEY } from "../config.keys";
 import knex from "./db_connection";
+import { SERVER_URL } from "../config.keys";
 import { OAUTH_TABLE } from "../types";
 const date = new Date().toISOString();
 
 passport.serializeUser((user: any, done) => {
+  console.log("inside serialzie");
+  console.log(user);
   done(null, user);
 });
 
 passport.deserializeUser(async (response: OAUTH_TABLE, done) => {
+  console.log("inside derserialze");
+  console.log(response);
   try {
     const userRows = await knex<OAUTH_TABLE>("oauth").select().where({ user_id: response.user_id });
     const user = userRows[0];
@@ -27,7 +32,7 @@ passport.use(
       // options for github strategy
       clientID: GITHUB_KEY.clientID,
       clientSecret: GITHUB_KEY.clientSecret,
-      callbackURL: "/auth/github/redirect",
+      callbackURL: `${SERVER_URL}/auth/github/redirect`,
     },
     async (accessToken, refreshToken, profile, done) => {
       // check if user already exists in our own db
@@ -67,13 +72,14 @@ passport.use(
     {
       clientID: GOOGLE_KEY.clientID,
       clientSecret: GOOGLE_KEY.clientSecret,
-      callbackURL: "/auth/google/redirect",
+      callbackURL: `${SERVER_URL}/auth/google/redirect`,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
         const currentUserRows = await knex<OAUTH_TABLE>("oauth").select().where({ user_id: profile.id });
         const currentUser = currentUserRows[0];
-
+        console.log("inside google");
+        console.log(currentUser);
         if (currentUser) {
           done(undefined, currentUser);
         } else {
@@ -106,7 +112,7 @@ passport.use(
     {
       consumerKey: TWITTER_KEY.consumerKey,
       consumerSecret: TWITTER_KEY.consumerSecret,
-      callbackURL: "/auth/twitter/redirect",
+      callbackURL: `${SERVER_URL}/auth/twitter/redirect`,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
