@@ -19,6 +19,7 @@
     "dev": "nodemon --exec ts-node src/index.ts",
     "format": "prettier --write \"src/**/*.ts\""
   },
+  "proxy": "http://localhost:3000",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",

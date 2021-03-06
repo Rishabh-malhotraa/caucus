@@ -2,7 +2,6 @@ import { CLIENT_URL } from "../config.keys";
 import express from "express";
 import passport from "passport";
 const router = express.Router();
-import "../service/passport";
 
 // when login failed, send failed msg
 router.get("/login/failed", (req, res) => {

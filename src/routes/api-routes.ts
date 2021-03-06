@@ -19,14 +19,14 @@ router.get("/auth", (req, res) => {
         name: "",
         image_link: "",
       },
-      cookies: undefined,
+      // cookies: undefined,
     });
   } else {
-    return res.status(200).header("Access-Control-Allow-Credentials", "true").json({
+    return res.status(200).json({
       isLoggedIn: true,
       message: "User is logged in",
       user: req.user,
-      cookies: req.cookies,
+      // cookies: req.cookies,
     });
   }
 });

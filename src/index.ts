@@ -10,6 +10,8 @@ import http from "http";
 import bodyParser from "body-parser";
 import socketioService from "./service/socket-io-service";
 import session from "express-session";
+import "./service/passport";
+
 // import cookieSession from "cookie-session";
 
 const app = express();
@@ -33,12 +35,8 @@ app.use(cookieParser()); // parse cookies
 // );
 
 // const isDevMode = process.env.NODE_ENV === "development";
-const isDevMode = false;
+app.set("trust proxy", 1);
 
-// 1st change.
-if (!isDevMode) {
-  app.set("trust proxy", 1);
-}
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
