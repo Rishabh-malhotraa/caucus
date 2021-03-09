@@ -16,9 +16,10 @@ import { GuestNameContext } from "service/GuestNameContext";
 import { UserContext } from "service/UserContext";
 import { UserContextTypes, GuestNameContextTypes, UserInfoSS } from "types";
 import TabsPanel from "component/QuestionsPane/Tabs";
+import { Button } from "@material-ui/core";
 
 const Dashboard = () => {
-  const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const { user } = useContext(UserContext) as UserContextTypes;
   const { guestName } = useContext(GuestNameContext) as GuestNameContextTypes;
   const [code, setCode] = useState<string>("");
@@ -38,15 +39,39 @@ const Dashboard = () => {
     };
   };
 
+  const action = (key: any) => (
+    <>
+      <Button
+        style={{ color: "white" }}
+        onClick={() => {
+          localStorage.setItem("shouldShow", JSON.stringify(false));
+          closeSnackbar(key);
+        }}
+      >
+        Don't Show Again
+      </Button>
+    </>
+  );
+
   const displayNotification = (data: UserInfoSS, enter: boolean) => {
     const text = enter ? "joined the room" : "left the room";
     const variantStyle = enter ? "success" : "error";
     enqueueSnackbar(`${data.name} ${text}`, {
+      preventDuplicate: true,
       variant: variantStyle,
     });
   };
 
   React.useEffect(() => {
+    const retrivedKeyString = localStorage.getItem("shouldShow");
+    const retrivedKey = retrivedKeyString ? JSON.parse(retrivedKeyString) : true;
+
+    if (retrivedKey) {
+      enqueueSnackbar("Open the same link in another tab to see realtime collabotation", {
+        action,
+      });
+    }
+
     socket.emit("join-room", prepareData());
 
     socket.on("store-sid", (id: string) => setSid(id));
