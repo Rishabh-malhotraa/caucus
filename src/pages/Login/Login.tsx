@@ -10,6 +10,7 @@ import { SERVER_URL } from "config.keys";
 import Particles from "pages/Login/Particles.config";
 import Loader from "pages/LoadingAnimation/StartupAnimation";
 import { Redirect } from "react-router-dom";
+import { PUBLIC_ROOM as pr, CLIENT_URL as url } from "config.keys";
 
 const Login = () => {
   const { guestName, handleGuestNameChange, isGuestNameClick, guestLoginClick } = useContext(
@@ -20,6 +21,11 @@ const Login = () => {
     event.preventDefault();
     window.open(`${SERVER_URL}/auth/${provider}`, "_self");
   };
+
+  const CLIENT_URL = url.replace(/^https:\/\//i, "http://");
+  const PUBLIC_ROOM = pr[Math.floor(Math.random() * pr.length)];
+
+  if (guestLoginClick) window.location.href = `${CLIENT_URL}/room/${PUBLIC_ROOM}`;
 
   return (
     <>
@@ -87,14 +93,13 @@ const Login = () => {
             <div className={classes["quote-container"]}>
               <div className={classes["quote"]}>Code & Learn.</div>
               <div className={classes["quote-small"]}>
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem repellendus cumque voluptatum
-                animi, illum veniam?'
+                'A Real Time Collaborative Editor for practicising for coding Interviews'
               </div>
             </div>
           </div>
         </div>
       </div>
-      {guestLoginClick ? <Redirect to="/room/public-room"></Redirect> : <></>}
+      {/* {guestLoginClick ? <Redirect to="/room/public-room"></Redirect> : <></>} */}
     </>
   );
 };

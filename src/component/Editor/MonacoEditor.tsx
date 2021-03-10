@@ -9,6 +9,7 @@ import { GuestNameContextTypes, SettingsContextType, UserContextTypes } from "ty
 import "@convergencelabs/monaco-collab-ext/css/monaco-collab-ext.css";
 import { SettingContext } from "service/SettingsContext";
 import { useSnackbar } from "notistack";
+import { useParams } from "react-router-dom";
 
 interface AppProps {
   code: string;
@@ -20,6 +21,8 @@ const MonacoEditor: React.FC<AppProps> = ({ code, setCode, MonacoEditorRef }) =>
   const handleEditorDidMount = (editor: any) => {
     MonacoEditorRef.current = editor;
   };
+
+  const { id: roomID } = useParams<Record<string, string>>();
 
   const { enqueueSnackbar } = useSnackbar();
   const { language, fontSize, theme } = useContext(SettingContext) as SettingsContextType;
@@ -36,7 +39,7 @@ const MonacoEditor: React.FC<AppProps> = ({ code, setCode, MonacoEditorRef }) =>
         // Now open the model, creating it using the initial data if it does not exist.
         return domain.models().openAutoCreate({
           collection: "project-caucus`",
-          id: "monaco-editor-caucus",
+          id: roomID,
           ephemeral: false,
           data: { text: code },
         });
@@ -48,7 +51,7 @@ const MonacoEditor: React.FC<AppProps> = ({ code, setCode, MonacoEditorRef }) =>
       .catch((error) => {
         console.error("Could not open model ", error);
         enqueueSnackbar(
-          "Real-time collaboration won't work: unable to establisha connection with the server",
+          "Real-time collaboration won't work: unable to establish a connection with the server",
           {
             variant: "error",
           }

@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     tag: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
       marginTop: 3,
       height: 20,
       padding: ".15em 4px",

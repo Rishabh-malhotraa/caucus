@@ -78,7 +78,22 @@ const Dashboard = () => {
     socket.on("new-user-joined", (data: UserInfoSS) => {
       setPartnerUser(data);
       displayNotification(data, true);
+      console.log(MonacoEditorRef.current?.getValue());
+      // socket.emit("send-code-to-new-user", id, code);
     });
+
+    // roomID
+    // socket.emit("sync-new-user-code", id);
+    // socket.on("someone-asking-for-code", () => {
+    //   console.log(code);
+    // socket.emit("send-code-to-new-user", id, code);
+    // });
+
+    socket.on("set-code", (partnerCode: string) => {
+      console.log(partnerCode);
+      setCode(partnerCode);
+    });
+
     socket.on("room-full", () => {
       setGoBack(true);
     });
@@ -94,6 +109,7 @@ const Dashboard = () => {
     setRows(Math.floor(adjustedRows));
     MonacoEditorRef.current.layout();
   };
+  // console.log(MonacoEditorRef.current?.getValue());
 
   return (
     <>
@@ -141,6 +157,7 @@ const Dashboard = () => {
               />
               <ReflexElement>
                 <ReflexContainer orientation="horizontal">
+                  {/* 0.12 */}
                   <ReflexElement className={style["pane-color"]} flex={0.12}>
                     <VoiceChat params={id} user={prepareData()} partnerUser={partnerUser} />
                   </ReflexElement>

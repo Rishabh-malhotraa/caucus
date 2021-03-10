@@ -15,7 +15,7 @@ import axios from "axios";
 import { UserContext } from "service/UserContext";
 import { UserContextTypes } from "types";
 import { Link, Redirect } from "react-router-dom";
-import { CLIENT_URL, PUBLIC_ROOM as pr, SERVER_URL } from "config.keys";
+import { CLIENT_URL as url, PUBLIC_ROOM as pr, SERVER_URL } from "config.keys";
 import styles from "./NavigateRooms.module.css";
 import generate from "project-name-generator";
 import { useSnackbar } from "notistack";
@@ -41,6 +41,7 @@ const NavigateRoom = () => {
   const [backToLoginPage, setBackToLoginPage] = useState(false);
   const PUBLIC_ROOM = pr[Math.floor(Math.random() * pr.length)];
   const location = useLocation();
+  const CLIENT_URL = url.replace(/^https:\/\//i, "http://");
 
   useEffect(() => {
     const tempLocation = location.state;
@@ -95,28 +96,41 @@ const NavigateRoom = () => {
             <Button
               variant="contained"
               onClick={() => {
-                setClick(link ? true : false);
+                // setClick(link ? true : false);
+                window.location.href = `${CLIENT_URL}/room/${link}`;
               }}
             >
               Join Room
             </Button>
           </Grid>
           <Grid item className={styles.createRoom}>
-            <Link to={`/room/${generate({ words: 2, alliterative: true }).dashed}`}>
-              <Button variant="contained">Create a Private Room</Button>
-            </Link>
-            <Link to={`/room/${PUBLIC_ROOM}`}>
-              <Button variant="contained">Join A Public Room</Button>
-            </Link>
+            <Button
+              variant="contained"
+              onClick={() => {
+                window.location.href = `${CLIENT_URL}/room/${
+                  generate({ words: 2, alliterative: true }).dashed
+                }`;
+              }}
+            >
+              Create a Private Room
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => {
+                window.location.href = `${CLIENT_URL}/room/${PUBLIC_ROOM}`;
+              }}
+            >
+              Join A Public Room
+            </Button>
           </Grid>
         </Grid>
         <footer>
           Made with <span>&#9829;</span> by Rishabh Malhotra{"  "}•{"  "}
-          <a href="https://github.com/Rishabh-malhotraa/codeforces-diary" target="__blank">
+          <a href="https://github.com/Rishabh-malhotraa/caucus" target="__blank">
             Github
           </a>
         </footer>
-        {click ? <Redirect to={`/room/${link}`} /> : <></>}
+        {/* {click ? <Redirect to={`/room/${link}`} /> : <></>} */}
         {backToLoginPage ? <Redirect to={`/`} /> : <></>}
       </div>
     </>
