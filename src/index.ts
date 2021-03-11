@@ -25,16 +25,7 @@ app.use(
   })
 );
 app.use(cookieParser()); // parse cookies
-// app.use(
-//   cookieSession({
-//     secure: false,
-//     name: "session",
-//     maxAge: 24 * 60 * 60 * 1000,
-//     keys: [...COOKIE_KEYS],
-//   })
-// );
 
-// const isDevMode = process.env.NODE_ENV === "development";
 app.set("trust proxy", 1);
 
 app.use(express.urlencoded({ extended: true }));
@@ -54,14 +45,6 @@ app.use(
     },
   })
 );
-
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Credentials", "true");
-//   res.header("Access-Control-Allow-Origin", req.headers.origin);
-//   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-//   res.header("Access-Control-Allow-Headers", "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept");
-//   next();
-// });
 
 app.use(passport.initialize());
 app.use(passport.session()); // deserialize cookie from the browser
