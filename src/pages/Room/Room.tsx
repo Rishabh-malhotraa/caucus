@@ -172,7 +172,7 @@ const Dashboard = () => {
           </ReflexElement>
           <ReflexElement className={style.footer} flex={0.028}>
             Made with <span>&#9829;</span> by Rishabh Malhotra{"  "}•{"  "}
-            <a href="https://github.com/Rishabh-malhotraa/codeforces-diary" target="__blank">
+            <a href="https://github.com/Rishabh-malhotraa/caucus" target="__blank">
               Github
             </a>
           </ReflexElement>
