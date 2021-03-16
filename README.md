@@ -174,7 +174,7 @@ Project Link: [http://caucus-app.herokuapp.com/](http://caucus-app.herokuapp.com
 
 * [Heroku](https://www.heroku.com/)
 * [Azure](https://azure.microsoft.com/en-us/)
-* [notistack](https://www.npmjs.com/package/notistack)
+* [notistack](https://www.npmjs.com/package/notistack/)
 * [axios](https://www.npmjs.com/package/axios)
 * [dog-names](https://www.npmjs.com/package/dog-names)
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
