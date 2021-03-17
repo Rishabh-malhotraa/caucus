@@ -131,6 +131,7 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, MonacoEditorRe
         style={{
           padding: "1rem",
           minHeight: "70%",
+          textAlign: "left",
           color: outputData.memory === null || outputData.memory === null ? "#dd2c00" : "inherit",
         }}
       >

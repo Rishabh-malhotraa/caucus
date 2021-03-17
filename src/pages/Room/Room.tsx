@@ -10,7 +10,7 @@ import ChatApp from "component/TextChat";
 import VoiceChat from "component/VoiceChat/VoiceChat";
 import { useParams } from "react-router-dom";
 import MonacoEditor from "component/Editor/MonacoEditor";
-import "@convergencelabs/monaco-collab-ext/css/monaco-collab-ext.min.css.map";
+import "@convergencelabs/monaco-collab-ext/css/monaco-collab-ext.min.css";
 import clsx from "clsx";
 import { GuestNameContext } from "service/GuestNameContext";
 import { UserContext } from "service/UserContext";
@@ -94,6 +94,8 @@ const Dashboard = () => {
 
   useEffect(() => {
     socket.on("set-code", (partnerCode: string) => {
+      console.log("partner-code");
+      console.log(partnerCode);
       setDefaultCode(partnerCode);
     });
   }, [socket, code]);

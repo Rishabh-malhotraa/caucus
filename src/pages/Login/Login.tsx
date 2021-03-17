@@ -34,7 +34,10 @@ const Login = () => {
         <div className={classes["login-box"]}>
           <div className={classes["login-box-formbox"]}>
             <div className={classes["login-box-signup"]}>
-              Want to know how I made this? <a href="">Read the Blog</a>
+              Want to know how I made this?{" "}
+              <a href="" onClick={(e) => e.preventDefault()}>
+                Read the Blog
+              </a>
             </div>
             <div className={classes["login-box-login"]}>
               <h1>Welcome to Caucus</h1>
@@ -49,6 +52,7 @@ const Login = () => {
                     name="username"
                     autoComplete="off"
                     value={guestName}
+                    disabled
                     onChange={(e) => handleGuestNameChange(e)}
                     placeholder="Enter your Name"
                     className={classes["input-email"]}

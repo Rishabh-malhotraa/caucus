@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { FormControl, InputLabel, MenuItem, Select, withStyles } from "@material-ui/core";
 import { SettingContext } from "service/SettingsContext";
 import { SettingsContextType } from "types";
+import { socket } from "service/socket";
+import { useParams } from "react-router-dom";
 
 const Settings = () => {
   const {
@@ -12,6 +14,8 @@ const Settings = () => {
     handleLanguageChange,
     handleThemeChange,
   } = useContext(SettingContext) as SettingsContextType;
+
+  const { id } = useParams<Record<string, string>>();
 
   const CssFormControl = withStyles({
     root: {
@@ -44,6 +48,12 @@ const Settings = () => {
     },
   })(FormControl);
 
+  useEffect(() => {
+    socket.on("emit-programming-language", (inputData: string) => {
+      handleLanguageChange(inputData, id, false);
+    });
+  }, []);
+
   return (
     <div style={{ margin: "2rem 0rem" }}>
       <CssFormControl variant="filled">
@@ -53,7 +63,7 @@ const Settings = () => {
         <Select
           labelId="langauge-select"
           value={language}
-          onChange={(e) => handleLanguageChange(e.target.value as string)}
+          onChange={(e) => handleLanguageChange(e.target.value as string, id, true)}
         >
           <MenuItem value={"cpp"}>C++</MenuItem>
           <MenuItem value={"java"}>Java</MenuItem>

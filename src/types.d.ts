@@ -36,7 +36,7 @@ export interface SettingsContextType {
   language: string;
   fontSize: number;
   theme: string;
-  handleLanguageChange: (value: string) => void;
+  handleLanguageChange: (value: string, id: string, broadcast: boolean) => void;
   handleFontSizeChange: (value: number) => void;
   handleThemeChange: (value: string) => void;
 }

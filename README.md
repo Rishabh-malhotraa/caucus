@@ -144,6 +144,9 @@ See the [open issues](https://github.com/Rishabh-malhotraa/caucus/issues) for a 
 - [x] Code Running (Easy need to just hookup with an api)
 - [x] Database with all the leetcode question and sorted based on tags. 
 - [x] IMP: Sync code using localstorage or sockets when a new person joins in the room, with defaultvalue prop on the monaco editor instance.
+- [ ] Option to remove the minimap
+- [ ] Add codeforce problem using webscraping thingy
+- [ ] Add Autoformating keybind.
 - [ ] Add Vim Keybinds
 - [ ] Add a full-screen Zen Mode
 - [ ] Make a public api to fetch questions, based on scraped data
@@ -151,7 +154,7 @@ See the [open issues](https://github.com/Rishabh-malhotraa/caucus/issues) for a 
 - [ ] Add intellisense using Language Server Protocal for atleast C++ and JAVA 
 - [ ] Fix the number of users in the room.
 - [ ] Add SSL certificate to the docker container, andd get rid of the current bootleg shenanigans D: (LetsEncrypt or Cloudflare)
-- [ ] REACH: Add video call functionality (using WEBRTC or something propieteary like Twilo proprietary
+- [ ] REACH: Add video call functionality (using WEBRTC or something propieteary like Twilo proprietary)
 - [ ] Integrate the random quote thingy on loading screen from forticodes API
 - [ ] Fix why the loader gets frozen on intial render -_-
 

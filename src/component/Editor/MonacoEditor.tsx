@@ -6,7 +6,7 @@ import MonacoConvergenceAdapter from "./MonacoAdapter";
 import { GuestNameContext } from "service/GuestNameContext";
 import { UserContext } from "service/UserContext";
 import { GuestNameContextTypes, SettingsContextType, UserContextTypes } from "types";
-import "@convergencelabs/monaco-collab-ext/css/monaco-collab-ext.css";
+import "@convergencelabs/monaco-collab-ext/css/monaco-collab-ext.min.css";
 import { SettingContext } from "service/SettingsContext";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
@@ -21,7 +21,6 @@ interface AppProps {
 const MonacoEditor: React.FC<AppProps> = ({ code, defaultCode, setCode, MonacoEditorRef }) => {
   const handleEditorDidMount = (editor: any) => {
     MonacoEditorRef.current = editor;
-    // editor.setValue(code);
   };
 
   const { id: roomID } = useParams<Record<string, string>>();
@@ -73,7 +72,6 @@ const MonacoEditor: React.FC<AppProps> = ({ code, defaultCode, setCode, MonacoEd
       <Editor
         onMount={(editor) => handleEditorDidMount(editor)}
         theme={theme}
-        // value={code}
         // defaultValue={defaultCode}
         language={language}
         onChange={(value) => setCode(value || "")}
