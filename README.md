@@ -23,7 +23,7 @@
     <h3 align="center" >caucus</h3>
   </strong>
   <p align="center">
-    A Real Time Collaborative Editor with an embeded compiler
+    A Real Time Collaborative Editor with an embedded compiler
     <br />
     <a href="https://github.com/Rishabh-malhotraa/caucus/tree/main/src"><strong>Explore the project »</strong></a>
     <br />
@@ -143,10 +143,21 @@ See the [open issues](https://github.com/Rishabh-malhotraa/caucus/issues) for a 
 - [x] Resizable Panes
 - [x] Code Running (Easy need to just hookup with an api)
 - [x] Database with all the leetcode question and sorted based on tags. 
+- [ ] Add Vim Keybinds
+- [ ] Add a full-screen Zen Mode
+- [ ] Make a public api to fetch questions, based on scraped data
+- [ ] Add ability to add different tabs on the editor instance just like that on VSCODE
+- [ ] Add intellisense using Language Server Protocal for atleast C++ and JAVA 
+- [ ] IMP: Sync code using localstorage or sockets when a new person joins in the room, with defaultvalue prop on the monaco editor instance.
+- [ ] Fix the number of users in the room.
+- [ ] Add SSL certificate to the docker container, andd get rid of the current bootleg shenanigans D: (LetsEncrypt or Cloudflare)
+- [ ] REACH: Add video call functionality (using WEBRTC or something propieteary like Twilo proprietary
+- [ ] Integrate the random quote thingy on loading screen from forticodes API
+- [ ] Fix why the loader gets frozen on intial render -_-
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -174,7 +185,7 @@ Project Link: [http://caucus-app.herokuapp.com/](http://caucus-app.herokuapp.com
 
 * [Heroku](https://www.heroku.com/)
 * [Azure](https://azure.microsoft.com/en-us/)
-* [notistack](https://www.npmjs.com/package/notistack)
+* [notistack](https://www.npmjs.com/package/notistack/)
 * [axios](https://www.npmjs.com/package/axios)
 * [dog-names](https://www.npmjs.com/package/dog-names)
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)

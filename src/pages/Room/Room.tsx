@@ -23,6 +23,7 @@ const Dashboard = () => {
   const { user } = useContext(UserContext) as UserContextTypes;
   const { guestName } = useContext(GuestNameContext) as GuestNameContextTypes;
   const [code, setCode] = useState<string>("");
+  const [defaultCode, setDefaultCode] = useState<string>("");
   const MonacoEditorRef = useRef<any>();
   const TextAreaRef = createRef<HTMLDivElement>();
   const [rows, setRows] = useState(5);
@@ -93,8 +94,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     socket.on("set-code", (partnerCode: string) => {
-      console.log(partnerCode);
-      setCode(partnerCode);
+      setDefaultCode(partnerCode);
     });
   }, [socket, code]);
 
@@ -129,7 +129,12 @@ const Dashboard = () => {
               <ReflexElement flex={0.45}>
                 <ReflexContainer orientation="horizontal">
                   <ReflexElement style={{ display: "flex" }}>
-                    <MonacoEditor code={code} setCode={setCode} MonacoEditorRef={MonacoEditorRef} />
+                    <MonacoEditor
+                      code={code}
+                      defaultCode={defaultCode}
+                      setCode={setCode}
+                      MonacoEditorRef={MonacoEditorRef}
+                    />
                   </ReflexElement>
                   <ReflexSplitter
                     className={clsx(style.splitter, style["splitter-horizontal"])}

@@ -13,13 +13,15 @@ import { useParams } from "react-router-dom";
 
 interface AppProps {
   code: string;
+  defaultCode: string;
   setCode: React.Dispatch<React.SetStateAction<string>>;
   MonacoEditorRef: React.MutableRefObject<any>;
 }
 
-const MonacoEditor: React.FC<AppProps> = ({ code, setCode, MonacoEditorRef }) => {
+const MonacoEditor: React.FC<AppProps> = ({ code, defaultCode, setCode, MonacoEditorRef }) => {
   const handleEditorDidMount = (editor: any) => {
     MonacoEditorRef.current = editor;
+    // editor.setValue(code);
   };
 
   const { id: roomID } = useParams<Record<string, string>>();
@@ -59,13 +61,19 @@ const MonacoEditor: React.FC<AppProps> = ({ code, setCode, MonacoEditorRef }) =>
       });
   }, []);
 
+  useEffect(() => {
+    if (defaultCode !== code) {
+      MonacoEditorRef.current?.setValue(defaultCode);
+    }
+  }, [defaultCode]);
+
   return (
     <div style={{ flexGrow: 1, overflow: "hidden" }}>
       <Editor
         onMount={(editor) => handleEditorDidMount(editor)}
         theme={theme}
-        value={code}
-        defaultValue={code}
+        // value={code}
+        defaultValue={defaultCode}
         language={language}
         onChange={(value) => setCode(value || "")}
         options={{ wordWrap: "on", fontSize: fontSize, autoIndent: "advanced" }}
