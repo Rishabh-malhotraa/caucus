@@ -64,6 +64,8 @@ const MonacoEditor: React.FC<AppProps> = ({ code, setCode, MonacoEditorRef }) =>
       <Editor
         onMount={(editor) => handleEditorDidMount(editor)}
         theme={theme}
+        value={code}
+        defaultValue={code}
         language={language}
         onChange={(value) => setCode(value || "")}
         options={{ wordWrap: "on", fontSize: fontSize, autoIndent: "advanced" }}
