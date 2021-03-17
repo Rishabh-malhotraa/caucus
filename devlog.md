@@ -1,0 +1,2 @@
+# 17th March, 2020 (PATCH 1.01)
+- fixed the sync issue, previously if another person used to enter a room in which another person was already typing, the new user did not get all the text which was previoulsy typed by the user. Now the texts gets synced when the user enters the room HURRAY 🎉🥳

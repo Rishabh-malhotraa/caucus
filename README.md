@@ -143,12 +143,12 @@ See the [open issues](https://github.com/Rishabh-malhotraa/caucus/issues) for a 
 - [x] Resizable Panes
 - [x] Code Running (Easy need to just hookup with an api)
 - [x] Database with all the leetcode question and sorted based on tags. 
+- [x] IMP: Sync code using localstorage or sockets when a new person joins in the room, with defaultvalue prop on the monaco editor instance.
 - [ ] Add Vim Keybinds
 - [ ] Add a full-screen Zen Mode
 - [ ] Make a public api to fetch questions, based on scraped data
 - [ ] Add ability to add different tabs on the editor instance just like that on VSCODE
 - [ ] Add intellisense using Language Server Protocal for atleast C++ and JAVA 
-- [ ] IMP: Sync code using localstorage or sockets when a new person joins in the room, with defaultvalue prop on the monaco editor instance.
 - [ ] Fix the number of users in the room.
 - [ ] Add SSL certificate to the docker container, andd get rid of the current bootleg shenanigans D: (LetsEncrypt or Cloudflare)
 - [ ] REACH: Add video call functionality (using WEBRTC or something propieteary like Twilo proprietary
