@@ -1,0 +1,160 @@
+.leetcode {
+  text-align: left;
+  padding-bottom: 1rem;
+  background-color: initial;
+}
+
+.leetcode a {
+  color: grey;
+}
+.leetcode a:hover {
+  color: dimgray;
+}
+
+.leetcode img {
+  /* mix-blend-mode: multiply; */
+  margin: 1rem;
+}
+.leetcode pre {
+  white-space: pre-wrap;
+  background: #2d2d30;
+  padding: 10px 15px;
+  color: whitesmoke;
+  line-height: 1.6;
+  font-size: 13px;
+  border-radius: 3px;
+  margin-top: 0;
+  margin-bottom: 1em;
+  overflow: auto;
+  overflow: hidden;
+}
+.leetcode b,
+strong {
+  font-weight: bolder;
+}
+.leetcode #title {
+  font-size: 16px;
+  color: #212121;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.leetcode hr {
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
+.leetcode ul {
+  background-color: #2d2d30;
+}
+
+.leetcode li {
+  padding: 8px;
+}
+
+.container-item {
+  width: 100%;
+  padding: 1rem;
+}
+
+.chips {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.chips > * {
+  margin: 4px;
+  background-color: #3e3e42 !important;
+}
+
+.codeforces {
+  text-align: left;
+}
+
+.codeforces .katex-display {
+  display: inline-flex;
+  margin: 0px;
+}
+
+.codeforces .ttypography {
+  color: whitesmoke;
+  font-size: 16px;
+  word-wrap: break-word;
+  margin: 1.5em 0 0 0 !important;
+  /* background-color: #ffffff; */
+}
+
+.codeforces .problem-statement {
+  margin: 0.5em;
+  /* font-family: verdana,arial,sans-serif; */
+  line-height: 1.5em;
+  margin-bottom: 1em;
+  /* text-align: center; */
+}
+
+.codeforces .header {
+  text-align: center;
+}
+
+.codeforces pre {
+  white-space: pre-wrap;
+  background: #2d2d30;
+  padding: 10px 15px;
+  color: whitesmoke;
+  line-height: 1.6;
+  font-size: 13px;
+  border-radius: 3px;
+  margin-top: 0;
+  margin-bottom: 1em;
+  overflow: auto;
+  overflow: hidden;
+}
+
+.atcoder {
+  text-align: left;
+  line-height: 23px;
+  font-size: medium;
+}
+
+.atcoder .katex-display {
+  display: inline-flex;
+  margin: 0px;
+}
+
+.atcoder p {
+  margin: 0 0 10px;
+}
+
+.atcoder .part {
+  margin: 0px 0 35px 0;
+}
+
+.atcoder article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+.atcoder pre {
+  white-space: pre-wrap;
+  background: #2d2d30;
+  padding: 10px 15px;
+  color: whitesmoke;
+  line-height: 1.6;
+  font-size: 13px;
+  border-radius: 3px;
+  margin-top: 0;
+  margin-bottom: 1em;
+  overflow: auto;
+  overflow: hidden;
+}

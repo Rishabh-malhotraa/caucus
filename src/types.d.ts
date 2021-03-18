@@ -79,10 +79,18 @@ export interface QuestionDataSS {
   companies: string[];
   tags: string[];
 }
+export interface ScrappedDataType {
+  htmlString: string;
+  hostname: "codeforces.com" | "atcoder.jp";
+}
+
 export interface TabsContextTypes {
   tabIndex: number;
+  showScrapped: boolean;
   questionData: QuestionDataSS;
+  scrappedData: ScrappedDataType;
   filterResponseData: (data: Record<string, any>, id: string) => void;
   onTabsChange: (value: number) => void;
+  handleScrappedData: (value: ScrappedDataType, id: string, broadcast: boolean) => void;
   onQuestionDataChange: (value: QuestionDataSS) => void;
 }

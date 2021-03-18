@@ -1,3 +1,5 @@
+import { ScrappedDataType } from "types";
+
 export const tagsData = [
   {
     name: "Dynamic Programming",
@@ -409,4 +411,9 @@ export const FirstQuestion = {
     "Spotify",
     "Yahoo",
   ],
+};
+
+export const intialScrappedData = {
+  htmlString: "",
+  hostname: "codeforces.com",
 };

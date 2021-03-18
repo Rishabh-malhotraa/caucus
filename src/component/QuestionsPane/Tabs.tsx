@@ -5,20 +5,29 @@ import "./ReactTabs.css";
 import Settings from "./SettingsPage";
 import ProblemList from "./ProblemList/ProblemList";
 import { TabsContext } from "service/TabsContext";
-import { LabelType, TabsContextTypes, QuestionDataSS } from "types";
-import ProblemPage from "./ProblemPage";
+import { LabelType, TabsContextTypes, QuestionDataSS, ScrappedDataType } from "types";
+import ProblemPage from "./ProblemPage/ProblemPage";
 import { tagsData, companiesData } from "./ProblemList/data";
 import { socket } from "service/socket";
+import { useParams } from "react-router-dom";
 
 export default function TabsComponent() {
-  const { tabIndex, onTabsChange, onQuestionDataChange } = useContext(TabsContext) as TabsContextTypes;
+  const { id: roomID } = useParams<Record<string, string>>();
+  const { tabIndex, onTabsChange, onQuestionDataChange, handleScrappedData } = useContext(
+    TabsContext
+  ) as TabsContextTypes;
   const [companies, setCompanies] = useState<LabelType[]>([companiesData[0]]);
   const [tags, setTags] = useState<LabelType[]>([tagsData[0]]);
   const [difficulty, setDifficulty] = useState<LabelType[]>([]);
+  const [url, setUrl] = useState<string>("");
 
   useEffect(() => {
     socket.on("emit-selected-question", (value: QuestionDataSS) => {
       onQuestionDataChange(value);
+    });
+
+    socket.on("emit-codeforces", (value: ScrappedDataType) => {
+      handleScrappedData(value, roomID, false);
     });
   }, []);
 
@@ -37,9 +46,11 @@ export default function TabsComponent() {
           companies={companies}
           tags={tags}
           difficulty={difficulty}
+          url={url}
           setCompanies={setCompanies}
           setTags={setTags}
           setDifficulty={setDifficulty}
+          setUrl={setUrl}
         />
       </TabPanel>
       <TabPanel>
