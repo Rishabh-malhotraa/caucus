@@ -71,7 +71,7 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, MonacoEditorRe
       enqueueSnackbar(
         outputResponse.memory === null || outputResponse.memory === null
           ? "Error in code-execution"
-          : "Code ran succesfully",
+          : "Code ran successfully",
         {
           variant: outputResponse.memory === null || outputResponse.memory === null ? "error" : "success",
         }

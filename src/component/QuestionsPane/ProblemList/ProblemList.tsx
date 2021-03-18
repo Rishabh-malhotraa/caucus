@@ -86,7 +86,7 @@ const ProblemList: React.FC<AppProps> = ({
       if (hostname !== "codeforces.com" && hostname !== "atcoder.jp") {
         setErrorText({
           error: true,
-          comment: "Domain should be either codeforces or atcoder",
+          comment: "Domain should either be codeforces or atcoder",
         });
       } else {
         const { data }: AxiosResponse<{ error: boolean; htmlString: string }> = await axios({
