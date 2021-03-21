@@ -144,8 +144,11 @@ See the [open issues](https://github.com/Rishabh-malhotraa/caucus/issues) for a 
 - [x] Code Running (Easy need to just hookup with an api)
 - [x] Database with all the leetcode question and sorted based on tags. 
 - [x] IMP: Sync code using localstorage or sockets when a new person joins in the room, with defaultvalue prop on the monaco editor instance.
+- [x] Add codeforce problem using webscraping thingy
 - [ ] Option to remove the minimap
-- [ ] Add codeforce problem using webscraping thingy
+- [ ] Change Hosting from Heroku to GCP or Digital Ocean
+- [ ] Add SSL certificate to the docker container, andd get rid of the current bootleg shenanigans D: (LetsEncrypt or Cloudflare)
+- [ ] Change Heroku PSQL DB to either MongoDB or Firebase.
 - [ ] Add Autoformating keybind.
 - [ ] Add Vim Keybinds
 - [ ] Add a full-screen Zen Mode
@@ -153,7 +156,6 @@ See the [open issues](https://github.com/Rishabh-malhotraa/caucus/issues) for a 
 - [ ] Add ability to add different tabs on the editor instance just like that on VSCODE
 - [ ] Add intellisense using Language Server Protocal for atleast C++ and JAVA 
 - [ ] Fix the number of users in the room.
-- [ ] Add SSL certificate to the docker container, andd get rid of the current bootleg shenanigans D: (LetsEncrypt or Cloudflare)
 - [ ] REACH: Add video call functionality (using WEBRTC or something propieteary like Twilo proprietary)
 - [ ] Integrate the random quote thingy on loading screen from forticodes API
 - [ ] Fix why the loader gets frozen on intial render -_-

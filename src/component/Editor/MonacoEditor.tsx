@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useRef } from "react";
 import Editor from "@monaco-editor/react";
 import { Convergence } from "@convergence/convergence";
 import { CONVERGENCE_URL } from "config.keys";
@@ -61,18 +61,16 @@ const MonacoEditor: React.FC<AppProps> = ({ code, defaultCode, setCode, MonacoEd
   }, []);
 
   useEffect(() => {
-    MonacoEditorRef.current?.setValue("");
     MonacoEditorRef.current?.setValue(defaultCode);
-    if (defaultCode !== code) {
-    }
   }, [defaultCode]);
+  //@ts-ignore
 
   return (
     <div style={{ flexGrow: 1, overflow: "hidden" }}>
       <Editor
         onMount={(editor) => handleEditorDidMount(editor)}
         theme={theme}
-        // defaultValue={code}
+        defaultValue={code}
         language={language}
         onChange={(value) => setCode(value || "")}
         options={{ wordWrap: "on", fontSize: fontSize, autoIndent: "advanced" }}

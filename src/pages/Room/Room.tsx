@@ -99,7 +99,7 @@ const Dashboard = () => {
       setCode(partnerCode);
       setDefaultCode(partnerCode);
     });
-  }, [socket, code]);
+  }, [socket, code, defaultCode]);
 
   const resetEditorLayout = () => {
     const height = Math.floor(TextAreaRef!.current!.clientHeight);
