@@ -65,6 +65,7 @@ const MonacoEditor: React.FC<AppProps> = ({ code, defaultCode, setCode, MonacoEd
   }, [defaultCode]);
   //@ts-ignore
 
+  console.log(MonacoEditorRef.current?.getModel());
   return (
     <div style={{ flexGrow: 1, overflow: "hidden" }}>
       <Editor
