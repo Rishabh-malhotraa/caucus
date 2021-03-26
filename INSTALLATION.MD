@@ -51,10 +51,10 @@ npm run start
 npm run dev
 ```
 
-8. I recommend opening a workspace on github with the server and client folder openend.
+8. I recommend opening a workspace on your favorite editor with the server and client folder openend.
 
 
-If you have any difficulty in setting up the project localyly let me know by opening an [issue](https://github.com/Rishabh-malhotraa/caucus/issues) on github. 
+If you have any difficulty in setting up the project locally let me know by opening an [issue](https://github.com/Rishabh-malhotraa/caucus/issues) on github. 
 
 
 
