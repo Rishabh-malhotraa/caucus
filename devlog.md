@@ -1,3 +1,6 @@
+# 26th March, 2021 (SSL Certificate Updates)
+- Thanks to Harrison I was able to deploy the convergence-deployment file which had the nginx configuration and SSL certifcate to Digital Ocean but I still feel there are some wholes in the deployment, as I wasn't able to login to the console of convergence, nonetheless I have a https convergence-omnibus hosted on digital ocean. 
+
 # 24th March, 2021 (UPDATES)
 - Caucus reached 100+ stars on github YAY! It also has 500+ registered users 3500 visits on github repo & view and 12000+ website visits.
 - The main priority for me is to get the SSL certificate for the docker container which is soo annoying man I cannot tell you, devops is a different beast in itself D:
