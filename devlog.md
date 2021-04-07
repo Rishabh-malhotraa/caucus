@@ -1,3 +1,5 @@
+# 7th Aprril ()
+- We reaced 125 stars on Github YAY 🎉️🎉️🎉️
 # 26th March, 2021 (SSL Certificate Updates)
 - Thanks to Harrison I was able to deploy the convergence-deployment file which had the nginx configuration and SSL certifcate to Digital Ocean but I still feel there are some wholes in the deployment, as I wasn't able to login to the console of convergence, nonetheless I have a https convergence-omnibus hosted on digital ocean. 
 
