@@ -186,6 +186,12 @@ Project Link: [http://caucus-app.herokuapp.com/](http://caucus-app.herokuapp.com
 
 ---
 
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/rishabh-malhotraa/caucus.svg)](https://starchart.cc/rishabh-malhotraa/caucus)
+
+---
+
 ## Acknowledgements
 
 * [Heroku](https://www.heroku.com/)
