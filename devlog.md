@@ -1,3 +1,6 @@
+# 12th JUNE (Roadmap)
+We hit 150 ⭐ 🥳🥳🎉. Convergence is causing me alot of issues, espcially when you delete something in monaco your cursor changes line  which is really really annoying, and I am thinking of switching to yjs with a bit better cursor management support like convergence, amd moving from POSTGRESQL to SQLITE, maybe I'll do these changes tomorrow, maybe I'll do these changes in a few days, 🤞
+
 # 14th April (UPDATES)
 - Added stargazers chart in the readme, the GSOC application period over so now I look forward to improveing caucus a bit but then I feel most of my time would be dedicated for practising LeetCode Questions plus I have some test coming up this week. 
 
