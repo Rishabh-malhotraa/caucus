@@ -16,7 +16,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://caucus.netlify.app/">
+  <a href="https://caucus-app.herokuapp.com/">
     <img src="images/logo.png" alt="Logo" width="256" height="256">
   </a>
 
@@ -29,7 +29,7 @@
     <a href="https://github.com/Rishabh-malhotraa/caucus-server/tree/main/src"><strong>Explore the project »</strong></a>
     <br />
     <br />
-    <a href="https://caucus.netlify.app/">View Demo</a>
+    <a href="https://caucus-app.herokuapp.com/">View Demo</a>
     ·
     <a href="https://github.com/Rishabh-malhotraa/caucus-server/issues">Report Bug</a>
     ·
@@ -68,11 +68,11 @@
 
 ### Collaboratice Code Editor
 
-[![Product Name Screen Shot][product-screenshoti]](https://caucus.netlify.app/)
+[![Product Name Screen Shot][product-screenshoti]](https://caucus-app.herokuapp.com/)
 
-|                                    Login Page                                    |                                Navigate Rooms Page                                |
-| :------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------: |
-| [![Product Name Screen Shot][product-screenshotii]](https://caucus.netlify.app/) | [![Product Name Screen Shot][product-screenshotiii]](https://caucus.netlify.app/) |
+|                                       Login Page                                       |                                   Navigate Rooms Page                                   |
+| :------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------: |
+| [![Product Name Screen Shot][product-screenshotii]](https://caucus-app.herokuapp.com/) | [![Product Name Screen Shot][product-screenshotiii]](https://caucus-app.herokuapp.com/) |
 
 <br />
 
@@ -174,7 +174,7 @@ Distributed under the MIT License. See [`LICENSE`][license-url] for more informa
 
 Rishabh malhotraa - [@CaffeinatedRish](https://twitter.com/CaffeinatedRish) - rmalhotra_be18@thapar.edu
 
-Project Link: [https://caucus.netlify.app/](https://caucus.netlify.app/)
+Project Link: [https://caucus-app.herokuapp.com/](https://caucus-app.herokuapp.com/)
 
 ---
 

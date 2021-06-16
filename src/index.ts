@@ -19,14 +19,16 @@ const httpServer = new http.Server(app);
 
 app.use(
   cors({
-    origin: CLIENT_URL,
+    origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type",
     credentials: true, // allow session cookies from browser to pass throught
   })
 );
-app.use(cookieParser()); // parse cookies
 
 app.set("trust proxy", 1);
+app.use(express.json());
+app.use(cookieParser()); // parse cookies
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
