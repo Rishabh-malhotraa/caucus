@@ -80,7 +80,7 @@
 
 - [React](https://reactjs.org/docs/getting-started.html)
 - [Material UI](https://material-ui.com/getting-started/installation/)
-- [ConvergenceLabs](https://convergencelabs.com/)
+- [yjs](https://yjs.dev/)
 
 Written in TypeScript ♥
 
@@ -118,20 +118,6 @@ This is an example of how to list things you need to use the software and how to
    npm run start
    ```
 
-4. Add Enviroment Variables
-
-   ```
-   REACT_APP_CLIENT_URL = https://localhost:3000
-   REACT_APP_SERVER_URL = https://localhost:5000
-   REACT_APP_CONVERGENCE_URL = https://localhost:8080
-   ```
-
-5. Download Docker Desktop and then download convergence omnibus from docker hub and then start the server
-
-   ```sh
-   docker pull convergencelabs/convergence-omnibus
-   ```
-
 ## Roadmap
 
 See the [open issues](https://github.com/Rishabh-malhotraa/caucus/issues) for a list of proposed features (and known issues).
@@ -147,21 +133,20 @@ See the [open issues](https://github.com/Rishabh-malhotraa/caucus/issues) for a 
 - [x] Code Running (Easy need to just hookup with an api)
 - [x] Database with all the leetcode question and sorted based on tags.
 - [x] IMP: Sync code using localstorage or sockets when a new person joins in the room, with defaultvalue prop on the monaco editor instance.
+- [x] Add SSL certificate to the docker container, andd get rid of the current bootleg shenanigans D: (LetsEncrypt or Cloudflare)
 - [x] Add codeforce problem using webscraping thingy
-- [ ] Option to remove the minimap
-- [ ] Change Hosting from Heroku to GCP or Digital Ocean
-- [ ] Add SSL certificate to the docker container, andd get rid of the current bootleg shenanigans D: (LetsEncrypt or Cloudflare)
-- [ ] Change Heroku PSQL DB to either MongoDB or Firebase.
-- [ ] Add Autoformating keybind.
-- [ ] Add Vim Keybinds
+- [x] Add Vim Keybinds
+- [x] Add intellisense using Language Server Protocal for atleast C++ and JAVA
+- [x] Make a public api to fetch questions, based on scraped data
 - [ ] Add a full-screen Zen Mode
-- [ ] Make a public api to fetch questions, based on scraped data
-- [ ] Add ability to add different tabs on the editor instance just like that on VSCODE
-- [ ] Add intellisense using Language Server Protocal for atleast C++ and JAVA
-- [ ] Fix the number of users in the room.
-- [ ] REACH: Add video call functionality (using WEBRTC or something propieteary like Twilo proprietary)
-- [ ] Integrate the random quote thingy on loading screen from forticodes API
-- [ ] Fix why the loader gets frozen on intial render -\_-
+- [ ] Change Hosting from Heroku to GCP or Digital Ocean
+- [ ] Change Heroku PSQL DB to either ~~MongoDB or Firebase~~ SQLITE.
+- [ ] Add Autoformating keybind.
+- [ ] ~~Fix the number of users in the room.~~
+- [ ] ~~REACH: Add video call functionality (using WEBRTC or something propieteary like Twilo proprietary)~~
+- [ ] ~~Add ability to add different tabs on the editor instance just like that on VSCODE~~
+- [ ] ~~Integrate the random quote thingy on loading screen from forticodes API~~
+- [ ] ~~Fix why the loader gets frozen on intial render -\_-~~
 
 ## Contributing
 

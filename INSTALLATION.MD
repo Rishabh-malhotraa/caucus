@@ -1,18 +1,18 @@
-# Steps for setting up the project locally
+# Steps for setting up the project locally(DEPRECIATED, this was for convergence now caucus uses yjs)
 
 1. Clone the caucus Repository
 
-``` sh
+```sh
 git clone https://github.com/Rishabh-malhotraa/caucus.git
 ```
 
-2. Install Docker Desktop Client 
+2. Install Docker Desktop Client
 
 https://www.docker.com/products/docker-desktop
 
 Download Convergence Omnibus from Docker Hub
 
-``` sh
+```sh
 docker pull convergencelabs/convergence-omnibus
 ```
 
@@ -20,19 +20,18 @@ docker pull convergencelabs/convergence-omnibus
 
 and then start the docker image using the docker client
 
-the convergence server should be running on localhost:8080 by default but you can also change it. Read the [documentation.](https://hub.docker.com/r/convergencelabs/convergence-omnibus) 
-
+the convergence server should be running on localhost:8080 by default but you can also change it. Read the [documentation.](https://hub.docker.com/r/convergencelabs/convergence-omnibus)
 
 3. Create a new file .env and copy contents of .env.example file to the .env file
 
-``` sh
+```sh
 touch .env
 ```
 
 4. Clone the caucus-server from github
 
-``` sh
-git clone https://github.com/Rishabh-malhotraa/caucus-server.git 
+```sh
+git clone https://github.com/Rishabh-malhotraa/caucus-server.git
 ```
 
 5. Create the .env file as mentioned in the readme file
@@ -53,9 +52,6 @@ npm run dev
 
 8. I recommend opening a workspace on your favorite editor with the server and client folder openend.
 
-
-If you have any difficulty in setting up the project locally let me know by opening an [issue](https://github.com/Rishabh-malhotraa/caucus/issues) on github. 
-
-
+If you have any difficulty in setting up the project locally let me know by opening an [issue](https://github.com/Rishabh-malhotraa/caucus/issues) on github.
 
 [docker-setup]: images/docker-setup.png
