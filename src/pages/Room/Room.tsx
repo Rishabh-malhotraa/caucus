@@ -9,7 +9,7 @@ import { useSnackbar } from "notistack";
 import ChatApp from "component/TextChat";
 import VoiceChat from "component/VoiceChat/VoiceChat";
 import { useParams } from "react-router-dom";
-import MonacoEditor from "component/Editor/MonacoEditor";
+import CodeMirror from "component/Editor/CodeMirrorEditor";
 import "@convergencelabs/monaco-collab-ext/css/monaco-collab-ext.min.css";
 import clsx from "clsx";
 import { GuestNameContext } from "service/GuestNameContext";
@@ -22,14 +22,13 @@ const Dashboard = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const { user } = useContext(UserContext) as UserContextTypes;
   const { guestName } = useContext(GuestNameContext) as GuestNameContextTypes;
-  const [code, setCode] = useState<string>("");
-  const [defaultCode, setDefaultCode] = useState<string>("");
-  const MonacoEditorRef = useRef<any>();
+  const CodeMirrorRef = useRef<any>();
   const TextAreaRef = createRef<HTMLDivElement>();
   const [rows, setRows] = useState(5);
   const [sid, setSid] = useState("");
   const [goBack, setGoBack] = useState(false);
   const [partnerUser, setPartnerUser] = useState<UserInfoSS>();
+  const [editorInstance, setEditorInstance] = useState<any>(null);
   const { id } = useParams<Record<string, string>>();
 
   const prepareData = (): UserInfoSS => {
@@ -79,8 +78,6 @@ const Dashboard = () => {
     socket.on("new-user-joined", (data: UserInfoSS) => {
       setPartnerUser(data);
       displayNotification(data, true);
-      const userCode = MonacoEditorRef.current?.getValue();
-      socket.emit("send-code-to-new-user", id, userCode);
     });
 
     socket.on("room-full", () => {
@@ -92,29 +89,17 @@ const Dashboard = () => {
     });
   }, []);
 
-  useEffect(() => {
-    socket.on("set-code", (partnerCode: string) => {
-      console.log("partner-code");
-      console.log(partnerCode);
-      setCode(partnerCode);
-      setDefaultCode(partnerCode);
-    });
-  }, [socket, code, defaultCode]);
-
   const resetEditorLayout = () => {
     const height = Math.floor(TextAreaRef!.current!.clientHeight);
     const adjustedRows = height > 340 ? height / 27 : height / 39;
     setRows(Math.floor(adjustedRows));
-    MonacoEditorRef.current.layout();
+    editorInstance.refresh();
   };
 
   return (
     <>
       <div className={style.root}>
         <ReflexContainer orientation="horizontal">
-          {/* <ReflexElement className={style.header} flex={0.08}>
-            Caucus
-          </ReflexElement> */}
           <ReflexElement style={{ paddingTop: "1rem" }}>
             <ReflexContainer orientation="vertical">
               <ReflexElement>
@@ -132,12 +117,7 @@ const Dashboard = () => {
               <ReflexElement flex={0.45}>
                 <ReflexContainer orientation="horizontal">
                   <ReflexElement style={{ display: "flex" }}>
-                    <MonacoEditor
-                      code={code}
-                      defaultCode={defaultCode}
-                      setCode={setCode}
-                      MonacoEditorRef={MonacoEditorRef}
-                    />
+                    <CodeMirror editorInstance={editorInstance} setEditorInstance={setEditorInstance} />
                   </ReflexElement>
                   <ReflexSplitter
                     className={clsx(style.splitter, style["splitter-horizontal"])}
@@ -147,7 +127,7 @@ const Dashboard = () => {
                     <InputOutputFile
                       rows={rows}
                       TextAreaRef={TextAreaRef}
-                      MonacoEditorRef={MonacoEditorRef}
+                      editorInstance={setEditorInstance}
                     />
                   </ReflexElement>
                 </ReflexContainer>
@@ -160,7 +140,7 @@ const Dashboard = () => {
               <ReflexElement>
                 <ReflexContainer orientation="horizontal">
                   {/* 0.12 */}
-                  <ReflexElement className={style["pane-color"]} flex={0.12}>
+                  <ReflexElement className={style["pane-color"]} flex={0.18}>
                     <VoiceChat params={id} user={prepareData()} partnerUser={partnerUser} />
                   </ReflexElement>
                   <ReflexSplitter className={clsx(style.splitter, style["splitter-horizontal"])} />

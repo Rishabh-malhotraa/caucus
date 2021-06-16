@@ -19,7 +19,7 @@ export default function TabsComponent() {
   const [companies, setCompanies] = useState<LabelType[]>([companiesData[0]]);
   const [tags, setTags] = useState<LabelType[]>([tagsData[0]]);
   const [difficulty, setDifficulty] = useState<LabelType[]>([]);
-  const [url, setUrl] = useState<string>("");
+  const [url, setUrl] = useState<string>("https://codeforces.com/problemset/problem/1217/B");
 
   useEffect(() => {
     socket.on("emit-selected-question", (value: QuestionDataSS) => {

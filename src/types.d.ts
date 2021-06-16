@@ -36,9 +36,11 @@ export interface SettingsContextType {
   language: string;
   fontSize: number;
   theme: string;
+  keybinds: string;
   handleLanguageChange: (value: string, id: string, broadcast: boolean) => void;
-  handleFontSizeChange: (value: number) => void;
   handleThemeChange: (value: string) => void;
+  handleKeybindsChange: (value: string) => void;
+  handleFontSizeChange: (value: number) => void;
 }
 
 export interface UserContextTypes {

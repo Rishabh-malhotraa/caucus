@@ -8,13 +8,6 @@ function Proxy(app: any) {
       changeOrigin: true,
     })
   );
-  app.use(
-    "/",
-    createProxyMiddleware({
-      target: process.env.REACT_APP_CONVERGENCE_URL,
-      changeOrigin: true,
-    })
-  );
 }
 
 export default Proxy;
