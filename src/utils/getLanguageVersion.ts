@@ -10,5 +10,5 @@ export const getLanguage: Record<string, string> = {
   java: "java",
   python: "python3",
   go: "go",
-  jvascript: "nodejs",
+  javascript: "nodejs",
 };

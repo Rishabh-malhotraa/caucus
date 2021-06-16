@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
   session({
-    secret: "secret",
+    secret: COOKIE_KEYS,
     name: "caucus-session",
     resave: false,
     saveUninitialized: false,
@@ -51,9 +51,16 @@ app.use(passport.session()); // deserialize cookie from the browser
 
 app.use("/auth", authRoutes);
 app.use("/api", apiRoutes);
-socketioService(httpServer, app);
+socketioService(httpServer);
 
-app.use("/", (req, res) => res.send("<h1>Server is Running :)))</h1>"));
+app.use("/", (req, res) =>
+  res.send(`
+  <h1>Server is Running :)))</h1>
+  <div>The website is now hosted on netlify
+    <a href="https://caucus.netlify.app/">https://caucus.netlify.app/</a>
+  </div>
+`)
+);
 
 httpServer.listen(port, () => console.log(chalk.blueBright(`Express Server listening to port ${port}`)));
 

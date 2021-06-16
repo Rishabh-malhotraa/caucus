@@ -3,23 +3,14 @@ import { Server, Socket } from "socket.io";
 import { ServerType } from "../index";
 import { MessageProps, UserInfo } from "../types";
 import chalk from "chalk";
-import { Express } from "express";
-import { ExpressPeerServer } from "peer";
 
-const chatService = (httpServer: ServerType, app: Express): void => {
+const chatService = (httpServer: ServerType): void => {
   const io = new Server(httpServer, {
     cors: {
       origin: CLIENT_URL,
       methods: ["GET", "POST"],
     },
   });
-
-  const peerServer = ExpressPeerServer(httpServer, {
-    path: "/voice-chat",
-  });
-
-  app.use("/", peerServer);
-  // Open the browser and check http://127.0.0.1:5000/voice-chat
 
   const socketToRoom: Record<string, string> = {};
   const userInfoMap: Record<string, UserInfo> = {};
@@ -35,7 +26,7 @@ const chatService = (httpServer: ServerType, app: Express): void => {
       userInfoMap[socket.id] = userInfo;
       const usersInRoom = io.sockets.adapter.rooms.get(roomID)?.size;
       // adding people to rooms
-      if (!usersInRoom || usersInRoom < 2) {
+      if (!usersInRoom || usersInRoom < 4) {
         socket.join(roomID);
         // here also add the peerJS ID
         socket.broadcast.to(roomID).emit("new-user-joined", userInfoMap[socket.id]);
@@ -56,9 +47,19 @@ const chatService = (httpServer: ServerType, app: Express): void => {
       socket.broadcast.to(roomID).emit("emit-input-data", props.data);
     });
 
+    socket.on("programming-language", (props) => {
+      const roomID = props.roomID;
+      socket.broadcast.to(roomID).emit("emit-programming-language", props.data);
+    });
+
     socket.on("selected-question", (props) => {
       const roomID = props.roomID;
       socket.broadcast.to(roomID).emit("emit-selected-question", props.data);
+    });
+
+    socket.on("codeforces", (props) => {
+      const roomID = props.roomID;
+      socket.broadcast.to(roomID).emit("emit-codeforces", props.data);
     });
 
     socket.on("code-executed", (props) => {

@@ -16,7 +16,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="http://caucus-app.herokuapp.com/">
+  <a href="https://caucus.netlify.app/">
     <img src="images/logo.png" alt="Logo" width="256" height="256">
   </a>
 
@@ -29,7 +29,7 @@
     <a href="https://github.com/Rishabh-malhotraa/caucus-server/tree/main/src"><strong>Explore the project »</strong></a>
     <br />
     <br />
-    <a href="http://caucus-app.herokuapp.com/">View Demo</a>
+    <a href="https://caucus.netlify.app/">View Demo</a>
     ·
     <a href="https://github.com/Rishabh-malhotraa/caucus-server/issues">Report Bug</a>
     ·
@@ -68,11 +68,11 @@
 
 ### Collaboratice Code Editor
 
-[![Product Name Screen Shot][product-screenshoti]](http://caucus-app.herokuapp.com/)
+[![Product Name Screen Shot][product-screenshoti]](https://caucus.netlify.app/)
 
-|                                      Login Page                                       |                                  Navigate Rooms Page                                   |
-| :-----------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
-| [![Product Name Screen Shot][product-screenshotii]](http://caucus-app.herokuapp.com/) | [![Product Name Screen Shot][product-screenshotiii]](http://caucus-app.herokuapp.com/) |
+|                                    Login Page                                    |                                Navigate Rooms Page                                |
+| :------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------: |
+| [![Product Name Screen Shot][product-screenshotii]](https://caucus.netlify.app/) | [![Product Name Screen Shot][product-screenshotiii]](https://caucus.netlify.app/) |
 
 <br />
 
@@ -80,7 +80,7 @@
 
 - [React](https://reactjs.org/docs/getting-started.html)
 - [Material UI](https://material-ui.com/getting-started/installation/)
-- [ConvergenceLabs](https://convergencelabs.com/)
+- [yjs](https://yjs.dev/)
 
 Written in TypeScript ♥
 
@@ -137,12 +137,6 @@ This is an example of how to list things you need to use the software and how to
     SERVER_URL = http://localhost:5000
    ```
 
-5. Download Docker Desktop and then download convergence omnibus from docker hub and then start the server
-
-   ```sh
-   docker pull convergencelabs/convergence-omnibus
-   ```
-
 ## Roadmap
 
 See the [open issues](https://github.com/Rishabh-malhotraa/caucus-server/issues) for a list of proposed features (and known issues).
@@ -180,7 +174,7 @@ Distributed under the MIT License. See [`LICENSE`][license-url] for more informa
 
 Rishabh malhotraa - [@CaffeinatedRish](https://twitter.com/CaffeinatedRish) - rmalhotra_be18@thapar.edu
 
-Project Link: [http://caucus-app.herokuapp.com/](http://caucus-app.herokuapp.com/)
+Project Link: [https://caucus.netlify.app/](https://caucus.netlify.app/)
 
 ---
 
