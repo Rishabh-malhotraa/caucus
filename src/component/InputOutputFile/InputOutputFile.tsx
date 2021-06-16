@@ -15,7 +15,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 interface AppProps {
   TextAreaRef: React.RefObject<HTMLDivElement>;
-  MonacoEditorRef: React.MutableRefObject<any>;
+  editorInstance: any;
   rows: number;
 }
 
@@ -49,7 +49,7 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, MonacoEditorRef }) => {
+const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, editorInstance }) => {
   const { id } = useParams<Record<string, string>>();
   const [value, setValue] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -88,7 +88,7 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, MonacoEditorRe
       method: "POST",
       url: `${SERVER_URL}/api/execute`,
       data: {
-        script: MonacoEditorRef.current?.getValue(),
+        script: editorInstance.getValue(),
         language: language,
         stdin: inputText,
       },

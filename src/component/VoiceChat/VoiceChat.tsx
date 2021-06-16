@@ -30,7 +30,9 @@ const RenderIcons = ({ user }: { user?: UserInfoSS }) => {
           alt={user.name}
           src={user.image_link}
           style={{ width: "64px", height: "64px", margin: ".6rem 1rem" }}
-        ></Avatar>
+        >
+          {user.name.charAt(0)}
+        </Avatar>
       </LightTooltip>
     </>
   );

@@ -10,7 +10,7 @@ import { SERVER_URL } from "config.keys";
 import Particles from "pages/Login/Particles.config";
 import Loader from "pages/LoadingAnimation/StartupAnimation";
 import { Redirect } from "react-router-dom";
-import { PUBLIC_ROOM as pr, CLIENT_URL as url } from "config.keys";
+import { PUBLIC_ROOM as pr, IS_DISABLED } from "config.keys";
 
 const Login = () => {
   const { guestName, handleGuestNameChange, isGuestNameClick, guestLoginClick } = useContext(
@@ -21,12 +21,7 @@ const Login = () => {
     event.preventDefault();
     window.open(`${SERVER_URL}/auth/${provider}`, "_self");
   };
-
-  const CLIENT_URL = url.replace(/^https:\/\//i, "http://");
   const PUBLIC_ROOM = pr[Math.floor(Math.random() * pr.length)];
-
-  if (guestLoginClick) window.location.href = `${CLIENT_URL}/room/${PUBLIC_ROOM}`;
-
   return (
     <>
       <div className={classes["root"]}>
@@ -52,7 +47,6 @@ const Login = () => {
                     name="username"
                     autoComplete="off"
                     value={guestName}
-                    disabled
                     onChange={(e) => handleGuestNameChange(e)}
                     placeholder="Enter your Name"
                     className={classes["input-email"]}
@@ -67,6 +61,7 @@ const Login = () => {
               <div className={classes["alternate-text"]}>Or Log in with</div>
               <div className={classes["alternate-boxes"]}>
                 <Button
+                  disabled={IS_DISABLED}
                   onClick={(event) => handleLogin(event, "/google")}
                   variant="outlined"
                   color="inherit"
@@ -75,6 +70,7 @@ const Login = () => {
                   <img src={GoogleSVG} alt="googleLogo" />
                 </Button>
                 <Button
+                  disabled={IS_DISABLED}
                   onClick={(event) => handleLogin(event, "/github")}
                   variant="outlined"
                   color="inherit"
@@ -83,6 +79,7 @@ const Login = () => {
                   <img width="28px" height="28px" src={GithubPNG} alt="githubLogo" />
                 </Button>
                 <Button
+                  disabled={IS_DISABLED}
                   onClick={(event) => handleLogin(event, "/twitter")}
                   variant="outlined"
                   color="inherit"
@@ -103,7 +100,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      {/* {guestLoginClick ? <Redirect to="/room/public-room"></Redirect> : <></>} */}
+      {guestLoginClick ? <Redirect to="/room/public-room"></Redirect> : <></>}
     </>
   );
 };

@@ -7,8 +7,6 @@ import { Divider, Grid } from "@material-ui/core";
 import { ScrappedDataType } from "types";
 import renderMathInElement from "katex/dist/contrib/auto-render";
 import "katex/dist/katex.min.css";
-//@ts-ignore
-import { InlineMath, BlockMath } from "react-katex";
 
 const LeetCode = ({ scrappedData }: { scrappedData: ScrappedDataType }) => {
   const { hostname, htmlString } = scrappedData;

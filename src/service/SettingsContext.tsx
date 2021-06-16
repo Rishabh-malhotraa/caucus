@@ -4,9 +4,10 @@ import { socket } from "service/socket";
 export const SettingContext = React.createContext<SettingsContextType | null>(null);
 
 const SettingsProvider: React.FC<React.ReactNode> = ({ children }) => {
-  const [language, setLanguage] = React.useState<string>("cpp");
-  const [fontSize, setFontSize] = React.useState<number>(16);
-  const [theme, setTheme] = React.useState<string>("vs-dark");
+  const [language, setLanguage] = React.useState<string>("text/x-csrc");
+  const [fontSize, setFontSize] = React.useState<number>(20);
+  const [theme, setTheme] = React.useState<string>("material-darker");
+  const [keybinds, setKeybinds] = React.useState<string>("sublime");
 
   const handleLanguageChange = (value: string, id: string, broadcast: boolean) => {
     setLanguage(value);
@@ -21,9 +22,22 @@ const SettingsProvider: React.FC<React.ReactNode> = ({ children }) => {
     setFontSize(value);
   };
 
+  const handleKeybindsChange = (value: string) => {
+    setKeybinds(value);
+  };
+
   return (
     <SettingContext.Provider
-      value={{ language, fontSize, handleLanguageChange, handleFontSizeChange, theme, handleThemeChange }}
+      value={{
+        language,
+        fontSize,
+        theme,
+        keybinds,
+        handleLanguageChange,
+        handleFontSizeChange,
+        handleThemeChange,
+        handleKeybindsChange,
+      }}
     >
       {children}
     </SettingContext.Provider>

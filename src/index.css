@@ -34,3 +34,35 @@ html {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+.react-codemirror2 {
+  height: 100%;
+  width: 100%;
+}
+
+.CodeMirror-lines {
+  margin: 12px;
+}
+
+.remote-caret {
+  position: absolute;
+  border-left: rgb(250, 129, 0);
+  border-left-style: solid;
+  border-left-width: 3px;
+  height: 1.05em;
+}
+.remote-caret > div {
+  position: relative;
+  top: -1.05em;
+  left: -0.15em;
+  font-size: inherit;
+  background-color: rgb(250, 129, 0);
+  font-family: serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  user-select: none;
+  color: white;
+  padding-left: 2px;
+  padding-right: 2px;
+  z-index: 3;
+}
