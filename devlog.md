@@ -1,3 +1,11 @@
+# 16th June (Major Changes Coming)
+- I have decided to move from convergence to yjs which is better maintained
+- Changing editor from monaco to code-mirror
+   - Vim support
+   - Better Supported by YJS (better adapter with better awareness)
+   - Autocompletion support with LSP
+   - More themes  
+
 # 12th JUNE (Roadmap)
 We hit 150 ⭐ 🥳🥳🎉. Convergence is causing me alot of issues, espcially when you delete something in monaco your cursor changes line  which is really really annoying, and I am thinking of switching to yjs with a bit better cursor management support like convergence, amd moving from POSTGRESQL to SQLITE, maybe I'll do these changes tomorrow, maybe I'll do these changes in a few days, 🤞
 
