@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       margin: "1rem",
-      // width: "40%",
       flexGrow: 1,
       fontSize: 13,
     },
@@ -60,7 +59,6 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: 5,
       fontSize: 13,
       color: "#d8d5d0",
-      // 3e3e42
       backgroundColor: "#272a2b",
     },
     header: {

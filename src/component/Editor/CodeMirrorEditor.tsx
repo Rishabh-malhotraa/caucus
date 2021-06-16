@@ -42,9 +42,8 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
       const ydoc: Y.Doc = new Y.Doc();
       const yText = ydoc.getText("codemirror");
       const yUndoManager = new Y.UndoManager(yText);
-      // const provider = new WebrtcProvider("monaco-room", ydoc);
-
       // const provider = new WebsocketProvider(CDRT_SERVER, roomID, ydoc);
+
       let provider;
       try {
         //@ts-ignore
@@ -54,7 +53,6 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
       } catch (err) {}
 
       const awareness = provider?.awareness;
-      console.log(provider);
       const val = getRandomColor("DEFAULT");
       awareness?.setLocalStateField("user", {
         // Define a print name that should be displayed
@@ -69,7 +67,6 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
     }
   }, [editorInstance]);
 
-  // console.log(MonacoEditorRef.current?.getModel());
   return (
     <div style={{ textAlign: "left", width: "100%", fontSize: `${fontSize}px` }}>
       <CodeMirror

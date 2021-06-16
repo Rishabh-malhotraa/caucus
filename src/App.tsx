@@ -1,8 +1,5 @@
 import React, { useContext, useEffect, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-// import LoginPage from "./pages/Login/Login";
-// import Dashboard from "pages/Room/Room";
-// import NavigateRoom from "pages/NavigateRooms/NavigateRooms";
 import ProtectedRoute from "service/ProtectedRoute";
 import LoginRoute from "service/LoginRoute";
 import GuestNameProvider from "./service/GuestNameContext";

@@ -80,7 +80,7 @@ const Login = () => {
                 </Button>
                 <Button
                   disabled={IS_DISABLED}
-                  onClick={(event) => handleLogin(event, "/twitter")}
+                  onClick={(event) => event.preventDefault()}
                   variant="outlined"
                   color="inherit"
                   className={classes["alternate-box"]}

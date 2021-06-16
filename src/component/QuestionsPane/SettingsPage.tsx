@@ -21,8 +21,6 @@ const Settings = () => {
 
   const CssFormControl = withStyles({
     root: {
-      // backgroundColor: "#3e3e42",
-
       width: "70%",
       margin: "1rem",
       "& svg": {
@@ -52,7 +50,6 @@ const Settings = () => {
 
   useEffect(() => {
     socket.on("emit-programming-language", (inputData: string) => {
-      console.log("inputData", inputData);
       handleLanguageChange(inputData, id, false);
     });
   }, []);
@@ -68,14 +65,14 @@ const Settings = () => {
           value={language}
           onChange={(e) => handleLanguageChange(e.target.value as string, id, true)}
         >
-          <MenuItem value={"text/x-csrc"}>C++</MenuItem>
+          <MenuItem value={"text/x-c++src"}>C++</MenuItem>
           <MenuItem value={"text/x-java"}>Java</MenuItem>
           <MenuItem value={"text/x-python"}>Python</MenuItem>
           <MenuItem value={"text/javascript"}>JavaScript</MenuItem>
-          <MenuItem value={"text/x-go"}>GoLang</MenuItem>
           <MenuItem value={"text/x-rustsrc"}>Rust</MenuItem>
-          <MenuItem value={"text/x-ruby"}>Ruby</MenuItem>
+          <MenuItem value={"text/x-go"}>GoLang</MenuItem>
           <MenuItem value={"text/x-php"}>PHP</MenuItem>
+          <MenuItem value={"text/x-ruby"}>Ruby</MenuItem>
           <MenuItem value={"text/x-haskell"}>Haskell</MenuItem>
         </Select>
       </CssFormControl>
@@ -97,10 +94,10 @@ const Settings = () => {
       <CssFormControl variant="filled">
         <InputLabel style={{ color: "white" }}>Theme</InputLabel>
         <Select value={theme} onChange={(e) => handleThemeChange(e.target.value as string)}>
+          <MenuItem value={"monokai"}>Monokai</MenuItem>
           <MenuItem value={"material-darker"}>Dark Theme</MenuItem>
           <MenuItem value={"default"}>Light Theme</MenuItem>
           <MenuItem value={"neat"}>Light Theme Alternate</MenuItem>
-          <MenuItem value={"monokai"}>Monokai</MenuItem>
           <MenuItem value={"eclipse"}>Eclipse (Light)</MenuItem>
           <MenuItem value={"dracula"}>Dracula</MenuItem>
           <MenuItem value={"3024-night"}>Brogrammer</MenuItem>

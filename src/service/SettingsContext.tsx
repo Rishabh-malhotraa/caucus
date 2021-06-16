@@ -4,9 +4,9 @@ import { socket } from "service/socket";
 export const SettingContext = React.createContext<SettingsContextType | null>(null);
 
 const SettingsProvider: React.FC<React.ReactNode> = ({ children }) => {
-  const [language, setLanguage] = React.useState<string>("text/x-csrc");
-  const [fontSize, setFontSize] = React.useState<number>(20);
-  const [theme, setTheme] = React.useState<string>("material-darker");
+  const [language, setLanguage] = React.useState<string>("text/x-c++src");
+  const [fontSize, setFontSize] = React.useState<number>(18);
+  const [theme, setTheme] = React.useState<string>("monokai");
   const [keybinds, setKeybinds] = React.useState<string>("sublime");
 
   const handleLanguageChange = (value: string, id: string, broadcast: boolean) => {

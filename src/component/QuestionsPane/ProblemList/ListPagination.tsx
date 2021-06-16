@@ -59,7 +59,6 @@ const PaginationComponent = ({ rows }: { rows: QuestionListResponse[] }) => {
     rows.length % rowsPerPage === 0 ? rows.length / rowsPerPage : rows.length / rowsPerPage + 1
   );
   return (
-    // <StylesProvider injectFirst>
     <>
       <Grid item className={styles["pagination-container"]}>
         <List component="nav" aria-label="contacts" className={styles["list-container"]} ref={navRef}>
@@ -94,7 +93,6 @@ const PaginationComponent = ({ rows }: { rows: QuestionListResponse[] }) => {
         />
       </Grid>
     </>
-    // </StylesProvider>
   );
 };
 

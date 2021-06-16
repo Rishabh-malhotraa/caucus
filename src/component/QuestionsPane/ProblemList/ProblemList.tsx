@@ -27,7 +27,6 @@ interface AppProps {
 
 const CssTextField = withStyles({
   root: {
-    // #115293
     height: "100%",
     width: "100%",
     "& .MuiInputBase-root": {
@@ -51,7 +50,6 @@ const CssTextField = withStyles({
       },
       "&.Mui-focused fieldset": {
         border: "2px solid #0055bb ",
-        // borderColor: "#0055bb",
       },
     },
   },

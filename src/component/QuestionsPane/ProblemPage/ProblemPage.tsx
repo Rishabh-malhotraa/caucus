@@ -10,7 +10,6 @@ import CodeForces from "./CodeForces";
 const ProblemPage = () => {
   const { questionData, showScrapped, scrappedData } = useContext(TabsContext) as TabsContextTypes;
 
-  console.log(showScrapped);
   return (
     <div style={{ margin: "1rem" }}>
       {showScrapped ? <CodeForces scrappedData={scrappedData} /> : <LeetCode questionData={questionData} />}
