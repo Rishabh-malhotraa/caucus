@@ -48,7 +48,11 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
       try {
         //@ts-ignore
         provider = new WebrtcProvider(roomID, ydoc, {
-          signaling: ["wss://y-webrtc-ckynwnzncc.now.sh", "ws://localhost:4444"],
+          signaling: [
+            "wss://signaling.yjs.dev",
+            "wss://y-webrtc-signaling-eu.herokuapp.com",
+            "wss://y-webrtc-signaling-us.herokuapp.com",
+          ],
         });
       } catch (err) {}
 
