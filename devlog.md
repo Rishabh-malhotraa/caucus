@@ -1,5 +1,11 @@
 # Devlogs
 
+## 18th June (Patch 2.0.1)
+
+- Fixed the ws url for signalling server.
+- Disabled Twitter Login, because Twitter Oauth is not working for some reason 😑
+
+
 ## 17th June (Patch 2.0)
 
 - Removed bulky monaco editor and convergence with code-mirror and YJS
