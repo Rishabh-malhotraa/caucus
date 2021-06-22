@@ -64,6 +64,10 @@
 
 ## About The Project
 
+
+### Demonstration
+[![Product Demonstation][product-demo]](https://caucus-app.herokuapp.com/)
+
 <br/>
 
 ### Collaborative Code Editor
@@ -71,7 +75,7 @@
 [![Product Name Screen Shot][product-screenshoti]](https://caucus-app.herokuapp.com/)
 
 |                                       Login Page                                       |                                   Navigate Rooms Page                                   |
-| :------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------: |
+| :------------------------------------------------------------------------------------: |    :-------------------------------------------------------------------------------------: |
 | [![Product Name Screen Shot][product-screenshotii]](https://caucus-app.herokuapp.com/) | [![Product Name Screen Shot][product-screenshotiii]](https://caucus-app.herokuapp.com/) |
 
 <br />
@@ -205,6 +209,7 @@ Project Link: [https://caucus-app.herokuapp.com/](https://caucus-app.herokuapp.c
 [license-url]: https://github.com/Rishabh-malhotraa/caucus/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/rishabh-malhotra-4536a418b
+[product-demo]: images/caucus-demonstation.gif
 [product-screenshoti]: images/code-editor.png
 [product-screenshotii]: images/login-page.png
 [product-screenshotiii]: images/navigation-page.png
