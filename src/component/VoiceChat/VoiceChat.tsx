@@ -1,6 +1,7 @@
 import React from "react";
 import { Avatar, Button, withStyles, Theme, Tooltip, Zoom } from "@material-ui/core";
 import { UserInfoSS } from "types";
+import getRandomAvatar from "service/getRandomAvatar";
 /**
  * Invoke Call Peer when the component loads and if the guest user is empty then chill just return
  */
@@ -28,7 +29,7 @@ const RenderIcons = ({ user }: { user?: UserInfoSS }) => {
       <LightTooltip TransitionComponent={Zoom} title={user?.name || "John Doe"} placement="bottom">
         <Avatar
           alt={user.name}
-          src={user.image_link}
+          src={user.image_link || getRandomAvatar()}
           style={{ width: "64px", height: "64px", margin: ".6rem 1rem" }}
         >
           {user.name.charAt(0)}

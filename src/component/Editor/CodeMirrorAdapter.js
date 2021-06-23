@@ -128,7 +128,7 @@ const createEmptyLinePlaceholder = (color) => {
   sel.setAttribute("class", "y-line-selection");
   sel.setAttribute(
     "style",
-    `display: inline-block; position: absolute; left: 4px; right: 4px; top: 0; bottom: 0; background-color: ${color}70`
+    `display: inline-block; position: absolute; left: 4px; right: 4px; top: 0; bottom: 0; background-color: ${color}50; mix-blend-mode: color-dodge;`
   );
   placeholder.insertBefore(sel, null);
   placeholder.insertBefore(emptyTxt, null);
@@ -190,7 +190,7 @@ const updateRemoteSelection = (y, cm, type, cursors, clientId, awareness) => {
         // start of selection will only be a simple text-selection
         sel.push(
           cm.markText(from, new CodeMirror.Pos(from.line + 1, 0), {
-            css: `background-color: ${user.color}70;`,
+            css: `background-color: ${user.color}50;`,
             inclusiveRight: false,
             inclusiveLeft: false,
           })
@@ -208,7 +208,7 @@ const updateRemoteSelection = (y, cm, type, cursors, clientId, awareness) => {
       }
       sel.push(
         cm.markText(from, to, {
-          css: `background-color: ${user.color}70;`,
+          css: `background-color: ${user.color}50;`,
           inclusiveRight: false,
           inclusiveLeft: false,
         })
