@@ -19,7 +19,7 @@ const httpServer = new http.Server(app);
 
 app.use(
   cors({
-    origin: "*",
+    origin: CLIENT_URL,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: "Content-Type",
     credentials: true, // allow session cookies from browser to pass throught
