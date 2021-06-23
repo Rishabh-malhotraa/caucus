@@ -21,7 +21,6 @@ import generate from "project-name-generator";
 import { useSnackbar } from "notistack";
 import { useLocation } from "react-router-dom";
 import Logo from "assets/caucus-logo.png";
-// import Logo from "assets/caucus-logo.svg";
 
 const LightTooltip = withStyles((theme: Theme) => ({
   tooltip: {
