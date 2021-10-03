@@ -1,6 +1,6 @@
 <!--
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 *** Thanks for checking out the caucus. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
@@ -228,6 +228,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://rishabh-malhotraa.github.io/Rishabh-Portfolio-main/"><img src="https://avatars.githubusercontent.com/u/54576074?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rishabh Malhotra</b></sub></a><br /><a href="#infra-Rishabh-malhotraa" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/Rishabh-malhotraa/caucus/commits?author=Rishabh-malhotraa" title="Code">💻</a> <a href="#design-Rishabh-malhotraa" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/MarufSharifi"><img src="https://avatars.githubusercontent.com/u/59383482?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Maruf</b></sub></a><br /><a href="#infra-MarufSharifi" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/Rishabh-malhotraa/caucus/commits?author=MarufSharifi" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/swikars1"><img src="https://avatars.githubusercontent.com/u/20171676?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Swikar Sharma</b></sub></a><br /><a href="https://github.com/Rishabh-malhotraa/caucus/commits?author=swikars1" title="Documentation">📖</a></td>
   </tr>
 </table>
 
