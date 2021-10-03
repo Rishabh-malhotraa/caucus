@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "MarufSharifi",
+      "name": "Maruf",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59383482?v=4",
+      "profile": "https://github.com/MarufSharifi",
+      "contributions": [
+        "infra",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "caucus",
+  "projectOwner": "Rishabh-malhotraa",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
