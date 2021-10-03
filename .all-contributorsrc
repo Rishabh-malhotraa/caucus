@@ -1,19 +1,21 @@
 {
-  "files": [
-    "README.md"
-  ],
+  "files": ["README.md"],
   "imageSize": 100,
   "commit": false,
   "contributors": [
+    {
+      "login": "Rishabh-malhotraa",
+      "name": "Rishabh Malhotra",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54576074?v=4",
+      "profile": "https://rishabh-malhotraa.github.io/Rishabh-Portfolio-main/",
+      "contributions": ["infra", "code", "design"]
+    },
     {
       "login": "MarufSharifi",
       "name": "Maruf",
       "avatar_url": "https://avatars.githubusercontent.com/u/59383482?v=4",
       "profile": "https://github.com/MarufSharifi",
-      "contributions": [
-        "infra",
-        "code"
-      ]
+      "contributions": ["infra", "code"]
     }
   ],
   "contributorsPerLine": 7,
