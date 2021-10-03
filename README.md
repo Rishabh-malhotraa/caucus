@@ -1,4 +1,7 @@
 <!--
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 *** Thanks for checking out the caucus. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
 *** or simply open an issue with the tag "enhancement".
@@ -213,3 +216,23 @@ Project Link: [https://caucus-app.herokuapp.com/](https://caucus-app.herokuapp.c
 [product-screenshoti]: images/code-editor.png
 [product-screenshotii]: images/login-page.png
 [product-screenshotiii]: images/navigation-page.png
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/MarufSharifi"><img src="https://avatars.githubusercontent.com/u/59383482?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Maruf</b></sub></a><br /><a href="#infra-MarufSharifi" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/Rishabh-malhotraa/caucus/commits?author=MarufSharifi" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
