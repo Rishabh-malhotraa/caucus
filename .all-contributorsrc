@@ -1,5 +1,7 @@
 {
-  "files": ["README.md"],
+  "files": [
+    "README.md"
+  ],
   "imageSize": 100,
   "commit": false,
   "contributors": [
@@ -8,14 +10,30 @@
       "name": "Rishabh Malhotra",
       "avatar_url": "https://avatars.githubusercontent.com/u/54576074?v=4",
       "profile": "https://rishabh-malhotraa.github.io/Rishabh-Portfolio-main/",
-      "contributions": ["infra", "code", "design"]
+      "contributions": [
+        "infra",
+        "code",
+        "design"
+      ]
     },
     {
       "login": "MarufSharifi",
       "name": "Maruf",
       "avatar_url": "https://avatars.githubusercontent.com/u/59383482?v=4",
       "profile": "https://github.com/MarufSharifi",
-      "contributions": ["infra", "code"]
+      "contributions": [
+        "infra",
+        "code"
+      ]
+    },
+    {
+      "login": "swikars1",
+      "name": "Swikar Sharma",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20171676?v=4",
+      "profile": "https://github.com/swikars1",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
