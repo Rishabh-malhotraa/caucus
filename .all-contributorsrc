@@ -55,6 +55,15 @@
         "infra",
         "review"
       ]
+    },
+    {
+      "login": "Aditya9111",
+      "name": "Aditya Arya",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52771727?v=4",
+      "profile": "https://bit.ly/adityaarya1",
+      "contributions": [
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
