@@ -1,6 +1,6 @@
 <!--
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 *** Thanks for checking out the caucus. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
@@ -233,6 +233,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/HarrisonMayotte"><img src="https://avatars.githubusercontent.com/u/48367813?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Harrison Mayotte</b></sub></a><br /><a href="#infra-HarrisonMayotte" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/Rishabh-malhotraa/caucus/pulls?q=is%3Apr+reviewed-by%3AHarrisonMayotte" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://bit.ly/adityaarya1"><img src="https://avatars.githubusercontent.com/u/52771727?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aditya Arya</b></sub></a><br /><a href="#design-Aditya9111" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/mthakur7"><img src="https://avatars.githubusercontent.com/u/89182004?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Manju Thakur</b></sub></a><br /><a href="#design-mthakur7" title="Design">🎨</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://apexweb.me"><img src="https://avatars.githubusercontent.com/u/68195580?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Apex Web</b></sub></a><br /><a href="#design-chirag3003" title="Design">🎨</a></td>
   </tr>
 </table>
 
