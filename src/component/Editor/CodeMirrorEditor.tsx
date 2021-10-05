@@ -1,13 +1,16 @@
-import React, { useEffect, useContext, useRef } from "react";
-import { CDRT_SERVER } from "config.keys";
+import React, { useEffect, useContext, useCallback } from "react";
+import { CDRT_SERVER, SERVER_URL } from "config.keys";
 import { CodeMirrorBinding } from "./CodeMirrorAdapter";
 import { GuestNameContext } from "service/GuestNameContext";
 import { UserContext } from "service/UserContext";
+import { CodeExecutionInfoContext } from "service/CodeExecutionInfo";
+import { socket } from "service/socket";
+import axios from "axios";
 import { SettingContext } from "service/SettingsContext";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import "./CodeMirrorImports.ts";
-import { GuestNameContextTypes, SettingsContextType, UserContextTypes } from "types";
+import { GuestNameContextTypes, SettingsContextType, UserContextTypes, CodeExecutionInfoType } from "types";
 import { UnControlled as CodeMirror } from "react-codemirror2";
 import * as Y from "yjs";
 // import { WebsocketProvider } from "y-websocket";
@@ -20,6 +23,10 @@ interface AppProps {
 }
 
 const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstance }) => {
+  const { setValue, setLoading, inputText, setOutputData } = useContext(
+    CodeExecutionInfoContext
+  ) as CodeExecutionInfoType;
+
   const handleEditorDidMount = (editor: any) => {
     //@ts-ignore
     window.editor = editor;
@@ -71,6 +78,27 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
     }
   }, [editorInstance]);
 
+  const submitProblem = useCallback(async () => {
+    setLoading(true);
+    setValue(1);
+    const response = await axios({
+      method: "POST",
+      url: `${SERVER_URL}/api/execute`,
+      data: {
+        script: editorInstance.getValue(),
+        language: language,
+        stdin: inputText,
+      },
+      responseType: "json",
+    });
+    socket.emit("code-executed", { data: response.data, roomID: roomID });
+    enqueueSnackbar(response.data.memory === null ? "Error in code-execution" : "Code ran succesfully", {
+      variant: response.data.memory === null ? "error" : "success",
+    });
+    setOutputData(response.data);
+    setLoading(false);
+  }, [SERVER_URL, editorInstance, language, inputText, roomID]);
+
   return (
     <div style={{ textAlign: "left", width: "100%", fontSize: `${fontSize}px` }}>
       <CodeMirror
@@ -90,6 +118,7 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
           autoCloseBrackets: true,
           extraKeys: {
             "Ctrl-Space": "autocomplete",
+            "Ctrl-'": submitProblem,
           },
         }}
         editorDidMount={(editor) => {
