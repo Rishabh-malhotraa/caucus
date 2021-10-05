@@ -64,10 +64,7 @@
   padding: 0.5rem !important;
   align-items: flex-start !important;
 }
-.list-item:hover{
-  box-shadow:0px 0px 10px 2px white; 
-  transition:0.2s;
-}
+
 .pagination-group {
   display: flex;
   flex-shrink: 1;
