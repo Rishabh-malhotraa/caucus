@@ -9,10 +9,10 @@ import { LabelType, TabsContextTypes, QuestionDataSS, ScrappedDataType } from "t
 import ProblemPage from "./ProblemPage/ProblemPage";
 import { tagsData, companiesData } from "./ProblemList/data";
 import { socket } from "service/socket";
-import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 
 export default function TabsComponent() {
-  const { id: roomID } = useParams<Record<string, string>>();
+  const { roomID } = useRoomID();
   const { tabIndex, onTabsChange, onQuestionDataChange, handleScrappedData } = useContext(
     TabsContext
   ) as TabsContextTypes;

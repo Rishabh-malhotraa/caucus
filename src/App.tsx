@@ -6,6 +6,7 @@ import GuestNameProvider from "./service/GuestNameContext";
 import SettingsProvider from "./service/SettingsContext";
 import TabsProvider from "./service/TabsContext";
 import UserContextProvider, { UserContext } from "service/UserContext";
+import RoomIDProvider from "service/RoomIdContext";
 import axios, { AxiosResponse } from "axios";
 import { OauthResponse, UserContextTypes } from "types";
 import { SERVER_URL } from "config.keys";
@@ -70,11 +71,13 @@ const contextWrappedApp = () => {
     <UserContextProvider>
       <GuestNameProvider>
         <SettingsProvider>
-          <SnackbarProvider>
-            <TabsProvider>
-              <App />
-            </TabsProvider>
-          </SnackbarProvider>
+          <RoomIDProvider>
+            <SnackbarProvider>
+              <TabsProvider>
+                <App />
+              </TabsProvider>
+            </SnackbarProvider>
+          </RoomIDProvider>
         </SettingsProvider>
       </GuestNameProvider>
     </UserContextProvider>

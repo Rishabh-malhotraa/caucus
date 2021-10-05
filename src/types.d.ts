@@ -43,6 +43,11 @@ export interface SettingsContextType {
   handleFontSizeChange: (value: number) => void;
 }
 
+export interface RoomIDContextTypes {
+  roomID: string;
+  setRoomID: (id: string) => void;
+}
+
 export interface UserContextTypes {
   user: UserInfoType | undefined;
   saveUserInfo: (data: OauthResponse, isLoggedIn: boolean) => void;

@@ -12,7 +12,7 @@ import { LabelType, QuestionListResponse, ScrappedDataType, TabsContextTypes } f
 import { tagsData, companiesData, difficultyData } from "./data";
 import { TabsContext } from "service/TabsContext";
 import Url from "url-parse";
-import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 
 interface AppProps {
   companies: LabelType[];
@@ -67,7 +67,7 @@ const ProblemList: React.FC<AppProps> = ({
 }) => {
   const [response, setResponse] = useState<QuestionListResponse[]>([]);
   const [errorText, setErrorText] = useState({ error: false, comment: "" });
-  const { id: roomID } = useParams<Record<string, string>>();
+  const { roomID } = useRoomID();
 
   useEffect(() => {
     axios
@@ -76,7 +76,6 @@ const ProblemList: React.FC<AppProps> = ({
   }, []);
 
   const { filterResponseData, handleScrappedData } = useContext(TabsContext) as TabsContextTypes;
-  const { id } = useParams<Record<string, string>>();
 
   const NextButton = () => {
     const getQuestionData = async () => {
@@ -156,7 +155,7 @@ const ProblemList: React.FC<AppProps> = ({
       url: `${SERVER_URL}/api/get-problem`,
       data: { question_id: randomID },
       responseType: "json",
-    }).then((response) => filterResponseData(response.data, id));
+    }).then((response) => filterResponseData(response.data, roomID));
   };
   return (
     <>

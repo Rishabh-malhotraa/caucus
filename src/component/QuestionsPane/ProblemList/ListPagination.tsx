@@ -8,7 +8,7 @@ import { List, ListItem } from "@material-ui/core";
 import axios from "axios";
 import { SERVER_URL } from "config.keys";
 import { TabsContext } from "service/TabsContext";
-import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 
 const getColor = (diff: string) => {
   if (diff === "easy") return "#1faa00";
@@ -36,7 +36,7 @@ const PaginationComponent = ({ rows }: { rows: QuestionListResponse[] }) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = React.useState(1);
   const navRef = createRef<HTMLElement>();
-  const { id } = useParams<Record<string, string>>();
+  const { roomID: id } = useRoomID();
 
   useEffect(() => {
     //@ts-ignore

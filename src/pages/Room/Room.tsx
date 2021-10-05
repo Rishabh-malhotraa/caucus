@@ -9,6 +9,7 @@ import { useSnackbar } from "notistack";
 import ChatApp from "component/TextChat";
 import VoiceChat from "component/VoiceChat/VoiceChat";
 import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 import CodeMirror from "component/Editor/CodeMirrorEditor";
 import clsx from "clsx";
 import { GuestNameContext } from "service/GuestNameContext";
@@ -29,6 +30,11 @@ const Dashboard = () => {
   const [partnerUser, setPartnerUser] = useState<UserInfoSS>();
   const [editorInstance, setEditorInstance] = useState<any>(null);
   const { id } = useParams<Record<string, string>>();
+  const { setRoomID } = useRoomID();
+
+  useEffect(() => {
+    setRoomID(id);
+  }, [id]);
 
   const prepareData = (): UserInfoSS => {
     return {

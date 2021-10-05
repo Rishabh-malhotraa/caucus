@@ -5,7 +5,7 @@ import { GuestNameContext } from "service/GuestNameContext";
 import { UserContext } from "service/UserContext";
 import { SettingContext } from "service/SettingsContext";
 import { useSnackbar } from "notistack";
-import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 import "./CodeMirrorImports.ts";
 import { GuestNameContextTypes, SettingsContextType, UserContextTypes } from "types";
 import { UnControlled as CodeMirror } from "react-codemirror2";
@@ -26,7 +26,7 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
     setEditorInstance(editor);
   };
 
-  const { id: roomID } = useParams<Record<string, string>>();
+  const { roomID } = useRoomID();
 
   const { enqueueSnackbar } = useSnackbar();
   const { language, fontSize, theme, keybinds } = useContext(SettingContext) as SettingsContextType;
