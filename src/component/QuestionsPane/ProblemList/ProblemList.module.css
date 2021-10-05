@@ -64,7 +64,10 @@
   padding: 0.5rem !important;
   align-items: flex-start !important;
 }
-
+.list-item:hover {
+  background: rgba(200, 200, 200, 0.1);
+  border-radius: 10px;
+}
 .pagination-group {
   display: flex;
   flex-shrink: 1;
