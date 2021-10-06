@@ -4,8 +4,6 @@ import { CodeMirrorBinding } from "./CodeMirrorAdapter";
 import { GuestNameContext } from "service/GuestNameContext";
 import { UserContext } from "service/UserContext";
 import { SettingContext } from "service/SettingsContext";
-import prettier from "prettier/standalone";
-import babylon from "prettier/parser-babel";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import "./CodeMirrorImports.ts";
@@ -13,6 +11,7 @@ import { GuestNameContextTypes, SettingsContextType, UserContextTypes } from "ty
 import { UnControlled as CodeMirror } from "react-codemirror2";
 import * as Y from "yjs";
 // import { WebsocketProvider } from "y-websocket";
+import format from "service/Format";
 import { WebrtcProvider } from "y-webrtc";
 import { getRandomColor } from "service/getRandomColor";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -76,7 +75,7 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
   const formatTheCode = () => {
     if (editorInstance !== null) {
       const value = editorInstance.getValue();
-      const formattedCode = prettier.format(value, { semi: false, parser: "babel", plugins: [babylon] });
+      const formattedCode = format(value, language);
       editorInstance.setValue(formattedCode);
     }
   };

@@ -73,6 +73,7 @@
   },
   "devDependencies": {
     "@convergencelabs/monaco-collab-ext": "^0.3.1",
+    "@prettier/plugin-php": "^0.17.5",
     "@types/jest": "^26.0.20",
     "@types/katex": "^0.11.0",
     "@types/node": "^14.14.22",
@@ -89,6 +90,7 @@
     "eslint": "^7.18.0",
     "eslint-plugin-react": "^7.22.0",
     "nodemon": "^2.0.7",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "prettier-plugin-java": "^1.4.0"
   }
 }
