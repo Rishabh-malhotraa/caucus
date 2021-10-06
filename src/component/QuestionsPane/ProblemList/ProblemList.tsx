@@ -14,6 +14,8 @@ import { TabsContext } from "service/TabsContext";
 import Url from "url-parse";
 import { useParams } from "react-router-dom";
 
+
+
 interface AppProps {
   companies: LabelType[];
   tags: LabelType[];
@@ -75,16 +77,32 @@ const ProblemList: React.FC<AppProps> = ({
       .then((res: AxiosResponse<QuestionListResponse[]>) => setResponse(res.data));
   }, []);
 
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://cses.fi/lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML";   // use the location of your MathJax
+
+    var config = 'MathJax.Hub.Config({' +
+      'extensions: ["tex2jax.js"],' +
+      'jax: ["input/TeX","output/HTML-CSS"]' +
+      '});' +
+      'MathJax.Hub.Startup.onload();';
+
+    script.text = config;
+
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+
   const { filterResponseData, handleScrappedData } = useContext(TabsContext) as TabsContextTypes;
   const { id } = useParams<Record<string, string>>();
 
   const NextButton = () => {
     const getQuestionData = async () => {
       const { hostname } = new Url(url);
-      if (hostname !== "codeforces.com" && hostname !== "atcoder.jp") {
+      if (hostname !== "codeforces.com" && hostname !== "atcoder.jp" && hostname !== "cses.fi") {
         setErrorText({
           error: true,
-          comment: "Domain should either be codeforces or atcoder",
+          comment: "Domain should either be codeforces/atcoder/CSES problem set",
         });
       } else {
         const { data }: AxiosResponse<{ error: boolean; htmlString: string }> = await axios({
@@ -162,7 +180,7 @@ const ProblemList: React.FC<AppProps> = ({
     <>
       <Grid container className={styles.root}>
         <Grid item className={styles["request-field"]}>
-          <label>Enter Codeforces Or Atcoder Question URL:</label>
+          <label>Enter Codeforces/ Atcoder/ CSES Problem Set Question URL:</label>
           <CssTextField
             onChange={(e) => {
               setUrl(e.target.value as string);

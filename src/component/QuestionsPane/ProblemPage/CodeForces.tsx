@@ -20,6 +20,8 @@ const LeetCode = ({ scrappedData }: { scrappedData: ScrappedDataType }) => {
           { left: "\\[", right: "\\]", display: true },
           { left: "%%", right: "%%", display: true },
           { left: "\\(", right: "\\)", display: false },
+          { left: "$", right: "$", display: true },
+
         ],
       });
     }
