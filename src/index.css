@@ -66,3 +66,19 @@ code {
   padding-right: 2px;
   z-index: 3;
 }
+
+/* CSS styles for editor area - fullscreen, normal-screen-size */
+.fullScreen {
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+}
+.normal {
+  position: relative !important;
+}
+.fullScreen .reflex-splitter{
+  background-color: rgb(51, 54, 56)!important;
+}

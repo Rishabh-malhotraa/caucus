@@ -72,7 +72,7 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
   }, [editorInstance]);
 
   return (
-    <div style={{ textAlign: "left", width: "100%", fontSize: `${fontSize}px` }}>
+    <div style={{ textAlign: "left", width: "100%", fontSize: `${fontSize}px`, height: "100%" }}>
       <CodeMirror
         autoScroll
         options={{

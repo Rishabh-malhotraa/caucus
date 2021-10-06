@@ -16,6 +16,7 @@ import { UserContext } from "service/UserContext";
 import { UserContextTypes, GuestNameContextTypes, UserInfoSS } from "types";
 import TabsPanel from "component/QuestionsPane/Tabs";
 import Button from "@material-ui/core/Button";
+import EditorToolbar from "component/Editor/Toolbar/Toolbar";
 
 const Dashboard = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -29,6 +30,7 @@ const Dashboard = () => {
   const [partnerUser, setPartnerUser] = useState<UserInfoSS>();
   const [editorInstance, setEditorInstance] = useState<any>(null);
   const { id } = useParams<Record<string, string>>();
+  const [screenSize, setScreenSize] = useState("normal");
 
   const prepareData = (): UserInfoSS => {
     return {
@@ -113,15 +115,13 @@ const Dashboard = () => {
                 className={clsx(style.splitter, style["splitter-verticle"])}
                 onStopResize={() => resetEditorLayout()}
               />
-              <ReflexElement flex={0.45}>
+              <ReflexElement flex={0.45} className={`${screenSize} editor-section`}>
                 <ReflexContainer orientation="horizontal">
-                  <ReflexElement style={{ display: "flex" }}>
+                  <ReflexElement style={{ display: "flex", flexDirection: "column" }}>
+                    <EditorToolbar screenSize={screenSize} setScreenSize={setScreenSize} />
                     <CodeMirror editorInstance={editorInstance} setEditorInstance={setEditorInstance} />
                   </ReflexElement>
-                  <ReflexSplitter
-                    className={clsx(style.splitter, style["splitter-horizontal"])}
-                    onStopResize={() => resetEditorLayout()}
-                  />
+                  <ReflexSplitter className={clsx(style.splitter, style["splitter-horizontal"])} />
                   <ReflexElement flex={0.3}>
                     <InputOutputFile rows={rows} TextAreaRef={TextAreaRef} editorInstance={editorInstance} />
                   </ReflexElement>

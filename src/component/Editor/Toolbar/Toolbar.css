@@ -1,0 +1,30 @@
+/* Styles - Toolbar in Editor section */
+
+.editor-section .MuiInput-underline:before{
+  border-bottom: none;
+  transition: unset;
+}
+.editor-section .MuiInput-underline:after{
+  border-bottom: none;
+  transition: unset;
+}
+.editor-section .MuiInput-underline:hover{
+  border-bottom: none;
+}
+.editor-section .MuiInput-root{
+  color: white;
+}
+.editor-section .MuiSelect-icon{
+  color: white;
+}
+.editor-section li{
+  align-self: center;
+}
+.MuiInput-underline:hover:not(.Mui-disabled):before {
+    border-bottom: none !important;
+}
+@media (hover: none){
+.MuiInput-underline:hover:not(.Mui-disabled):before {
+    border-bottom: none !important;
+}
+}
