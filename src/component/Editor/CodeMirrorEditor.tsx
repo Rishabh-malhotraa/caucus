@@ -4,6 +4,8 @@ import { CodeMirrorBinding } from "./CodeMirrorAdapter";
 import { GuestNameContext } from "service/GuestNameContext";
 import { UserContext } from "service/UserContext";
 import { SettingContext } from "service/SettingsContext";
+import prettier from "prettier/standalone";
+import babylon from "prettier/parser-babel";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import "./CodeMirrorImports.ts";
@@ -71,6 +73,14 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
     }
   }, [editorInstance]);
 
+  const formatTheCode = () => {
+    if (editorInstance !== null) {
+      const value = editorInstance.getValue();
+      const formattedCode = prettier.format(value, { semi: false, parser: "babel", plugins: [babylon] });
+      editorInstance.setValue(formattedCode);
+    }
+  };
+
   return (
     <div style={{ textAlign: "left", width: "100%", fontSize: `${fontSize}px` }}>
       <CodeMirror
@@ -90,6 +100,7 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
           autoCloseBrackets: true,
           extraKeys: {
             "Ctrl-Space": "autocomplete",
+            "Ctrl-S": formatTheCode,
           },
         }}
         editorDidMount={(editor) => {

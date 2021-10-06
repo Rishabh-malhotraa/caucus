@@ -89,6 +89,6 @@
     "eslint": "^7.18.0",
     "eslint-plugin-react": "^7.22.0",
     "nodemon": "^2.0.7",
-    "prettier": "^2.2.1"
+    "prettier": "^2.4.1"
   }
 }
