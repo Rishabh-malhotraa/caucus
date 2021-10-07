@@ -4,6 +4,7 @@ import ProtectedRoute from "service/ProtectedRoute";
 import LoginRoute from "service/LoginRoute";
 import GuestNameProvider from "./service/GuestNameContext";
 import SettingsProvider from "./service/SettingsContext";
+import CodeExecutionInfoProvider from "./service/CodeExecutionInfo";
 import TabsProvider from "./service/TabsContext";
 import UserContextProvider, { UserContext } from "service/UserContext";
 import RoomIDProvider from "service/RoomIdContext";
@@ -74,7 +75,9 @@ const contextWrappedApp = () => {
           <RoomIDProvider>
             <SnackbarProvider>
               <TabsProvider>
-                <App />
+                <CodeExecutionInfoProvider>
+                  <App />
+                </CodeExecutionInfoProvider>
               </TabsProvider>
             </SnackbarProvider>
           </RoomIDProvider>

@@ -43,6 +43,20 @@ export interface SettingsContextType {
   handleFontSizeChange: (value: number) => void;
 }
 
+export interface CodeExecutionInfoType {
+  value: number;
+  loading: boolean;
+  inputText: string;
+  outputData: {
+    output: string;
+    memory: number;
+    cpuTime: number;
+  };
+  setValue: (value: number) => void;
+  setLoading: (isLoading: boolean) => void;
+  setInputText: (text: string) => void;
+  setOutputData: (record: Record<string | any>) => void;
+}
 export interface RoomIDContextTypes {
   roomID: string;
   setRoomID: (id: string) => void;
