@@ -4,7 +4,7 @@ import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { withStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
 import { socket } from "service/socket";
-import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 import axios from "axios";
 import { SERVER_URL } from "config.keys";
 import { SettingContext } from "service/SettingsContext";
@@ -51,7 +51,7 @@ const CssTextField = withStyles({
 })(TextField);
 
 const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, editorInstance }) => {
-  const { id } = useParams<Record<string, string>>();
+  const { roomID: id } = useRoomID();
 
   const {
     value,

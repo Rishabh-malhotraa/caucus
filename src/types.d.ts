@@ -57,6 +57,10 @@ export interface CodeExecutionInfoType {
   setInputText: (text: string) => void;
   setOutputData: (record: Record<string | any>) => void;
 }
+export interface RoomIDContextTypes {
+  roomID: string;
+  setRoomID: (id: string) => void;
+}
 
 export interface UserContextTypes {
   user: UserInfoType | undefined;

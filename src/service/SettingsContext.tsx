@@ -6,7 +6,7 @@ export const SettingContext = React.createContext<SettingsContextType | null>(nu
 const SettingsProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [language, setLanguage] = React.useState<string>("text/x-c++src");
   const [fontSize, setFontSize] = React.useState<number>(18);
-  const [theme, setTheme] = React.useState<string>("monokai");
+  const [theme, setTheme] = React.useState<string>("material-darker");
   const [keybinds, setKeybinds] = React.useState<string>("sublime");
 
   const handleLanguageChange = (value: string, id: string, broadcast: boolean) => {

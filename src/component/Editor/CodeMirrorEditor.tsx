@@ -8,15 +8,13 @@ import { socket } from "service/socket";
 import axios from "axios";
 import { SettingContext } from "service/SettingsContext";
 import { useSnackbar } from "notistack";
-import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 import "./CodeMirrorImports.ts";
 import { GuestNameContextTypes, SettingsContextType, UserContextTypes, CodeExecutionInfoType } from "types";
 import { UnControlled as CodeMirror } from "react-codemirror2";
 import * as Y from "yjs";
-// import { WebsocketProvider } from "y-websocket";
-import { WebrtcProvider } from "y-webrtc";
+import { WebsocketProvider } from "y-websocket";
 import { getRandomColor } from "service/getRandomColor";
-import CssBaseline from "@material-ui/core/CssBaseline";
 interface AppProps {
   editorInstance: any;
   setEditorInstance: React.Dispatch<any>;
@@ -33,7 +31,7 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
     setEditorInstance(editor);
   };
 
-  const { id: roomID } = useParams<Record<string, string>>();
+  const { roomID } = useRoomID();
 
   const { enqueueSnackbar } = useSnackbar();
   const { language, fontSize, theme, keybinds } = useContext(SettingContext) as SettingsContextType;
@@ -49,19 +47,15 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
       const ydoc: Y.Doc = new Y.Doc();
       const yText = ydoc.getText("codemirror");
       const yUndoManager = new Y.UndoManager(yText);
-      // const provider = new WebsocketProvider(CDRT_SERVER, roomID, ydoc);
-
       let provider;
       try {
-        //@ts-ignore
-        provider = new WebrtcProvider(roomID, ydoc, {
-          signaling: [
-            "wss://signaling.yjs.dev",
-            "wss://y-webrtc-signaling-eu.herokuapp.com",
-            "wss://y-webrtc-signaling-us.herokuapp.com",
-          ],
+        provider = new WebsocketProvider(CDRT_SERVER, roomID, ydoc);
+      } catch (err) {
+        enqueueSnackbar("Could not connect to the server", {
+          variant: "warning",
         });
-      } catch (err) {}
+        throw Error("could not connect to the server");
+      }
 
       const awareness = provider?.awareness;
       const val = getRandomColor("DEFAULT");
@@ -69,7 +63,7 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
         // Define a print name that should be displayed
         name: username,
         // Define a color that should be associated to the user:
-        color: val, // should be a hex color: ;
+        color: val, // should be a hex color:
       });
 
       const getBinding = new CodeMirrorBinding(yText, editorInstance, awareness, {

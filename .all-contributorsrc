@@ -55,9 +55,36 @@
         "infra",
         "review"
       ]
+    },
+    {
+      "login": "Aditya9111",
+      "name": "Aditya Arya",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52771727?v=4",
+      "profile": "https://bit.ly/adityaarya1",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "mthakur7",
+      "name": "Manju Thakur",
+      "avatar_url": "https://avatars.githubusercontent.com/u/89182004?v=4",
+      "profile": "https://github.com/mthakur7",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "chirag3003",
+      "name": "Apex Web",
+      "avatar_url": "https://avatars.githubusercontent.com/u/68195580?v=4",
+      "profile": "https://apexweb.me",
+      "contributions": [
+        "design"
+      ]
     }
   ],
-  "contributorsPerLine": 7,
+  "contributorsPerLine": 5,
   "projectName": "caucus",
   "projectOwner": "Rishabh-malhotraa",
   "repoType": "github",
