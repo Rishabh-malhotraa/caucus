@@ -55,6 +55,14 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
+const CssButton = withStyles({
+  root: {
+    "&:hover": {
+      background: "rgba(200, 200, 200, 0.1)",
+    },
+  },
+})(Button);
+
 const ProblemList: React.FC<AppProps> = ({
   companies,
   difficulty,
@@ -194,14 +202,14 @@ const ProblemList: React.FC<AppProps> = ({
         </Grid>
         <Grid item className={styles["btn-group"]}>
           <ButtonGroup color="inherit">
-            <Button onClick={getRandomQuestion}>Random Problem</Button>
-            <Button
+            <CssButton onClick={getRandomQuestion}>Random Problem</CssButton>
+            <CssButton
               onClick={async () => {
                 await fetchProblems();
               }}
             >
               Filter Problems
-            </Button>
+            </CssButton>
           </ButtonGroup>
         </Grid>
         <Divider className={styles.divider} />

@@ -1,0 +1,93 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Rishabh-malhotraa",
+      "name": "Rishabh Malhotra",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54576074?v=4",
+      "profile": "https://rishabh-malhotraa.github.io/Rishabh-Portfolio-main/",
+      "contributions": [
+        "infra",
+        "code",
+        "design"
+      ]
+    },
+    {
+      "login": "MarufSharifi",
+      "name": "Maruf",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59383482?v=4",
+      "profile": "https://github.com/MarufSharifi",
+      "contributions": [
+        "infra",
+        "code"
+      ]
+    },
+    {
+      "login": "swikars1",
+      "name": "Swikar Sharma",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20171676?v=4",
+      "profile": "https://github.com/swikars1",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "iamdevvalecha",
+      "name": "Dev Valecha",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71969867?v=4",
+      "profile": "https://www.linkedin.com/in/iamdevvalecha/",
+      "contributions": [
+        "eventOrganizing",
+        "mentoring",
+        "talk"
+      ]
+    },
+    {
+      "login": "HarrisonMayotte",
+      "name": "Harrison Mayotte",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48367813?v=4",
+      "profile": "https://github.com/HarrisonMayotte",
+      "contributions": [
+        "infra",
+        "review"
+      ]
+    },
+    {
+      "login": "Aditya9111",
+      "name": "Aditya Arya",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52771727?v=4",
+      "profile": "https://bit.ly/adityaarya1",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "mthakur7",
+      "name": "Manju Thakur",
+      "avatar_url": "https://avatars.githubusercontent.com/u/89182004?v=4",
+      "profile": "https://github.com/mthakur7",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "chirag3003",
+      "name": "Apex Web",
+      "avatar_url": "https://avatars.githubusercontent.com/u/68195580?v=4",
+      "profile": "https://apexweb.me",
+      "contributions": [
+        "design"
+      ]
+    }
+  ],
+  "contributorsPerLine": 5,
+  "projectName": "caucus",
+  "projectOwner": "Rishabh-malhotraa",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

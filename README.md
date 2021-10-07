@@ -1,9 +1,3 @@
-<!--
-*** Thanks for checking out the caucus. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
--->
-
 <!-- PROJECT SHIELDS -->
 
 [![Contributors][contributors-shield]][contributors-url]
@@ -12,6 +6,7 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+[![All Contributors][all-contributors-shield]](#contributors-)
 
 <!-- PROJECT LOGO -->
 <br />
@@ -61,6 +56,11 @@
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
+
+## 📣 Latest Announcements
+🆕 5-10-2021: We now have a discussions form, if you want any new feeature to be implemented you can [discuss here](https://github.com/Rishabh-malhotraa/caucus/discussions/50)
+
+🆕 28-09-2021: Caucus is participating in Hacktoberfest 2021 🥳
 
 ## About The Project
 
@@ -172,7 +172,9 @@ Distributed under the MIT License. See [`LICENSE`][license-url] for more informa
 
 ## Contact
 
-Rishabh malhotraa - [@CaffeinatedRish](https://twitter.com/CaffeinatedRish) - rmalhotra_be18@thapar.edu
+Rishabh malhotraa - [@rish_bishhh](https://twitter.com/rish_bishhh) - rmalhotra_be18@thapar.edu
+
+Discord : rishabh.malhotra#4193
 
 Project Link: [https://caucus-app.herokuapp.com/](https://caucus-app.herokuapp.com/)
 
@@ -197,6 +199,7 @@ Project Link: [https://caucus-app.herokuapp.com/](https://caucus-app.herokuapp.c
 
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
+[all-contributors-shield]: https://img.shields.io/badge/all_contributors-8-orange.svg?style=for-the-badge
 [contributors-shield]: https://img.shields.io/github/contributors/Rishabh-malhotraa/caucus.svg?style=for-the-badge
 [contributors-url]: https://github.com/Rishabh-malhotraa/caucus/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Rishabh-malhotraa/caucus.svg?style=for-the-badge
@@ -213,3 +216,32 @@ Project Link: [https://caucus-app.herokuapp.com/](https://caucus-app.herokuapp.c
 [product-screenshoti]: images/code-editor.png
 [product-screenshotii]: images/login-page.png
 [product-screenshotiii]: images/navigation-page.png
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://rishabh-malhotraa.github.io/Rishabh-Portfolio-main/"><img src="https://avatars.githubusercontent.com/u/54576074?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rishabh Malhotra</b></sub></a><br /><a href="#infra-Rishabh-malhotraa" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/Rishabh-malhotraa/caucus/commits?author=Rishabh-malhotraa" title="Code">💻</a> <a href="#design-Rishabh-malhotraa" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/MarufSharifi"><img src="https://avatars.githubusercontent.com/u/59383482?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Maruf</b></sub></a><br /><a href="#infra-MarufSharifi" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/Rishabh-malhotraa/caucus/commits?author=MarufSharifi" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/iamdevvalecha/"><img src="https://avatars.githubusercontent.com/u/71969867?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dev Valecha</b></sub></a><br /><a href="#talk-iamdevvalecha" title="Talks">📢</a></td>
+    <td align="center"><a href="https://github.com/HarrisonMayotte"><img src="https://avatars.githubusercontent.com/u/48367813?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Harrison Mayotte</b></sub></a><br /><a href="#infra-HarrisonMayotte" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/Rishabh-malhotraa/caucus/pulls?q=is%3Apr+reviewed-by%3AHarrisonMayotte" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://bit.ly/adityaarya1"><img src="https://avatars.githubusercontent.com/u/52771727?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aditya Arya</b></sub></a><br /><a href="#design-Aditya9111" title="Design">🎨</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/mthakur7"><img src="https://avatars.githubusercontent.com/u/89182004?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Manju Thakur</b></sub></a><br /><a href="#design-mthakur7" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/swikars1"><img src="https://avatars.githubusercontent.com/u/20171676?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Swikar Sharma</b></sub></a><br /><a href="https://github.com/Rishabh-malhotraa/caucus/commits?author=swikars1" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://apexweb.me"><img src="https://avatars.githubusercontent.com/u/68195580?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Apex Web</b></sub></a><br /><a href="#design-chirag3003" title="Design">🎨</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

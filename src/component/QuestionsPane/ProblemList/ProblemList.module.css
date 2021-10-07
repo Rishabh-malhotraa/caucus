@@ -58,12 +58,6 @@
 .list-container {
   width: 100%;
 }
-.list-item {
-  display: flex;
-  justify-content: flex-start;
-  padding: 0.5rem !important;
-  align-items: flex-start !important;
-}
 
 .pagination-group {
   display: flex;
