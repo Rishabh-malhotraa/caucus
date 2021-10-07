@@ -58,16 +58,7 @@
 .list-container {
   width: 100%;
 }
-.list-item {
-  display: flex;
-  justify-content: flex-start;
-  padding: 0.5rem !important;
-  align-items: flex-start !important;
-}
-.list-item:hover {
-  background: rgba(200, 200, 200, 0.1);
-  border-radius: 10px;
-}
+
 .pagination-group {
   display: flex;
   flex-shrink: 1;

@@ -172,7 +172,9 @@ Distributed under the MIT License. See [`LICENSE`][license-url] for more informa
 
 ## Contact
 
-Rishabh malhotraa - [@CaffeinatedRish](https://twitter.com/CaffeinatedRish) - rmalhotra_be18@thapar.edu
+Rishabh malhotraa - [@rish_bishhh](https://twitter.com/rish_bishhh) - rmalhotra_be18@thapar.edu
+
+Discord : rishabh.malhotra#4193
 
 Project Link: [https://caucus-app.herokuapp.com/](https://caucus-app.herokuapp.com/)
 
@@ -229,10 +231,10 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://www.linkedin.com/in/iamdevvalecha/"><img src="https://avatars.githubusercontent.com/u/71969867?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dev Valecha</b></sub></a><br /><a href="#talk-iamdevvalecha" title="Talks">📢</a></td>
     <td align="center"><a href="https://github.com/HarrisonMayotte"><img src="https://avatars.githubusercontent.com/u/48367813?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Harrison Mayotte</b></sub></a><br /><a href="#infra-HarrisonMayotte" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/Rishabh-malhotraa/caucus/pulls?q=is%3Apr+reviewed-by%3AHarrisonMayotte" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://bit.ly/adityaarya1"><img src="https://avatars.githubusercontent.com/u/52771727?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aditya Arya</b></sub></a><br /><a href="#design-Aditya9111" title="Design">🎨</a></td>
-    <td align="center"><a href="https://github.com/mthakur7"><img src="https://avatars.githubusercontent.com/u/89182004?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Manju Thakur</b></sub></a><br /><a href="#design-mthakur7" title="Design">🎨</a></td>
-    <td align="center"><a href="https://github.com/swikars1"><img src="https://avatars.githubusercontent.com/u/20171676?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Swikar Sharma</b></sub></a><br /><a href="https://github.com/Rishabh-malhotraa/caucus/commits?author=swikars1" title="Documentation">📖</a></td>
   </tr>
   <tr>
+    <td align="center"><a href="https://github.com/mthakur7"><img src="https://avatars.githubusercontent.com/u/89182004?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Manju Thakur</b></sub></a><br /><a href="#design-mthakur7" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/swikars1"><img src="https://avatars.githubusercontent.com/u/20171676?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Swikar Sharma</b></sub></a><br /><a href="https://github.com/Rishabh-malhotraa/caucus/commits?author=swikars1" title="Documentation">📖</a></td>
     <td align="center"><a href="https://apexweb.me"><img src="https://avatars.githubusercontent.com/u/68195580?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Apex Web</b></sub></a><br /><a href="#design-chirag3003" title="Design">🎨</a></td>
   </tr>
 </table>
