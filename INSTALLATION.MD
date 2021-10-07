@@ -28,9 +28,9 @@ npm run start
 ```
 
 **Run the CRDT SERVER**
-
+_inside the caucus repository run the following bash command_
 ``` sh
-HOST=localhost PORT=1234 npx y-websocket-server
+npx y-websocket-server
 ```
 
 6. Start the nodejs backend using by running the following code in the server folder6

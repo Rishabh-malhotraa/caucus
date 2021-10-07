@@ -6,7 +6,16 @@ export const RoomIDContext = React.createContext<RoomIDContextTypes>({ roomID: "
 const RoomIDProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [roomID, setRoomID] = React.useState("");
 
-  return <RoomIDContext.Provider value={{ roomID, setRoomID }}>{children}</RoomIDContext.Provider>;
+  return (
+    <RoomIDContext.Provider
+      value={{
+        roomID,
+        setRoomID,
+      }}
+    >
+      {children}
+    </RoomIDContext.Provider>
+  );
 };
 
 export const useRoomID = (): RoomIDContextTypes => {

@@ -40,7 +40,6 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
       const ydoc: Y.Doc = new Y.Doc();
       const yText = ydoc.getText("codemirror");
       const yUndoManager = new Y.UndoManager(yText);
-
       let provider;
       try {
         provider = new WebsocketProvider(CDRT_SERVER, roomID, ydoc);
