@@ -8,7 +8,9 @@ const GuestNameProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [guestName, setGuestName] = React.useState<string>(generate.allRandom());
   const [guestLoginClick, setGuestLoginClick] = React.useState<boolean>(false);
 
-  const isGuestNameClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.KeyboardEvent<HTMLInputElement>) => {
+  const isGuestNameClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.KeyboardEvent<HTMLInputElement>
+  ) => {
     e.preventDefault();
     setGuestLoginClick(guestName ? true : false);
   };
