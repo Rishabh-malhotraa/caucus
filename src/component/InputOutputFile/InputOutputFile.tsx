@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
-import { Paper, Tab, Tabs, Button, Box, TextField, CircularProgress } from "@material-ui/core";
+import { Paper, Tab, Tabs, Button, Box, TextField, Tooltip, Theme, Zoom } from "@material-ui/core";
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { withStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
@@ -49,6 +49,16 @@ const CssTextField = withStyles({
     },
   },
 })(TextField);
+
+const LightTooltip = withStyles((theme: Theme) => ({
+  tooltip: {
+    backgroundColor: theme.palette.common.white,
+    color: "rgba(0, 0, 0, 1)",
+    boxShadow: theme.shadows[2],
+    fontSize: "14px",
+    borderRadius: "25px",
+  },
+}))(Tooltip);
 
 const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, editorInstance }) => {
   const { roomID: id } = useRoomID();
@@ -158,16 +168,18 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, editorInstance
           <Tab label="Output"></Tab>
         </Tabs>
         <Box className={styles["btn-box"]}>
-          <Button
-            variant="text"
-            color="inherit"
-            endIcon={<SendRoundedIcon />}
-            onClick={async () => {
-              await submitProblem();
-            }}
-          >
-            Run Code
-          </Button>
+          <LightTooltip TransitionComponent={Zoom} title={"Ctrl + '"} placement="top">
+            <Button
+              variant="text"
+              color="inherit"
+              endIcon={<SendRoundedIcon />}
+              onClick={async () => {
+                await submitProblem();
+              }}
+            >
+              Run Code
+            </Button>
+          </LightTooltip>
         </Box>
       </Paper>
       <div className={styles["text-area"]}>
