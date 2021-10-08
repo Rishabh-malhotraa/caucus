@@ -159,9 +159,7 @@ footer span {
     margin-top: 1rem;
     margin-left: 0;
   }
-}
 
-@media only screen and (max-width: 600px) {
   .createRoom {
     padding-top: 5rem;
     margin: 0rem 5rem;
