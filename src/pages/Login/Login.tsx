@@ -56,7 +56,7 @@ const Login = () => {
                   />
                 </div>
                 <div>
-                  <Button id="login" className={classes["btn"]} onClick={(e) => isGuestNameClick(e)}>
+                  <Button className={classes["btn"]} onClick={(e) => isGuestNameClick(e)}>
                     Login as a guest
                   </Button>
                 </div>
