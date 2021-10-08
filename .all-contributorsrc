@@ -2,7 +2,7 @@
   "files": [
     "README.md"
   ],
-  "imageSize": 100,
+  "imageSize": 140,
   "commit": false,
   "contributors": [
     {
@@ -41,8 +41,6 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/71969867?v=4",
       "profile": "https://www.linkedin.com/in/iamdevvalecha/",
       "contributions": [
-        "eventOrganizing",
-        "mentoring",
         "talk"
       ]
     },
@@ -80,6 +78,16 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/68195580?v=4",
       "profile": "https://apexweb.me",
       "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "GaganpreetKaurKalsi",
+      "name": "Gaganpreet Kaur Kalsi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54144759?v=4",
+      "profile": "https://github.com/GaganpreetKaurKalsi",
+      "contributions": [
+        "code",
         "design"
       ]
     }
