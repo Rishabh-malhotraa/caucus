@@ -19,7 +19,6 @@ interface AppProps {
   tags: LabelType[];
   difficulty: LabelType[];
   url: string;
-  theme: string;
   setCompanies: React.Dispatch<React.SetStateAction<LabelType[]>>;
   setTags: React.Dispatch<React.SetStateAction<LabelType[]>>;
   setDifficulty: React.Dispatch<React.SetStateAction<LabelType[]>>;
@@ -61,7 +60,6 @@ const ProblemList: React.FC<AppProps> = ({
   difficulty,
   tags,
   url,
-  theme,
   setCompanies,
   setDifficulty,
   setTags,
@@ -180,21 +178,19 @@ const ProblemList: React.FC<AppProps> = ({
           />
         </Grid>
 
-        <Grid item className={styles.autocomplete} id={theme} >
+        <Grid item className={styles.autocomplete}>
           <AutoCompleteLabel
             value={companies}
             setValue={setCompanies}
             labels={companiesData}
             type="Companies"
-            overallTheme={theme}
           />
-          <AutoCompleteLabel overallTheme={theme} value={tags} setValue={setTags} labels={tagsData} type="Tags" />
+          <AutoCompleteLabel value={tags} setValue={setTags} labels={tagsData} type="Tags" />
           <AutoCompleteLabel
             value={difficulty}
             setValue={setDifficulty}
             labels={difficultyData}
             type="Difficulty"
-            overallTheme={theme}
           />
         </Grid>
         <Grid item className={styles["btn-group"]}>

@@ -17,6 +17,7 @@ html {
 /* Track */
 ::-webkit-scrollbar-track {
   background: #232728;
+  /* background: #3e3e42; */
 }
 
 /* Handle */

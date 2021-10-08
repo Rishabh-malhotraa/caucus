@@ -31,7 +31,6 @@ const Dashboard = () => {
   const [editorInstance, setEditorInstance] = useState<any>(null);
   const { id } = useParams<Record<string, string>>();
   const [screenSize, setScreenSize] = useState("normal");
-  const [theme, setTheme] = useState("dark");
 
   const prepareData = (): UserInfoSS => {
     return {
@@ -100,14 +99,14 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className={style.root} id={theme}>
+      <div className={style.root}>
         <ReflexContainer orientation="horizontal">
           <ReflexElement style={{ paddingTop: "1rem" }}>
             <ReflexContainer orientation="vertical">
               <ReflexElement>
                 <ReflexContainer orientation="horizontal">
-                  <ReflexElement className={`${style["pane-color"]} tone3`}>
-                    <TabsPanel theme={theme} />
+                  <ReflexElement className={style["pane-color"]}>
+                    <TabsPanel />
                   </ReflexElement>
                 </ReflexContainer>
               </ReflexElement>
@@ -120,7 +119,7 @@ const Dashboard = () => {
                 <ReflexContainer orientation="horizontal">
                   <ReflexElement style={{ display: "flex", flexDirection: "column" }}>
                     <EditorToolbar screenSize={screenSize} setScreenSize={setScreenSize} />
-                    <CodeMirror overallTheme={theme} editorInstance={editorInstance} setEditorInstance={setEditorInstance} />
+                    <CodeMirror editorInstance={editorInstance} setEditorInstance={setEditorInstance} />
                   </ReflexElement>
                   <ReflexSplitter className={clsx(style.splitter, style["splitter-horizontal"])} />
                   <ReflexElement flex={0.3}>
@@ -136,11 +135,11 @@ const Dashboard = () => {
               <ReflexElement>
                 <ReflexContainer orientation="horizontal">
                   {/* 0.12 */}
-                  <ReflexElement className={`${style["pane-color"]} tone3`} flex={0.18}>
-                    <VoiceChat theme={theme} setTheme={setTheme} params={id} user={prepareData()} partnerUser={partnerUser} />
+                  <ReflexElement className={style["pane-color"]} flex={0.18}>
+                    <VoiceChat params={id} user={prepareData()} partnerUser={partnerUser} />
                   </ReflexElement>
                   <ReflexSplitter className={clsx(style.splitter, style["splitter-horizontal"])} />
-                  <ReflexElement className={`${style["chat-app"]} tone3`}>
+                  <ReflexElement className={style["chat-app"]}>
                     {/* Chat App Component */}
                     <ChatApp userInfo={prepareData()} socketID={sid} />
                   </ReflexElement>
@@ -148,7 +147,7 @@ const Dashboard = () => {
               </ReflexElement>
             </ReflexContainer>
           </ReflexElement>
-          <ReflexElement className={`${style.footer} footer`} flex={0.028}>
+          <ReflexElement className={style.footer} flex={0.028}>
             Made with <span>&#9829;</span> by Rishabh Malhotra{"  "}•{"  "}
             <a href="https://github.com/Rishabh-malhotraa/caucus" target="__blank">
               Github

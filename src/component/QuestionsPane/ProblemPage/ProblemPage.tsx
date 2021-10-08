@@ -11,7 +11,7 @@ const ProblemPage = () => {
   const { questionData, showScrapped, scrappedData } = useContext(TabsContext) as TabsContextTypes;
 
   return (
-    <div style={{ margin: "1rem" }} className="problemPage">
+    <div style={{ margin: "1rem" }}>
       {showScrapped ? <CodeForces scrappedData={scrappedData} /> : <LeetCode questionData={questionData} />}
     </div>
   );

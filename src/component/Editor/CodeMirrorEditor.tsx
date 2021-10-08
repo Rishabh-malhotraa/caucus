@@ -17,10 +17,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 interface AppProps {
   editorInstance: any;
   setEditorInstance: React.Dispatch<any>;
-  overallTheme: string;
 }
 
-const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstance, overallTheme }) => {
+const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstance }) => {
   const handleEditorDidMount = (editor: any) => {
     //@ts-ignore
     window.editor = editor;
@@ -30,7 +29,7 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
   const { id: roomID } = useParams<Record<string, string>>();
 
   const { enqueueSnackbar } = useSnackbar();
-  const { language, fontSize, theme, keybinds, handleThemeChange } = useContext(SettingContext) as SettingsContextType;
+  const { language, fontSize, theme, keybinds } = useContext(SettingContext) as SettingsContextType;
 
   const { user } = useContext(UserContext) as UserContextTypes;
   const { guestName } = useContext(GuestNameContext) as GuestNameContextTypes;
@@ -39,53 +38,44 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
   const username = user?.name ? user.name : guestName;
 
   useEffect(() => {
-    if (overallTheme === "light") {
-      console.log(overallTheme)
-      handleThemeChange("default")
-    }
-    if (overallTheme === "dark") {
-      console.log(overallTheme);
-      handleThemeChange("material-darker");
-    }
-      if (editorInstance != null) {
-        const ydoc: Y.Doc = new Y.Doc();
-        const yText = ydoc.getText("codemirror");
-        const yUndoManager = new Y.UndoManager(yText);
-        // const provider = new WebsocketProvider(CDRT_SERVER, roomID, ydoc);
+    if (editorInstance != null) {
+      const ydoc: Y.Doc = new Y.Doc();
+      const yText = ydoc.getText("codemirror");
+      const yUndoManager = new Y.UndoManager(yText);
+      // const provider = new WebsocketProvider(CDRT_SERVER, roomID, ydoc);
 
-        let provider;
-        try {
-          //@ts-ignore
-          provider = new WebrtcProvider(roomID, ydoc, {
-            signaling: [
-              "wss://signaling.yjs.dev",
-              "wss://y-webrtc-signaling-eu.herokuapp.com",
-              "wss://y-webrtc-signaling-us.herokuapp.com",
-            ],
-          });
-        } catch (err) {}
-
-        const awareness = provider?.awareness;
-        const val = getRandomColor("DEFAULT");
-        awareness?.setLocalStateField("user", {
-          // Define a print name that should be displayed
-          name: username,
-          // Define a color that should be associated to the user:
-          color: val, // should be a hex color: ;
+      let provider;
+      try {
+        //@ts-ignore
+        provider = new WebrtcProvider(roomID, ydoc, {
+          signaling: [
+            "wss://signaling.yjs.dev",
+            "wss://y-webrtc-signaling-eu.herokuapp.com",
+            "wss://y-webrtc-signaling-us.herokuapp.com",
+          ],
         });
+      } catch (err) {}
 
-        const getBinding = new CodeMirrorBinding(yText, editorInstance, awareness, {
-          yUndoManager,
-        });
-      }
-  }, [editorInstance, overallTheme]);
+      const awareness = provider?.awareness;
+      const val = getRandomColor("DEFAULT");
+      awareness?.setLocalStateField("user", {
+        // Define a print name that should be displayed
+        name: username,
+        // Define a color that should be associated to the user:
+        color: val, // should be a hex color: ;
+      });
+
+      const getBinding = new CodeMirrorBinding(yText, editorInstance, awareness, {
+        yUndoManager,
+      });
+    }
+  }, [editorInstance]);
 
   return (
-    <div className="tone3" style={{ textAlign: "left", width: "100%", fontSize: `${fontSize}px`, height: "100%" }}>
+    <div style={{ textAlign: "left", width: "100%", fontSize: `${fontSize}px`, height: "100%" }}>
       <CodeMirror
         autoScroll
         options={{
-          className: "tone3",
           mode: language,
           theme: theme,
           keyMap: keybinds,

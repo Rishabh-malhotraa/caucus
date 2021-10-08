@@ -1,8 +1,7 @@
-import React, { useCallback, memo } from "react";
+import React from "react";
 import { Avatar, Button, withStyles, Theme, Tooltip, Zoom } from "@material-ui/core";
 import { UserInfoSS } from "types";
 import getRandomAvatar from "service/getRandomAvatar";
-import ThemeToggle from "./ThemeToggle";
 /**
  * Invoke Call Peer when the component loads and if the guest user is empty then chill just return
  */
@@ -11,8 +10,6 @@ interface AppProps {
   params: string;
   partnerUser?: UserInfoSS;
   user?: UserInfoSS;
-  theme: string;
-  setTheme: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const LightTooltip = withStyles((theme: Theme) => ({
@@ -42,16 +39,13 @@ const RenderIcons = ({ user }: { user?: UserInfoSS }) => {
   );
 };
 
-const Icons: React.FC<AppProps> = ({ params, partnerUser, user, theme, setTheme }) => {
+const Icons: React.FC<AppProps> = ({ params, partnerUser, user }) => {
   return (
-    <>
-      <ThemeToggle theme={theme} setTheme={setTheme} />
-      <div style={{ display: "flex" }}>
-        <RenderIcons user={user} />
-        {partnerUser?.roomID ? <RenderIcons user={partnerUser} /> : <></>}
-      </div>
-    </>
+    <div style={{ display: "flex" }}>
+      <RenderIcons user={user} />
+      {partnerUser?.roomID ? <RenderIcons user={partnerUser} /> : <></>}
+    </div>
   );
 };
 
-export default memo(Icons);
+export default Icons;
