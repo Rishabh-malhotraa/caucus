@@ -2,7 +2,7 @@
   "files": [
     "README.md"
   ],
-  "imageSize": 100,
+  "imageSize": 140,
   "commit": false,
   "contributors": [
     {
@@ -41,8 +41,6 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/71969867?v=4",
       "profile": "https://www.linkedin.com/in/iamdevvalecha/",
       "contributions": [
-        "eventOrganizing",
-        "mentoring",
         "talk"
       ]
     },
