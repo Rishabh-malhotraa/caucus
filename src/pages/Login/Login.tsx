@@ -45,15 +45,18 @@ const Login = () => {
                   <input
                     type="text"
                     name="username"
-                    autoComplete="off"
+                    autoComplete="off"  
                     value={guestName}
                     onChange={(e) => handleGuestNameChange(e)}
+                    onKeyDown={(e) =>{if(e.key === 'Enter') {
+                      document.getElementById('login')?.click();
+                    }}}
                     placeholder="Enter your Name"
                     className={classes["input-email"]}
                   />
                 </div>
                 <div>
-                  <Button className={classes["btn"]} onClick={(e) => isGuestNameClick(e)}>
+                  <Button id="login" className={classes["btn"]} onClick={(e) => isGuestNameClick(e)}>
                     Login as a guest
                   </Button>
                 </div>
