@@ -90,6 +90,15 @@
         "code",
         "design"
       ]
+    },
+    {
+      "login": "pavankalyan-codes",
+      "name": "Pavan kalyan C",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35896290?v=4",
+      "profile": "https://pavankalyan-codes.github.io/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 5,
