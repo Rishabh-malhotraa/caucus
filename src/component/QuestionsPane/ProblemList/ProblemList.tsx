@@ -12,7 +12,7 @@ import { LabelType, QuestionListResponse, ScrappedDataType, TabsContextTypes } f
 import { tagsData, companiesData, difficultyData } from "./data";
 import { TabsContext } from "service/TabsContext";
 import Url from "url-parse";
-import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 
 interface AppProps {
   companies: LabelType[];
@@ -56,6 +56,14 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
+const CssButton = withStyles({
+  root: {
+    "&:hover": {
+      background: "rgba(200, 200, 200, 0.1)",
+    },
+  },
+})(Button);
+
 const ProblemList: React.FC<AppProps> = ({
   companies,
   difficulty,
@@ -69,7 +77,7 @@ const ProblemList: React.FC<AppProps> = ({
 }) => {
   const [response, setResponse] = useState<QuestionListResponse[]>([]);
   const [errorText, setErrorText] = useState({ error: false, comment: "" });
-  const { id: roomID } = useParams<Record<string, string>>();
+  const { roomID } = useRoomID();
 
   useEffect(() => {
     axios
@@ -78,7 +86,6 @@ const ProblemList: React.FC<AppProps> = ({
   }, []);
 
   const { filterResponseData, handleScrappedData } = useContext(TabsContext) as TabsContextTypes;
-  const { id } = useParams<Record<string, string>>();
 
   const NextButton = () => {
     const getQuestionData = async () => {
@@ -158,7 +165,7 @@ const ProblemList: React.FC<AppProps> = ({
       url: `${SERVER_URL}/api/get-problem`,
       data: { question_id: randomID },
       responseType: "json",
-    }).then((response) => filterResponseData(response.data, id));
+    }).then((response) => filterResponseData(response.data, roomID));
   };
   return (
     <>
@@ -199,14 +206,14 @@ const ProblemList: React.FC<AppProps> = ({
         </Grid>
         <Grid item className={styles["btn-group"]}>
           <ButtonGroup color="inherit">
-            <Button onClick={getRandomQuestion}>Random Problem</Button>
-            <Button
+            <CssButton onClick={getRandomQuestion}>Random Problem</CssButton>
+            <CssButton
               onClick={async () => {
                 await fetchProblems();
               }}
             >
               Filter Problems
-            </Button>
+            </CssButton>
           </ButtonGroup>
         </Grid>
         <Divider className={styles.divider} />

@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { Paper, Tab, Tabs, Button, Box, TextField, CircularProgress } from "@material-ui/core";
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { withStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
 import { socket } from "service/socket";
-import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 import axios from "axios";
 import { SERVER_URL } from "config.keys";
 import { SettingContext } from "service/SettingsContext";
-import { SettingsContextType } from "types";
+import { SettingsContextType, CodeExecutionInfoType } from "types";
 import styles from "./InputOutputFile.module.css";
 import Loader from "react-loader-spinner";
+import { CodeExecutionInfoContext } from "service/CodeExecutionInfo";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 interface AppProps {
@@ -50,15 +51,18 @@ const CssTextField = withStyles({
 })(TextField);
 
 const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, editorInstance }) => {
-  const { id } = useParams<Record<string, string>>();
-  const [value, setValue] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [inputText, setInputText] = useState("");
-  const [outputData, setOutputData] = useState<Record<string, any>>({
-    output: "",
-    memory: 1,
-    cpuTime: 1,
-  });
+  const { roomID: id } = useRoomID();
+
+  const {
+    value,
+    setValue,
+    loading,
+    setLoading,
+    inputText,
+    setInputText,
+    outputData,
+    setOutputData,
+  } = useContext(CodeExecutionInfoContext) as CodeExecutionInfoType;
 
   const { language } = useContext(SettingContext) as SettingsContextType;
   const { enqueueSnackbar } = useSnackbar();
@@ -81,7 +85,7 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, editorInstance
     });
   }, []);
 
-  const submitProblem = async () => {
+  const submitProblem = useCallback(async () => {
     setLoading(true);
     setValue(1);
     const response = await axios({
@@ -105,7 +109,7 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, editorInstance
     );
     setOutputData(response.data);
     setLoading(false);
-  };
+  }, [SERVER_URL, editorInstance, language, inputText, id]);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);

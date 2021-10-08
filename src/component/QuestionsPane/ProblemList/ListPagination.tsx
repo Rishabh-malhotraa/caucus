@@ -8,7 +8,7 @@ import { List, ListItem } from "@material-ui/core";
 import axios from "axios";
 import { SERVER_URL } from "config.keys";
 import { TabsContext } from "service/TabsContext";
-import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 
 const getColor = (diff: string) => {
   if (diff === "easy") return "#1faa00";
@@ -30,13 +30,26 @@ const CssPagination = withStyles({
   },
 })(Pagination);
 
+const CssListItem = withStyles({
+  root: {
+    // backgroundColor: "#3e3e42",
+    transition: "background 3s ease in",
+    padding: "0.5rem !important",
+    "align-items": "flex-start !important",
+    "&:hover": {
+      background: "rgba(200, 200, 200, 0.1)",
+      "border-radius": "10px",
+    },
+  },
+})(ListItem);
+
 const PaginationComponent = ({ rows }: { rows: QuestionListResponse[] }) => {
   const { filterResponseData } = useContext(TabsContext) as TabsContextTypes;
 
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = React.useState(1);
   const navRef = createRef<HTMLElement>();
-  const { id } = useParams<Record<string, string>>();
+  const { roomID: id } = useRoomID();
 
   useEffect(() => {
     //@ts-ignore
@@ -67,7 +80,7 @@ const PaginationComponent = ({ rows }: { rows: QuestionListResponse[] }) => {
             : rows
           ).map((el: QuestionListResponse, index) => {
             return (
-              <ListItem
+              <CssListItem
                 key={index}
                 button
                 className={styles["list-item"]}
@@ -77,7 +90,7 @@ const PaginationComponent = ({ rows }: { rows: QuestionListResponse[] }) => {
                 <div style={{ color: getColor(el.difficulty), paddingLeft: "8px", fontWeight: "bold" }}>
                   {el.difficulty}
                 </div>
-              </ListItem>
+              </CssListItem>
             );
           })}
         </List>

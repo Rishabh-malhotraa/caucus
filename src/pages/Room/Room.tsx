@@ -9,6 +9,7 @@ import { useSnackbar } from "notistack";
 import ChatApp from "component/TextChat";
 import VoiceChat from "component/VoiceChat/VoiceChat";
 import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 import CodeMirror from "component/Editor/CodeMirrorEditor";
 import clsx from "clsx";
 import { GuestNameContext } from "service/GuestNameContext";
@@ -32,6 +33,11 @@ const Dashboard = () => {
   const { id } = useParams<Record<string, string>>();
   const [screenSize, setScreenSize] = useState("normal");
   const [theme, setTheme] = useState("dark");
+  const { setRoomID } = useRoomID();
+
+  useEffect(() => {
+    setRoomID(id);
+  }, [id]);
 
   const prepareData = (): UserInfoSS => {
     return {
@@ -120,7 +126,11 @@ const Dashboard = () => {
                 <ReflexContainer orientation="horizontal">
                   <ReflexElement style={{ display: "flex", flexDirection: "column" }}>
                     <EditorToolbar screenSize={screenSize} setScreenSize={setScreenSize} />
-                    <CodeMirror overallTheme={theme} editorInstance={editorInstance} setEditorInstance={setEditorInstance} />
+                    <CodeMirror
+                      overallTheme={theme}
+                      editorInstance={editorInstance}
+                      setEditorInstance={setEditorInstance}
+                    />
                   </ReflexElement>
                   <ReflexSplitter className={clsx(style.splitter, style["splitter-horizontal"])} />
                   <ReflexElement flex={0.3}>
@@ -137,7 +147,13 @@ const Dashboard = () => {
                 <ReflexContainer orientation="horizontal">
                   {/* 0.12 */}
                   <ReflexElement className={`${style["pane-color"]} tone3`} flex={0.18}>
-                    <VoiceChat theme={theme} setTheme={setTheme} params={id} user={prepareData()} partnerUser={partnerUser} />
+                    <VoiceChat
+                      theme={theme}
+                      setTheme={setTheme}
+                      params={id}
+                      user={prepareData()}
+                      partnerUser={partnerUser}
+                    />
                   </ReflexElement>
                   <ReflexSplitter className={clsx(style.splitter, style["splitter-horizontal"])} />
                   <ReflexElement className={`${style["chat-app"]} tone3`}>

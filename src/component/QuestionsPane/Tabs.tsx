@@ -9,13 +9,13 @@ import { LabelType, TabsContextTypes, QuestionDataSS, ScrappedDataType } from "t
 import ProblemPage from "./ProblemPage/ProblemPage";
 import { tagsData, companiesData } from "./ProblemList/data";
 import { socket } from "service/socket";
-import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 
 interface Props {
   theme: string;
 }
-const TabsComponent:FC<Props> = ({theme}) => {
-  const { id: roomID } = useParams<Record<string, string>>();
+const TabsComponent: FC<Props> = ({ theme }) => {
+  const { roomID } = useRoomID();
   const { tabIndex, onTabsChange, onQuestionDataChange, handleScrappedData } = useContext(
     TabsContext
   ) as TabsContextTypes;
@@ -62,6 +62,6 @@ const TabsComponent:FC<Props> = ({theme}) => {
       </TabPanel>
     </Tabs>
   );
-}
+};
 
-export default TabsComponent
+export default TabsComponent;

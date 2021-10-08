@@ -1,19 +1,20 @@
-import React, { useEffect, useContext, useRef } from "react";
-import { CDRT_SERVER } from "config.keys";
+import React, { useEffect, useContext, useCallback } from "react";
+import { CDRT_SERVER, SERVER_URL } from "config.keys";
 import { CodeMirrorBinding } from "./CodeMirrorAdapter";
 import { GuestNameContext } from "service/GuestNameContext";
 import { UserContext } from "service/UserContext";
+import { CodeExecutionInfoContext } from "service/CodeExecutionInfo";
+import { socket } from "service/socket";
+import axios from "axios";
 import { SettingContext } from "service/SettingsContext";
 import { useSnackbar } from "notistack";
-import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 import "./CodeMirrorImports.ts";
-import { GuestNameContextTypes, SettingsContextType, UserContextTypes } from "types";
+import { GuestNameContextTypes, SettingsContextType, UserContextTypes, CodeExecutionInfoType } from "types";
 import { UnControlled as CodeMirror } from "react-codemirror2";
 import * as Y from "yjs";
-// import { WebsocketProvider } from "y-websocket";
-import { WebrtcProvider } from "y-webrtc";
+import { WebsocketProvider } from "y-websocket";
 import { getRandomColor } from "service/getRandomColor";
-import CssBaseline from "@material-ui/core/CssBaseline";
 interface AppProps {
   editorInstance: any;
   setEditorInstance: React.Dispatch<any>;
@@ -21,16 +22,22 @@ interface AppProps {
 }
 
 const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstance, overallTheme }) => {
+  const { setValue, setLoading, inputText, setOutputData } = useContext(
+    CodeExecutionInfoContext
+  ) as CodeExecutionInfoType;
+
   const handleEditorDidMount = (editor: any) => {
     //@ts-ignore
     window.editor = editor;
     setEditorInstance(editor);
   };
 
-  const { id: roomID } = useParams<Record<string, string>>();
+  const { roomID } = useRoomID();
 
   const { enqueueSnackbar } = useSnackbar();
-  const { language, fontSize, theme, keybinds, handleThemeChange } = useContext(SettingContext) as SettingsContextType;
+  const { language, fontSize, theme, keybinds, handleThemeChange } = useContext(
+    SettingContext
+  ) as SettingsContextType;
 
   const { user } = useContext(UserContext) as UserContextTypes;
   const { guestName } = useContext(GuestNameContext) as GuestNameContextTypes;
@@ -40,48 +47,69 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
 
   useEffect(() => {
     if (overallTheme === "light") {
-      console.log(overallTheme)
-      handleThemeChange("default")
+      console.log(overallTheme);
+      handleThemeChange("default");
     }
     if (overallTheme === "dark") {
       console.log(overallTheme);
       handleThemeChange("material-darker");
     }
-      if (editorInstance != null) {
-        const ydoc: Y.Doc = new Y.Doc();
-        const yText = ydoc.getText("codemirror");
-        const yUndoManager = new Y.UndoManager(yText);
-        // const provider = new WebsocketProvider(CDRT_SERVER, roomID, ydoc);
 
-        let provider;
-        try {
-          //@ts-ignore
-          provider = new WebrtcProvider(roomID, ydoc, {
-            signaling: [
-              "wss://signaling.yjs.dev",
-              "wss://y-webrtc-signaling-eu.herokuapp.com",
-              "wss://y-webrtc-signaling-us.herokuapp.com",
-            ],
-          });
-        } catch (err) {}
-
-        const awareness = provider?.awareness;
-        const val = getRandomColor("DEFAULT");
-        awareness?.setLocalStateField("user", {
-          // Define a print name that should be displayed
-          name: username,
-          // Define a color that should be associated to the user:
-          color: val, // should be a hex color: ;
+    if (editorInstance != null) {
+      const ydoc: Y.Doc = new Y.Doc();
+      const yText = ydoc.getText("codemirror");
+      const yUndoManager = new Y.UndoManager(yText);
+      let provider;
+      try {
+        provider = new WebsocketProvider(CDRT_SERVER, roomID, ydoc);
+      } catch (err) {
+        enqueueSnackbar("Could not connect to the server", {
+          variant: "warning",
         });
-
-        const getBinding = new CodeMirrorBinding(yText, editorInstance, awareness, {
-          yUndoManager,
-        });
+        throw Error("could not connect to the server");
       }
+
+      const awareness = provider?.awareness;
+      const val = getRandomColor("DEFAULT");
+      awareness?.setLocalStateField("user", {
+        // Define a print name that should be displayed
+        name: username,
+        // Define a color that should be associated to the user:
+        color: val, // should be a hex color:
+      });
+
+      const getBinding = new CodeMirrorBinding(yText, editorInstance, awareness, {
+        yUndoManager,
+      });
+    }
   }, [editorInstance, overallTheme]);
 
+  const submitProblem = useCallback(async () => {
+    setLoading(true);
+    setValue(1);
+    const response = await axios({
+      method: "POST",
+      url: `${SERVER_URL}/api/execute`,
+      data: {
+        script: editorInstance.getValue(),
+        language: language,
+        stdin: inputText,
+      },
+      responseType: "json",
+    });
+    socket.emit("code-executed", { data: response.data, roomID: roomID });
+    enqueueSnackbar(response.data.memory === null ? "Error in code-execution" : "Code ran succesfully", {
+      variant: response.data.memory === null ? "error" : "success",
+    });
+    setOutputData(response.data);
+    setLoading(false);
+  }, [SERVER_URL, editorInstance, language, inputText, roomID]);
+
   return (
-    <div className="tone3" style={{ textAlign: "left", width: "100%", fontSize: `${fontSize}px`, height: "100%" }}>
+    <div
+      className="tone3"
+      style={{ textAlign: "left", width: "100%", fontSize: `${fontSize}px`, height: "100%" }}
+    >
       <CodeMirror
         autoScroll
         options={{
@@ -100,6 +128,7 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
           autoCloseBrackets: true,
           extraKeys: {
             "Ctrl-Space": "autocomplete",
+            "Ctrl-'": submitProblem,
           },
         }}
         editorDidMount={(editor) => {

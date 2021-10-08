@@ -3,7 +3,7 @@ import { FormControl, InputLabel, MenuItem, Select, withStyles } from "@material
 import { SettingContext } from "service/SettingsContext";
 import { SettingsContextType } from "types";
 import { socket } from "service/socket";
-import { useParams } from "react-router-dom";
+import { useRoomID } from "service/RoomIdContext";
 
 const Settings = () => {
   const {
@@ -17,8 +17,7 @@ const Settings = () => {
     handleKeybindsChange,
   } = useContext(SettingContext) as SettingsContextType;
 
-  const { id } = useParams<Record<string, string>>();
-
+  const { roomID: id } = useRoomID();
   const CssFormControl = withStyles({
     root: {
       width: "70%",
