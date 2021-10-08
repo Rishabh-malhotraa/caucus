@@ -49,7 +49,7 @@ const Login = () => {
                     value={guestName}
                     onChange={(e) => handleGuestNameChange(e)}
                     onKeyDown={(e) =>{if(e.key === 'Enter') {
-                      document.getElementById('login')?.click();
+                      isGuestNameClick(e)
                     }}}
                     placeholder="Enter your Name"
                     className={classes["input-email"]}
