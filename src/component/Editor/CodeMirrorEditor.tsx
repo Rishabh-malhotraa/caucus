@@ -18,10 +18,9 @@ import { getRandomColor } from "service/getRandomColor";
 interface AppProps {
   editorInstance: any;
   setEditorInstance: React.Dispatch<any>;
-  overallTheme: string;
 }
 
-const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstance, overallTheme }) => {
+const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstance }) => {
   const { setValue, setLoading, inputText, setOutputData } = useContext(
     CodeExecutionInfoContext
   ) as CodeExecutionInfoType;
@@ -35,7 +34,7 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
   const { roomID } = useRoomID();
 
   const { enqueueSnackbar } = useSnackbar();
-  const { language, fontSize, theme, keybinds, handleThemeChange } = useContext(
+  const { language, fontSize, editorTheme, keybinds } = useContext(
     SettingContext
   ) as SettingsContextType;
 
@@ -46,14 +45,6 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
   const username = user?.name ? user.name : guestName;
 
   useEffect(() => {
-    if (overallTheme === "light") {
-      console.log(overallTheme);
-      handleThemeChange("default");
-    }
-    if (overallTheme === "dark") {
-      console.log(overallTheme);
-      handleThemeChange("material-darker");
-    }
 
     if (editorInstance != null) {
       const ydoc: Y.Doc = new Y.Doc();
@@ -82,7 +73,7 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
         yUndoManager,
       });
     }
-  }, [editorInstance, overallTheme]);
+  }, [editorInstance]);
 
   const submitProblem = useCallback(async () => {
     setLoading(true);
@@ -115,7 +106,7 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
         options={{
           className: "tone3",
           mode: language,
-          theme: theme,
+          theme: editorTheme,
           keyMap: keybinds,
           lineWrapping: true,
           smartIndent: true,

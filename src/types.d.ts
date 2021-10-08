@@ -37,10 +37,14 @@ export interface SettingsContextType {
   fontSize: number;
   theme: string;
   keybinds: string;
+  editorTheme: string;
+  screenSize: string;
   handleLanguageChange: (value: string, id: string, broadcast: boolean) => void;
   handleThemeChange: (value: string) => void;
   handleKeybindsChange: (value: string) => void;
   handleFontSizeChange: (value: number) => void;
+  handleEditorThemeChange: (value: string) => void;
+  handleScreenChange: (value: string) => void;
 }
 
 export interface CodeExecutionInfoType {

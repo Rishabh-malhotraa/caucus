@@ -12,7 +12,7 @@
   border-bottom: none;
 }
 .editor-section .MuiInput-root{
-  color: white;
+  color: #ffffff;
 }
 .editor-section .MuiSelect-icon{
   color: white;
@@ -27,4 +27,12 @@
 .MuiInput-underline:hover:not(.Mui-disabled):before {
     border-bottom: none !important;
 }
+}
+#dark img .screen{
+  color: white;
+  fill: white;
+}
+#light img .screen{
+  color: black;
+  fill: black;
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, FC } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Tabs, Tab, TabPanel, TabList } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./ReactTabs.css";
@@ -11,10 +11,7 @@ import { tagsData, companiesData } from "./ProblemList/data";
 import { socket } from "service/socket";
 import { useRoomID } from "service/RoomIdContext";
 
-interface Props {
-  theme: string;
-}
-const TabsComponent: FC<Props> = ({ theme }) => {
+const TabsComponent = () => {
   const { roomID } = useRoomID();
   const { tabIndex, onTabsChange, onQuestionDataChange, handleScrappedData } = useContext(
     TabsContext
@@ -50,7 +47,6 @@ const TabsComponent: FC<Props> = ({ theme }) => {
           tags={tags}
           difficulty={difficulty}
           url={url}
-          theme={theme}
           setCompanies={setCompanies}
           setTags={setTags}
           setDifficulty={setDifficulty}

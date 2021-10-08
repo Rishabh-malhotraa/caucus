@@ -9,11 +9,11 @@ const Settings = () => {
   const {
     language,
     fontSize,
-    theme,
+    editorTheme,
     keybinds,
     handleFontSizeChange,
     handleLanguageChange,
-    handleThemeChange,
+    handleEditorThemeChange,
     handleKeybindsChange,
   } = useContext(SettingContext) as SettingsContextType;
 
@@ -92,7 +92,7 @@ const Settings = () => {
 
       <CssFormControl variant="filled">
         <InputLabel style={{ color: "white" }}>Theme</InputLabel>
-        <Select value={theme} onChange={(e) => handleThemeChange(e.target.value as string)}>
+        <Select value={editorTheme} onChange={(e) => handleEditorThemeChange(e.target.value as string)}>
           <MenuItem value={"monokai"}>Monokai</MenuItem>
           <MenuItem value={"material-darker"}>Dark Theme</MenuItem>
           <MenuItem value={"default"}>Light Theme</MenuItem>

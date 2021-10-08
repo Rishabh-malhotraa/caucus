@@ -14,10 +14,11 @@ import CodeMirror from "component/Editor/CodeMirrorEditor";
 import clsx from "clsx";
 import { GuestNameContext } from "service/GuestNameContext";
 import { UserContext } from "service/UserContext";
-import { UserContextTypes, GuestNameContextTypes, UserInfoSS } from "types";
+import { UserContextTypes, GuestNameContextTypes, UserInfoSS, SettingsContextType } from "types";
 import TabsPanel from "component/QuestionsPane/Tabs";
 import Button from "@material-ui/core/Button";
 import EditorToolbar from "component/Editor/Toolbar/Toolbar";
+import { SettingContext } from "service/SettingsContext";
 
 const Dashboard = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -31,9 +32,10 @@ const Dashboard = () => {
   const [partnerUser, setPartnerUser] = useState<UserInfoSS>();
   const [editorInstance, setEditorInstance] = useState<any>(null);
   const { id } = useParams<Record<string, string>>();
-  const [screenSize, setScreenSize] = useState("normal");
-  const [theme, setTheme] = useState("dark");
   const { setRoomID } = useRoomID();
+  const { theme, screenSize } = useContext(
+    SettingContext
+  ) as SettingsContextType;
 
   useEffect(() => {
     setRoomID(id);
@@ -113,7 +115,7 @@ const Dashboard = () => {
               <ReflexElement>
                 <ReflexContainer orientation="horizontal">
                   <ReflexElement className={`${style["pane-color"]} tone3`}>
-                    <TabsPanel theme={theme} />
+                    <TabsPanel />
                   </ReflexElement>
                 </ReflexContainer>
               </ReflexElement>
@@ -125,9 +127,8 @@ const Dashboard = () => {
               <ReflexElement flex={0.45} className={`${screenSize} editor-section`}>
                 <ReflexContainer orientation="horizontal">
                   <ReflexElement style={{ display: "flex", flexDirection: "column" }}>
-                    <EditorToolbar screenSize={screenSize} setScreenSize={setScreenSize} />
+                    <EditorToolbar />
                     <CodeMirror
-                      overallTheme={theme}
                       editorInstance={editorInstance}
                       setEditorInstance={setEditorInstance}
                     />
@@ -148,8 +149,6 @@ const Dashboard = () => {
                   {/* 0.12 */}
                   <ReflexElement className={`${style["pane-color"]} tone3`} flex={0.18}>
                     <VoiceChat
-                      theme={theme}
-                      setTheme={setTheme}
                       params={id}
                       user={prepareData()}
                       partnerUser={partnerUser}

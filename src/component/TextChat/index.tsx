@@ -119,8 +119,8 @@ const ChatApp = ({ userInfo, socketID }: { userInfo: UserInfoSS; socketID: strin
             );
           })}
         </div>
-        <div style={{}} ref={chatBoxRef}>
-          <form onSubmit={sendMessage} id="chat-form" className={classes.formStyle}>
+        <div ref={chatBoxRef}>
+          <form onSubmit={sendMessage} id="chat-form" className={`${classes.formStyle} tone2`}>
             <input
               className={`${classes.inputStyle} tone3`}
               autoComplete="off"

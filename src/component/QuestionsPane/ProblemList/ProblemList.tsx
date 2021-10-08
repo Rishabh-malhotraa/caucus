@@ -8,18 +8,18 @@ import { allCompanies, allDifficulties, allTags } from "./data";
 import ListPagination from "./ListPagination";
 import Grid from "@material-ui/core/Grid";
 import styles from "./ProblemList.module.css";
-import { LabelType, QuestionListResponse, ScrappedDataType, TabsContextTypes } from "types";
+import { LabelType, QuestionListResponse, TabsContextTypes, SettingsContextType } from "types";
 import { tagsData, companiesData, difficultyData } from "./data";
 import { TabsContext } from "service/TabsContext";
 import Url from "url-parse";
 import { useRoomID } from "service/RoomIdContext";
+import { SettingContext } from "service/SettingsContext";
 
 interface AppProps {
   companies: LabelType[];
   tags: LabelType[];
   difficulty: LabelType[];
   url: string;
-  theme: string;
   setCompanies: React.Dispatch<React.SetStateAction<LabelType[]>>;
   setTags: React.Dispatch<React.SetStateAction<LabelType[]>>;
   setDifficulty: React.Dispatch<React.SetStateAction<LabelType[]>>;
@@ -69,7 +69,6 @@ const ProblemList: React.FC<AppProps> = ({
   difficulty,
   tags,
   url,
-  theme,
   setCompanies,
   setDifficulty,
   setTags,
@@ -78,6 +77,7 @@ const ProblemList: React.FC<AppProps> = ({
   const [response, setResponse] = useState<QuestionListResponse[]>([]);
   const [errorText, setErrorText] = useState({ error: false, comment: "" });
   const { roomID } = useRoomID();
+  const { theme } = useContext(SettingContext) as SettingsContextType;
 
   useEffect(() => {
     axios
