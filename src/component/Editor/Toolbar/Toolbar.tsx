@@ -65,7 +65,10 @@ const EditorToolbar: FC<Props> = ({ screenSize, setScreenSize }) => {
         display: "flex",
         justifyContent: "end",
         marginBottom: "0px",
+        marginTop: "0px",
+        
       }}
+      className={`tone2 ${screenSize==='fullScreen' && "toolbar"}`}
     >
       <Tab>
         <Select

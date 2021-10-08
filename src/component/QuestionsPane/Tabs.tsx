@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, FC } from "react";
 import { Tabs, Tab, TabPanel, TabList } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./ReactTabs.css";
@@ -11,7 +11,10 @@ import { tagsData, companiesData } from "./ProblemList/data";
 import { socket } from "service/socket";
 import { useParams } from "react-router-dom";
 
-export default function TabsComponent() {
+interface Props {
+  theme: string;
+}
+const TabsComponent:FC<Props> = ({theme}) => {
   const { id: roomID } = useParams<Record<string, string>>();
   const { tabIndex, onTabsChange, onQuestionDataChange, handleScrappedData } = useContext(
     TabsContext
@@ -33,7 +36,7 @@ export default function TabsComponent() {
 
   return (
     <Tabs selectedIndex={tabIndex} onSelect={(index) => onTabsChange(index)} className="tabs_root">
-      <TabList style={{ background: "#252526" }}>
+      <TabList style={{ background: "#252526" }} className="tone2 section1-nav react-tabs__tab-list">
         <Tab>Problem</Tab>
         <Tab>Problem List</Tab>
         <Tab>Settings</Tab>
@@ -47,6 +50,7 @@ export default function TabsComponent() {
           tags={tags}
           difficulty={difficulty}
           url={url}
+          theme={theme}
           setCompanies={setCompanies}
           setTags={setTags}
           setDifficulty={setDifficulty}
@@ -59,3 +63,5 @@ export default function TabsComponent() {
     </Tabs>
   );
 }
+
+export default TabsComponent

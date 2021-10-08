@@ -133,12 +133,140 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function AutoCompleteLabel({ value, setValue, labels, type }) {
-  const classes = useStyles();
+const useLight = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      margin: "1rem",
+      flexGrow: 1,
+      fontSize: 13,
+      color: "#000000",
+    },
+    button: {
+      fontSize: 13,
+      width: "100%",
+      textAlign: "left",
+      paddingBottom: 8,
+      color: "#000000",
+      fontWeight: 600,
+      "&:hover,&:focus": {
+        color: "#0366d6",
+      },
+      "& span": {
+        width: "100%",
+      },
+      "& svg": {
+        width: 16,
+        height: 16,
+      },
+    },
+    tag: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 3,
+      height: 20,
+      padding: ".15em 4px",
+      fontWeight: 600,
+      lineHeight: "15px",
+      borderRadius: 2,
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+    },
+    popper: {
+      border: "1px solid #c9c9c9",
+      boxShadow: "0 3px 12px #c9c9c9",
+      borderRadius: 3,
+      width: 300,
+      zIndex: 5,
+      fontSize: 13,
+      color: "#eeeeee",
+      backgroundColor: "#fafafa",
+    },
+    header: {
+      borderBottom: "1px solid #c9c9c9",
+      padding: "8px 10px",
+      fontWeight: 600,
+      color: "#000000",
+    },
+    inputBase: {
+      padding: 10,
+      width: "100%",
+      color: "#000000",
+      borderBottom: "1px solid #eeeeee",
+      "& input": {
+        borderRadius: 4,
+        backgroundColor: "#fafafa",
+        padding: 8,
+        transition: theme.transitions.create(["border-color", "box-shadow"]),
+        border: "1px solid #c9c9c9",
+        fontSize: 14,
+        "&:focus": {
+          boxShadow: `${fade("#0055bb", 0.25)} 0 0 0 0.2rem`,
+          borderColor: "#0055bb",
+        },
+      },
+    },
+    paper: {
+      boxShadow: "none",
+      margin: 0,
+      color: "#000000",
+      background: "#fafafa",
+      fontSize: 13,
+      "& .MuiAutocomplete-noOptions": {
+        color: "#000000 !important",
+      },
+    },
+    option: {
+      minHeight: "auto",
+      alignItems: "flex-start",
+      padding: 8,
+      '&[aria-selected="true"]': {
+        backgroundColor: "#eeeeee",
+      },
+      '&[data-focus="true"]': {
+        backgroundColor: "#eeeeee",
+      },
+    },
+    popperDisablePortal: {
+      position: "relative",
+    },
+    iconSelected: {
+      width: 17,
+      height: 17,
+      marginRight: 5,
+      marginLeft: -2,
+    },
+    color: {
+      width: 14,
+      height: 14,
+      flexShrink: 0,
+      borderRadius: 3,
+      marginRight: 8,
+      marginTop: 2,
+    },
+    text: {
+      flexGrow: 1,
+    },
+    close: {
+      opacity: 0.6,
+      width: 18,
+      height: 18,
+    },
+  })
+);
+
+export default function AutoCompleteLabel({ value, setValue, labels, type, overallTheme }) {
+  let classes = chooseClasses(overallTheme);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   // default values we are adding 2 okays
   const [pendingValue, setPendingValue] = React.useState<LabelType[]>([]);
   const theme = useTheme();
+
+  function chooseClasses(overallTheme) {
+    if (overallTheme === 'light') return useLight()
+    else return useStyles()
+  }
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setPendingValue(value);

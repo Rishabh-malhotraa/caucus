@@ -1,0 +1,87 @@
+:root{
+    --light-tone1 : #c9c9c9;
+    --light-tone2 : #eeeeee;
+    --light-tone3 : #fafafa;
+    --black : #000000;
+    --white : #ffffff;
+    --light-splitter-color : #c9c9c9;
+    --dark-gray : #3e3e42;
+}
+#light .MuiInputBase-root{
+    color: var(--black) !important;
+}
+#light svg{
+    color: var(--dark-gray);
+    fill: var(--dark-gray);
+}
+#light .tone2{
+    background-color: var(--light-tone2) !important;
+    color: var(--black) !important;
+}
+#light .tone3{
+    background-color: var(--light-tone3) !important;
+    color: var(--black) !important;
+}
+#light label{
+    color: var(--black) !important;
+}
+#light .MuiSelect-root{
+    color: var(--black) !important;
+}
+#light .MuiInputLabel-filled.MuiInputLabel-shrink{
+    color: var(--white);
+}
+#light .InputOutputFile_root__U7z6g{
+    background-color: var(--light-tone2);
+}
+#light .makeStyles-formStyle-60{
+    background-color: var(--light-tone2);
+}
+#light.Room_root__1roji{
+    background-color: #c9c9c9;
+}
+#light ::-webkit-scrollbar-track{
+    background-color: #e7e7e7 !important;
+}
+#light ::-webkit-scrollbar-thumb {
+    background-color: #9f9f9f !important;
+}
+#light .ProblemList_request-field__3E7-H{
+    color: black;
+}
+.toolbar{
+    padding-right: 60px;
+}
+#light .react-tabs__tab-list{
+    border-bottom: none;
+}
+#light ul, #light .problemPage pre, #light .chips > *{
+    color: black !important;
+    background-color: #e7e7e7 !important;
+}
+#light .fullScreen .reflex-splitter{
+    background-color: var(--light-splitter-color) !important;
+}
+#light .footer{
+    background-color: var(--light-splitter-color) !important;
+    color: var(--black) !important;
+}
+#light .footer a{
+    color: var(--black) !important;
+}
+#light .run-icon svg{
+    color: var(--white) !important;
+    fill: var(--white) !important;
+}
+#light .react-tabs__tab--selected{
+    background-color: var(--light-tone1);
+    color: var(--black);
+    border-color: var(--light-tone1);
+}
+#light .MuiPagination-ul{
+    background-color: var(--light-tone3) !important;
+}
+#light .settings-dropdown{
+    color: var(--black);
+    background-color: var(--light-tone2);
+}

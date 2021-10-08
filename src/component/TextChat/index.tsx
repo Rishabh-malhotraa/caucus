@@ -98,6 +98,7 @@ const ChatApp = ({ userInfo, socketID }: { userInfo: UserInfoSS; socketID: strin
       >
         <h1
           style={{ margin: "0px 0px 8px 0px", padding: "4px", backgroundColor: "#252526", fontWeight: 600 }}
+          className="tone2"
         >
           MESSENGER
         </h1>
@@ -121,7 +122,7 @@ const ChatApp = ({ userInfo, socketID }: { userInfo: UserInfoSS; socketID: strin
         <div style={{}} ref={chatBoxRef}>
           <form onSubmit={sendMessage} id="chat-form" className={classes.formStyle}>
             <input
-              className={classes.inputStyle}
+              className={`${classes.inputStyle} tone3`}
               autoComplete="off"
               placeholder="Start Chatting..."
               value={message}

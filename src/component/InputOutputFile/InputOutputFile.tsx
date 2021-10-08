@@ -142,7 +142,7 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, editorInstance
 
   return (
     <div className={styles.root} ref={TextAreaRef}>
-      <Paper className={styles.toolbar}>
+      <Paper className={`${styles.toolbar} tone2`}>
         <Tabs
           value={value}
           onChange={(event, value) => handleChange(event, value)}
@@ -155,6 +155,7 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, editorInstance
         </Tabs>
         <Box className={styles["btn-box"]}>
           <Button
+            className = "run-icon"
             variant="text"
             color="inherit"
             endIcon={<SendRoundedIcon />}
@@ -166,7 +167,7 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, editorInstance
           </Button>
         </Box>
       </Paper>
-      <div className={styles["text-area"]}>
+      <div className={`${styles["text-area"]} tone3`}>
         {value === 0 ? (
           <CssTextField
             key="1"

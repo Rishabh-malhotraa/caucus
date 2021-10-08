@@ -12,6 +12,7 @@ import { SERVER_URL } from "config.keys";
 import { SnackbarProvider } from "notistack";
 import Loader from "pages/LoadingAnimation/Loader";
 import StartupAnimation from "pages/LoadingAnimation/StartupAnimation";
+import './Theme.style.css'
 
 const Dashboard = lazy(() => import("./pages/Room/Room"));
 const NavigateRoom = lazy(() => import("./pages/NavigateRooms/NavigateRooms"));
