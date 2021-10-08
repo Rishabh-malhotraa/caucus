@@ -29,7 +29,9 @@ export interface GuestNameContextTypes {
   guestName: string;
   guestLoginClick: boolean;
   handleGuestNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isGuestNameClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  isGuestNameClick: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.KeyboardEvent<HTMLInputElement>
+  ) => void;
 }
 
 export interface SettingsContextType {

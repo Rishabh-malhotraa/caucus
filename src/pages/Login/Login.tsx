@@ -48,6 +48,11 @@ const Login = () => {
                     autoComplete="off"
                     value={guestName}
                     onChange={(e) => handleGuestNameChange(e)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        isGuestNameClick(e);
+                      }
+                    }}
                     placeholder="Enter your Name"
                     className={classes["input-email"]}
                   />
