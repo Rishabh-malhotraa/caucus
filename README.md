@@ -128,7 +128,7 @@ See the [open issues](https://github.com/Rishabh-malhotraa/caucus/issues) for a 
 
 ### Things To do
 
-- [x] Inital Login Page
+- [x] Initial Login Page
 - [x] Database hookup with login from oAuth
 - [x] Chat Application
 - [x] Video Chat Application (the main chunk of work)
@@ -140,12 +140,12 @@ See the [open issues](https://github.com/Rishabh-malhotraa/caucus/issues) for a 
 - [x] Add SSL certificate to the docker container, andd get rid of the current bootleg shenanigans D: (LetsEncrypt or Cloudflare)
 - [x] Add codeforce problem using webscraping thingy
 - [x] Add Vim Keybinds
-- [x] Add intellisense using Language Server Protocal for atleast C++ and JAVA
-- [x] Make a public api to fetch questions, based on scraped data
+- [x] Add intellisense using Language Server Protocol for atleast C++ and JAVA
+- [x] Make a public api to fetch questions, based on scrapped data
 - [ ] Add a full-screen Zen Mode
 - [ ] Change Hosting from Heroku to GCP or Digital Ocean
 - [ ] Change Heroku PSQL DB to either ~~MongoDB or Firebase~~ SQLITE.
-- [ ] Add Autoformating keybind.
+- [ ] Add Autoformatting keybind.
 - [ ] ~~Fix the number of users in the room.~~
 - [ ] ~~REACH: Add video call functionality (using WEBRTC or something propieteary like Twilo proprietary)~~
 - [ ] ~~Add ability to add different tabs on the editor instance just like that on VSCODE~~
