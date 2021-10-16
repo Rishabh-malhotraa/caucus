@@ -114,7 +114,12 @@ const ChatApp = ({ userInfo, socketID }: { userInfo: UserInfoSS; socketID: strin
               );
             }
             return (
-              <ChatMsg key={index} messages={[...element.messages]} avatar={element.userInfo.image_link} />
+              <ChatMsg
+                key={index}
+                side="left"
+                messages={[...element.messages]}
+                avatar={element.userInfo.image_link}
+              />
             );
           })}
         </div>
