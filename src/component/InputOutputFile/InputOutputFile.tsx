@@ -72,14 +72,9 @@ const InputOutputFile: React.FC<AppProps> = ({ TextAreaRef, rows, editorInstance
       setInputText(inputData);
     });
     socket.on("emit-code-executed", (outputResponse: Record<string, any>) => {
-      enqueueSnackbar(
-        outputResponse.memory === null || outputResponse.memory === null
-          ? "Error in code-execution"
-          : "Code ran successfully",
-        {
-          variant: outputResponse.memory === null || outputResponse.memory === null ? "error" : "success",
-        }
-      );
+      enqueueSnackbar(outputResponse.memory === null ? "Error in code-execution" : "Code ran successfully", {
+        variant: outputResponse.memory === null ? "error" : "success",
+      });
       setOutputData(outputResponse);
       setValue(1);
     });

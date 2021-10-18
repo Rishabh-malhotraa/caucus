@@ -64,15 +64,15 @@ const Settings = () => {
           value={language}
           onChange={(e) => handleLanguageChange(e.target.value as string, id, true)}
         >
-          <MenuItem value={"text/x-c++src"}>C++</MenuItem>
-          <MenuItem value={"text/x-java"}>Java</MenuItem>
-          <MenuItem value={"text/x-python"}>Python</MenuItem>
-          <MenuItem value={"text/javascript"}>JavaScript</MenuItem>
-          <MenuItem value={"text/x-rustsrc"}>Rust</MenuItem>
-          <MenuItem value={"text/x-go"}>GoLang</MenuItem>
-          <MenuItem value={"text/x-php"}>PHP</MenuItem>
-          <MenuItem value={"text/x-ruby"}>Ruby</MenuItem>
-          <MenuItem value={"text/x-haskell"}>Haskell</MenuItem>
+          <MenuItem value={"cpp"}>C++</MenuItem>
+          <MenuItem value={"java"}>Java</MenuItem>
+          <MenuItem value={"python"}>Python</MenuItem>
+          <MenuItem value={"javascript"}>JavaScript</MenuItem>
+          <MenuItem value={"rust"}>Rust</MenuItem>
+          <MenuItem value={"go"}>GoLang</MenuItem>
+          <MenuItem value={"php"}>PHP</MenuItem>
+          <MenuItem value={"ruby"}>Ruby</MenuItem>
+          <MenuItem value={"haskell"}>Haskell</MenuItem>
         </Select>
       </CssFormControl>
 
@@ -94,13 +94,13 @@ const Settings = () => {
         <InputLabel style={{ color: "white" }}>Theme</InputLabel>
         <Select value={theme} onChange={(e) => handleThemeChange(e.target.value as string)}>
           <MenuItem value={"monokai"}>Monokai</MenuItem>
-          <MenuItem value={"material-darker"}>Dark Theme</MenuItem>
-          <MenuItem value={"default"}>Light Theme</MenuItem>
-          <MenuItem value={"neat"}>Light Theme Alternate</MenuItem>
-          <MenuItem value={"eclipse"}>Eclipse (Light)</MenuItem>
-          <MenuItem value={"dracula"}>Dracula</MenuItem>
-          <MenuItem value={"3024-night"}>Brogrammer</MenuItem>
-          <MenuItem value={"material-palenight"}>Palenight</MenuItem>
+          <MenuItem value={"vs"}>Light Theme</MenuItem>
+          <MenuItem value={"vs-dark"}>Dark Theme</MenuItem>
+          <MenuItem value={"github"}>GitHub</MenuItem>
+          <MenuItem value={"hc-black"}>High contrast</MenuItem>
+          <MenuItem value={"solarized-light"}>Solarized Light</MenuItem>
+          <MenuItem value={"solarized-dark"}>Solarized-dark</MenuItem>
+          <MenuItem value={"clouds"}>Clouds</MenuItem>
         </Select>
       </CssFormControl>
 

@@ -1,4 +1,4 @@
-import React, { useState, createRef, useRef, useContext, useEffect } from "react";
+import React, { useState, createRef, useContext, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import InputOutputFile from "component/InputOutputFile/InputOutputFile";
 import { ReflexContainer, ReflexElement, ReflexSplitter } from "react-reflex";
@@ -10,7 +10,7 @@ import ChatApp from "component/TextChat";
 import VoiceChat from "component/VoiceChat/VoiceChat";
 import { useParams } from "react-router-dom";
 import { useRoomID } from "service/RoomIdContext";
-import CodeMirror from "component/Editor/CodeMirrorEditor";
+import MonacoEditor from "component/Editor/MonacoEditor";
 import clsx from "clsx";
 import { GuestNameContext } from "service/GuestNameContext";
 import { UserContext } from "service/UserContext";
@@ -22,7 +22,6 @@ const Dashboard = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const { user } = useContext(UserContext) as UserContextTypes;
   const { guestName } = useContext(GuestNameContext) as GuestNameContextTypes;
-  const CodeMirrorRef = useRef<any>();
   const TextAreaRef = createRef<HTMLDivElement>();
   const [rows, setRows] = useState(5);
   const [sid, setSid] = useState("");
@@ -98,7 +97,6 @@ const Dashboard = () => {
     const height = Math.floor(TextAreaRef!.current!.clientHeight);
     const adjustedRows = height > 340 ? height / 27 : height / 39;
     setRows(Math.floor(adjustedRows));
-    editorInstance.refresh();
   };
 
   return (
@@ -122,7 +120,7 @@ const Dashboard = () => {
               <ReflexElement flex={0.45}>
                 <ReflexContainer orientation="horizontal">
                   <ReflexElement style={{ display: "flex" }}>
-                    <CodeMirror editorInstance={editorInstance} setEditorInstance={setEditorInstance} />
+                    <MonacoEditor editorInstance={editorInstance} setEditorInstance={setEditorInstance} />
                   </ReflexElement>
                   <ReflexSplitter
                     className={clsx(style.splitter, style["splitter-horizontal"])}
