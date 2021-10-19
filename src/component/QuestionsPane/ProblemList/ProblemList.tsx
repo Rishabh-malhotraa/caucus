@@ -14,8 +14,6 @@ import { TabsContext } from "service/TabsContext";
 import Url from "url-parse";
 import { useParams } from "react-router-dom";
 
-
-
 interface AppProps {
   companies: LabelType[];
   tags: LabelType[];
@@ -76,22 +74,6 @@ const ProblemList: React.FC<AppProps> = ({
       .post(`${SERVER_URL}/api/fetch-problems`, prepareData())
       .then((res: AxiosResponse<QuestionListResponse[]>) => setResponse(res.data));
   }, []);
-
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = "https://cses.fi/lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML";   // use the location of your MathJax
-
-    var config = 'MathJax.Hub.Config({' +
-      'extensions: ["tex2jax.js"],' +
-      'jax: ["input/TeX","output/HTML-CSS"]' +
-      '});' +
-      'MathJax.Hub.Startup.onload();';
-
-    script.text = config;
-
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
 
   const { filterResponseData, handleScrappedData } = useContext(TabsContext) as TabsContextTypes;
   const { id } = useParams<Record<string, string>>();
