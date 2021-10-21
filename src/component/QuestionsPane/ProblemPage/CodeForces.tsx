@@ -32,13 +32,11 @@ const LeetCode = ({ scrappedData }: { scrappedData: ScrappedDataType }) => {
         <div className={"codeforces"} ref={MathRef}>
           {parse(htmlString)}
         </div>
-      ) : ""}
-      {hostname === "atcoder.com" ? (
+      ) : hostname === "atcoder.com" ? (
         <div className={"atcoder"} ref={MathRef}>
           {parse(htmlString)}
         </div>
-      ) : ""}
-      {hostname === "cses.fi" ? (
+      ) : hostname === "cses.fi" ? (
         <div className={"cses"} ref={MathRef}>
           {parse(htmlString)}
         </div>
