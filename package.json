@@ -46,11 +46,15 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\"",
-    "lint": "eslint src/**/*.ts src/**/*.tsx",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(ts|tsx)\"",
+    "format": "npm run prettier -- --write",
+    "check-format": "npm run prettier -- --list-different",
+    "lint": "eslint --ignore-path .gitignore \"**/*.+(ts|tsx)\"",
+    "check-types": "tsc",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "validate": "npm-run-all --parallel check-types check-format lint build"
   },
   "eslintConfig": {
     "extends": [
@@ -82,6 +86,7 @@
     "eslint": "^7.18.0",
     "eslint-plugin-react": "^7.22.0",
     "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1"
   }
 }
