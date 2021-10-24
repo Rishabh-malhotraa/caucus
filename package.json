@@ -46,6 +46,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prepare": "husky install",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(ts|tsx)\"",
     "format": "npm run prettier -- --write",
     "check-format": "npm run prettier -- --list-different",
@@ -85,6 +86,7 @@
     "@typescript-eslint/parser": "^4.15.2",
     "eslint": "^7.18.0",
     "eslint-plugin-react": "^7.22.0",
+    "husky": "^7.0.4",
     "nodemon": "^2.0.7",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1"
