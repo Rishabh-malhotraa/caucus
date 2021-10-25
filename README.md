@@ -53,7 +53,7 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -128,29 +128,29 @@ See the [open issues](https://github.com/Rishabh-malhotraa/caucus/issues) for a 
 
 ### Things To do
 
-- [x] Inital Login Page
+- [x] Initial Login Page
 - [x] Database hookup with login from oAuth
 - [x] Chat Application
 - [x] Video Chat Application (the main chunk of work)
 - [x] Collaborative Editing (the main chunk of work)
 - [x] Resizable Panes
-- [x] Code Running (Easy need to just hookup with an api)
-- [x] Database with all the leetcode question and sorted based on tags.
+- [x] Code Running (Easy need to just hook up with an api)
+- [x] Database with all the leetcode questions and sorted based on tags.
 - [x] IMP: Sync code using localstorage or sockets when a new person joins in the room, with defaultvalue prop on the monaco editor instance.
-- [x] Add SSL certificate to the docker container, andd get rid of the current bootleg shenanigans D: (LetsEncrypt or Cloudflare)
-- [x] Add codeforce problem using webscraping thingy
+- [x] Add SSL certificate to the docker container, and get rid of the current bootleg shenanigans D: (LetsEncrypt or Cloudflare)
+- [x] Add codeforce problem using web scraping thingy
 - [x] Add Vim Keybinds
-- [x] Add intellisense using Language Server Protocal for atleast C++ and JAVA
+- [x] Add intellisense using Language Server Protocol for at least C++ and JAVA
 - [x] Make a public api to fetch questions, based on scraped data
 - [ ] Add a full-screen Zen Mode
 - [ ] Change Hosting from Heroku to GCP or Digital Ocean
 - [ ] Change Heroku PSQL DB to either ~~MongoDB or Firebase~~ SQLITE.
 - [ ] Add Autoformating keybind.
 - [ ] ~~Fix the number of users in the room.~~
-- [ ] ~~REACH: Add video call functionality (using WEBRTC or something propieteary like Twilo proprietary)~~
+- [ ] ~~REACH: Add video call functionality (using WEBRTC or something proprietary like Twilo proprietary)~~
 - [ ] ~~Add ability to add different tabs on the editor instance just like that on VSCODE~~
 - [ ] ~~Integrate the random quote thingy on loading screen from forticodes API~~
-- [ ] ~~Fix why the loader gets frozen on intial render -\_-~~
+- [ ] ~~Fix why the loader gets frozen on initial render -\_-~~
 
 ## Contributing
 
@@ -186,7 +186,7 @@ Project Link: [https://caucus-app.herokuapp.com/](https://caucus-app.herokuapp.c
 
 ---
 
-## Acknowledgements
+## Acknowledgments
 
 - [Heroku](https://www.heroku.com/)
 - [Azure](https://azure.microsoft.com/en-us/)
@@ -246,4 +246,4 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
