@@ -67,7 +67,7 @@ const Login = () => {
               <div className={classes["alternate-boxes"]}>
                 <Button
                   disabled={IS_DISABLED}
-                  onClick={(event) => handleLogin(event, "/google")}
+                  onClick={(event) => handleLogin(event, "google")}
                   variant="outlined"
                   color="inherit"
                   className={classes["alternate-box"]}
@@ -76,7 +76,7 @@ const Login = () => {
                 </Button>
                 <Button
                   disabled={IS_DISABLED}
-                  onClick={(event) => handleLogin(event, "/github")}
+                  onClick={(event) => handleLogin(event, "github")}
                   variant="outlined"
                   color="inherit"
                   className={classes["alternate-box"]}
