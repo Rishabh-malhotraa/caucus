@@ -239,6 +239,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/GaganpreetKaurKalsi"><img src="https://avatars.githubusercontent.com/u/54144759?v=4?s=140" width="140px;" alt=""/><br /><sub><b>Gaganpreet Kaur Kalsi</b></sub></a><br /><a href="https://github.com/Rishabh-malhotraa/caucus/commits?author=GaganpreetKaurKalsi" title="Code">💻</a> <a href="#design-GaganpreetKaurKalsi" title="Design">🎨</a></td>
     <td align="center"><a href="https://pavankalyan-codes.github.io/"><img src="https://avatars.githubusercontent.com/u/35896290?v=4?s=140" width="140px;" alt=""/><br /><sub><b>Pavan kalyan C</b></sub></a><br /><a href="https://github.com/Rishabh-malhotraa/caucus/commits?author=pavankalyan-codes" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/taksuparth"><img src="https://avatars.githubusercontent.com/u/13138123?v=4?s=140" width="140px;" alt=""/><br /><sub><b>Parth Bhavesh Shah</b></sub></a><br /><a href="https://github.com/Rishabh-malhotraa/caucus/commits?author=taksuparth" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
