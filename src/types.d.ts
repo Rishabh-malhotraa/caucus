@@ -104,7 +104,7 @@ export interface QuestionDataSS {
 }
 export interface ScrappedDataType {
   htmlString: string;
-  hostname: "codeforces.com" | "atcoder.jp";
+  hostname: "codeforces.com" | "atcoder.jp" | "cses.fi";
 }
 
 export interface TabsContextTypes {

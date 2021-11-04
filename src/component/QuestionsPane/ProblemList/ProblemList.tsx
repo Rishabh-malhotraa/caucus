@@ -88,10 +88,10 @@ const ProblemList: React.FC<AppProps> = ({
   const NextButton = () => {
     const getQuestionData = async () => {
       const { hostname } = new Url(url);
-      if (hostname !== "codeforces.com" && hostname !== "atcoder.jp") {
+      if (hostname !== "codeforces.com" && hostname !== "atcoder.jp" && hostname !== "cses.fi") {
         setErrorText({
           error: true,
-          comment: "Domain should either be codeforces or atcoder",
+          comment: "Domain should either be codeforces/atcoder/CSES problem set",
         });
       } else {
         const { data }: AxiosResponse<{ error: boolean; htmlString: string }> = await axios({
@@ -169,7 +169,7 @@ const ProblemList: React.FC<AppProps> = ({
     <>
       <Grid container className={styles.root}>
         <Grid item className={styles["request-field"]}>
-          <label>Enter Codeforces Or Atcoder Question URL:</label>
+          <label>Enter Codeforces/ Atcoder/ CSES Problem Set Question URL:</label>
           <CssTextField
             onChange={(e) => {
               setUrl(e.target.value as string);
