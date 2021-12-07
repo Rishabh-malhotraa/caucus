@@ -9,7 +9,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": [],
+  "plugins": ["react"],
   "rules": {
     "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/ban-ts-comment": "off",

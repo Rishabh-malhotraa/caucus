@@ -108,11 +108,10 @@ const CodeMirrorEditor: React.FC<AppProps> = ({ editorInstance, setEditorInstanc
           tabSize: 2,
           gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
           autoCloseTags: true,
-          matchBrackets: true,
           autoCloseBrackets: true,
           extraKeys: {
             "Ctrl-Space": "autocomplete",
-            "Ctrl-'": submitProblem,
+            "Ctrl-'": "submitProblem",
           },
         }}
         editorDidMount={(editor) => {

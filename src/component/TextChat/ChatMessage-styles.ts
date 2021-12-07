@@ -1,10 +1,10 @@
-import { Theme } from "@material-ui/core/styles";
+import { Theme, createStyles } from "@material-ui/core/styles";
 const styles = ({ palette, spacing }: Theme) => {
   const radius = spacing(2.5);
   const size = spacing(4);
   const rightBgColor = palette.primary.main;
-  // if you want the same as facebook messenger, use this color '#09f'
-  return {
+  return createStyles({
+    // if you want the same as facebook messenger, use this color '#09f'
     avatar: {
       width: size,
       height: size,
@@ -48,6 +48,6 @@ const styles = ({ palette, spacing }: Theme) => {
     rightLast: {
       borderBottomRightRadius: radius,
     },
-  };
+  });
 };
 export default styles;
