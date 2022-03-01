@@ -1,5 +1,5 @@
 {
-  "name": "caucus",
+  "name": "caucus-client",
   "description": "Realtime Collaborate Editor with embedded Compiler",
   "version": "1.0.0",
   "private": true,

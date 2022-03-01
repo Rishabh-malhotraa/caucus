@@ -1,0 +1,43 @@
+{
+  "name": "caucus",
+  "description": "Realtime Collaborate Editor with embedded Compiler",
+  "version": "1.0.0",
+  "private": true,
+  "author": {
+    "name": "Rishabh Malhotra",
+    "email": "rishabhmalhotraa01@gmail.com"
+  },
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Rishabh-malhotraa/caucus/issues"
+  },
+  "homepage": "https://github.com/Rishabh-malhotraa/caucus#readme",
+  "scripts": {
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\"",
+    "lint": "eslint src/**/*.ts src/**/*.tsx",
+    "install-client": "cd client && npm install",
+    "install-server": "cd server && npm install",
+    "install-modules": "npm install && npm run install-client && npm run install-server",
+    "client": "cd client && npm run start",
+    "server": "cd server && npm run dev",
+    "crdt-server": "cd client && npx y-websocket",
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run crdt-server\"",
+    "pre-commit": "cd server && npm run pre-commit && cd ../client && npm run pre-commit",
+    "build": "cd server && npm run dev && cd ../client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rishabh-malhotraa/caucus.git"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^6.4.0"
+  },
+  "browserslist": [
+    ">0.3%",
+    "not ie 11",
+    "not dead",
+    "not op_mini all"
+  ]
+}
