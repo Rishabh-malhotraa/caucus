@@ -99,7 +99,7 @@ passport.use(
         }
       } catch (err) {
         console.error(err);
-        done(err);
+        done(err as Error);
       }
     }
   )
