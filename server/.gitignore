@@ -1,0 +1,15 @@
+node_modules/
+build/**/*
+dist/**/*
+certs/**/*
+src/data
+
+.env
+
+
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*

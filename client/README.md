@@ -104,31 +104,23 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Fork the repo(required), a star is also appretiated but optional :P
-
-2. Clone the forked repo
+1. Clone the repo
 
    ```sh
-   git clone https://github.com/{your-github-username}/caucus.git
+   git clone https://github.com/Rishabh-malhotraa/caucus.git
    ```
 
-   example : `git clone https://github.com/Rishabh-malhotraa/caucus.git`
-
-3. Install NPM packages
+2. Install NPM packages
 
    ```sh
-   npm run install-modules
+   npm install
    ```
 
-4. Start the react and nodejs server concucrrently
+3. Start the react server
 
    ```sh
-   npm run dev
+   npm run start
    ```
-
-### Setting up DATABASE
-
-To setup the database with mockdata, follow this [guide](/Setting%20up%20Database.md)
 
 ## Roadmap
 
