@@ -2,21 +2,20 @@
 
 You can also follow [this video guide](https://www.youtube.com/watch?v=fZQI7nBu32M) to set up MongoDB
 
-1. **Download MongoDB-community server, MongoDB toolkit & MongoDB-Compass.**
-
+1. **Download PostgreSQL and pg-admin4(optional).**
    - [PostgreSQL](https://www.postgresql.org/download/)
 
 2. **Restore database from dump files**
 
-  Before restoring data from dump file we need to create a database in which we could dump the data
+   Before restoring data from dump file we need to create a database in which we could dump the data
 
    ``` sh
-    createdb -h localhost -U postgres -W caucus_db
+   createdb -h localhost -U postgres -W caucus_db
    ```
 
-  Dump Data to the database.
+   Dump Data to the database.
 
-  ``` sh
+   ``` sh
    pg_restore --dbname caucus_db ./dump/caucus_db
    ```
 
