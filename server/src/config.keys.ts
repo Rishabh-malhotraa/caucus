@@ -13,7 +13,7 @@ export const SERVER_URL = process.env.SERVER_URL || "http://localhost:5000";
 
 export const COOKIE_KEYS = [process.env.COOKIE_KEYS || "password"];
 
-export const JDOODLE_URL = process.env.JDOODLE_URL || "https://api.jdoodle.com/v1/execute";
+export const JDOODLE_URL = process.env.JDOODLE_URL || "https://api.jdoodle.com/v1";
 
 // check if URI is correct for you format
 // postgresql://<User>:<Passward>@<host-name>:<port-number>/<db-name>s
@@ -35,6 +35,6 @@ export const TWITTER_KEY = {
 };
 
 export const JDOODLE = {
-  clientID: process.env.JDOODLE_CLIENTID,
-  clientSecret: process.env.JDOOLDE_CLIENTSECRET,
+  clientID: process.env.JDOODLE_CLIENTID || " ",
+  clientSecret: process.env.JDOOLDE_CLIENTSECRET || " ",
 };
