@@ -1,4 +1,4 @@
-# Steps for setting up the project locally
+# Steps for setting up the project locally (DEPRECATED)
 
 1. Clone the caucus Repository
 
