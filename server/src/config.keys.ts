@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 // .dotenv why you do me dirty like this D:
 import dotenv from "dotenv";
 dotenv.config();

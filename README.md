@@ -58,14 +58,15 @@
 </details>
 
 ## 📣 Latest Announcements
+
 🆕 5-10-2021: We now have a discussions form, if you want any new feature to be implemented you can [discuss here](https://github.com/Rishabh-malhotraa/caucus/discussions/50)
 
 🆕 28-09-2021: Caucus is participating in Hacktoberfest 2021 🥳
 
 ## About The Project
 
-
 ### Demonstration
+
 [![Product Demonstation][product-demo]](https://caucus-app.herokuapp.com/)
 
 <br/>
@@ -129,6 +130,15 @@ This is an example of how to list things you need to use the software and how to
 ### Setting up DATABASE
 
 To setup the database with mockdata, follow this [guide](/Setting%20up%20Database.md)
+
+### Execute Code
+
+To allow cuacus to execute code, you need to get your api keys from [JDoodle](https://www.jdoodle.com/) and add them to the `.env` file
+
+``` text
+JDOODLE_CLIENTID=get_your_key
+JDOOLDE_CLIENTSECRET=get_your_key
+```
 
 ## Roadmap
 
