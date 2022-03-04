@@ -1,6 +1,6 @@
-# Guide to Setup up mock data in MongoDB
+# Guide to Setup up mock data in PostgreSQL
 
-You can also follow [this video guide](https://www.youtube.com/watch?v=fZQI7nBu32M) to set up MongoDB
+You can also follow [this video guide](https://www.youtube.com/watch?v=fZQI7nBu32M) to set up PostgreSQL
 
 1. **Download PostgreSQL and pg-admin4(optional).**
    - [PostgreSQL](https://www.postgresql.org/download/)
