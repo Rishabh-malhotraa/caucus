@@ -34,6 +34,6 @@ export const TWITTER_KEY = {
 };
 
 export const JDOODLE = {
-  clientID: process.env.JDOODLE_CLIENTID || " ",
-  clientSecret: process.env.JDOOLDE_CLIENTSECRET || " ",
+  clientID: process.env.JDOODLE_CLIENTID || "da358ecadea106b681e17e6dd1194863",
+  clientSecret: process.env.JDOOLDE_CLIENTSECRET || "7b69d6ce85668cb6fe5dbd61d37433bf3ffe31c14fed906833faad7e2593f5ca",
 };

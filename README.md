@@ -134,6 +134,7 @@ To setup the database with mockdata, follow this [guide](/Setting%20up%20Databas
 ### Execute Code
 
 To allow cuacus to execute code, you need to get your api keys from [JDoodle](https://www.jdoodle.com/) and add them to the `.env` file
+Update: I have included API keys from a dummy account, you can get your own also from JDoodle, the keys are restricited to 200 executions per day, and is visible to everyone, you can get your own private key at JDOODLE
 
 ``` text
 JDOODLE_CLIENTID=get_your_key
