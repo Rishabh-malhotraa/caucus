@@ -29,7 +29,7 @@ git checkout <feature_branch>
 npm run start
 ```
 
-## Screenshots of the fix
+
 
 
 ---
