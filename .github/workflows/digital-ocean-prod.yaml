@@ -1,0 +1,73 @@
+name: CI/CD Digital Ocean PROD
+
+on:
+  push:
+    branches: [deploy]
+
+env:
+  REACT_APP_CLIENT_URL: ${{secrets.REACT_APP_CLIENT_URL}}
+  REACT_APP_SERVER_URL: ${{secrets.REACT_APP_SERVER_URL}}
+  REACT_APP_CRDT_SERVER: ${{secrets.REACT_APP_CRDT_SERVER}}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install and Build Server
+        run: cd server && npm install && npm run build
+
+      - name: Install and Build Client
+        run: cd client && npm install --force && npm run build
+
+      - name: Upload to Server Digital Ocean
+        uses: appleboy/scp-action@master # This is the action
+        with:
+          host: ${{secrets.SSH_HOST_PROD}} # IP address of the server you wish to ssh into
+          key: ${{secrets.SSH_KEY}} # Private or public key of the server
+          username: ${{ secrets.SSH_USERNAME }} # User of the server you want to ssh into
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          source: 'server/dist' # Path to the directory you want to copy
+          target: '~/' # Path to the directory you want to copy to
+
+      - name: Upload to Client Digital Ocean
+        uses: appleboy/scp-action@master # This is the action
+        with:
+          host: ${{secrets.SSH_HOST_PROD}} # IP address of the server you wish to ssh into
+          key: ${{secrets.SSH_KEY}} # Private or public key of the server
+          username: ${{ secrets.SSH_USERNAME }} # User of the server you want to ssh into
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          source: 'client/build' # Path to the directory you want to copy
+          target: '/var/www/html' # Path to the directory you want to copy to
+
+      - name: Start Server
+        uses: appleboy/ssh-action@v0.1.10 # This is the action
+        with:
+          host: ${{secrets.SSH_HOST_PROD}} # IP address of the server you wish to ssh into
+          key: ${{secrets.SSH_KEY}} # Private or public key of the server
+          username: ${{ secrets.SSH_USERNAME }} # User of the server you want to ssh into
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+
+          script: |
+            echo $PATH
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh    
+            rm -rf ~/caucus
+            git clone https://github.com/Rishabh-malhotraa/caucus.git
+            mv ~/server/dist ~/caucus/server/
+            cd ~/caucus/server && npm install --production && cd ~/ && rm -rf ./server
+            pm2 stop caucus-server caucus-crdt-server
+            pm2 start ~/env/ecosystem.config.js --env production
+            echo 'Deployment successful to digital ocean'

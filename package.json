@@ -15,7 +15,7 @@
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\"",
     "lint": "eslint src/**/*.ts src/**/*.tsx",
-    "install-client": "cd client && npm install",
+    "install-client": "cd client && npm install --force",
     "install-server": "cd server && npm install",
     "install-modules": "npm install && npm run install-client && npm run install-server",
     "client": "cd client && npm run start",
