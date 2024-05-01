@@ -30,7 +30,7 @@ const Login = () => {
           <div className={classes["login-box-formbox"]}>
             <div className={classes["login-box-signup"]}>
               Want to know how I made this?{" "}
-              <a href="" onClick={(e) => e.preventDefault()}>
+              <a href="https://bit.ly/caucus-case-study" onClick={(e) => e.preventDefault()}>
                 Read the Blog
               </a>
             </div>
